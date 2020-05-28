@@ -32,17 +32,16 @@ public class Barras extends JPanel {
 	/**
 	 * Desordena un Array.
 	 *
-	 * @param j el JFrame principal
+	 * @param p el JFrame principal
 	 */
-	public void shuffleArray(JFrame j) {
+	public void shuffleArray(JPanel panel) {
 		Random rng = new Random();
 		for (int i = 0; i < NUM_BARS; i++) {
 			int swapWidthIndex = rng.nextInt(NUM_BARS - 1);
 			int temp = n[i];
 			n[i] = n[swapWidthIndex];
 			n[swapWidthIndex] = temp;
-			Delay.delay(3);
-			j.repaint();
+			panel.repaint();
 		}
 	}
 
@@ -57,8 +56,8 @@ public class Barras extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D graphics = (Graphics2D) g;
 		super.paintComponent(graphics);
-		graphics.setColor(Color.WHITE);
 		for (int i = 0; i < NUM_BARS; i++) {
+			graphics.setColor(Color.WHITE);
 			if (i == mismo)
 				graphics.setColor(Color.red);
 
