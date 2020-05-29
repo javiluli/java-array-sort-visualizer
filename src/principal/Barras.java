@@ -9,7 +9,7 @@ import java.util.Random;
 import javax.swing.JPanel;
 
 import Adicionales.Delay;
-import Adicionales.Sorts;
+import Sorts.Sorts;
 
 public class Barras extends JPanel {
 	private static final long serialVersionUID = 1L;

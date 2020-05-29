@@ -1,7 +1,9 @@
-package Algoritmos;
+package Sorts.Algoritmos;
 
 import Adicionales.*;
+import Interfaz.Sort;
 import Principal.*;
+import Sorts.Sorts;
 
 public class Seleccion extends Sorts implements Sort {
 

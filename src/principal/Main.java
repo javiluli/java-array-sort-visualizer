@@ -7,8 +7,11 @@ import java.awt.Font;
 
 import javax.swing.border.LineBorder;
 
-import Algoritmos.*;
 import Adicionales.*;
+import Sorts.*;
+import Sorts.Algoritmos.Bubble;
+import Sorts.Algoritmos.Inserccion;
+import Sorts.Algoritmos.Seleccion;
 
 import java.awt.Color;
 

@@ -1,4 +1,4 @@
-package Adicionales;
+package Sorts;
 
 public class Sorts {
 //	protected static JPanel panel;

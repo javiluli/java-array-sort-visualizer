@@ -1,4 +1,4 @@
-package Principal;
+package Interfaz;
 
 public interface Sort {
 
