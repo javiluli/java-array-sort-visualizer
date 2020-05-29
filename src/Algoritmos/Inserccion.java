@@ -2,7 +2,9 @@ package Algoritmos;
 
 import javax.swing.JPanel;
 
-import principal.*;
+import Adicionales.Delay;
+import Adicionales.Memoria;
+import Principal.*;
 
 public class Inserccion extends Sorts implements Sort {
 
@@ -23,7 +25,6 @@ public class Inserccion extends Sorts implements Sort {
 				pos--;
 				cambiosArray++;
 			}
-
 			n[pos] = aux;
 			fin = System.currentTimeMillis();
 			lblTexto();
@@ -36,6 +37,10 @@ public class Inserccion extends Sorts implements Sort {
 	public void lblTexto() {
 		Main.lblCambios.setText("Cambios en el Array: " + cambiosArray);
 		Main.lblAccesos.setText("Accesos al Array: " + accesoArray);
+		Main.lblMemoriaMax.setText("Memoria maxima: " + Memoria.max() + " MB");
+		Main.lblMemoriaTotal.setText("Memoria total: " + Memoria.total() + " MB");
+		Main.lblMemoriaLibre.setText("Memoria libre: " + Memoria.libre() + " MB");
+		Main.lblMemoriaUsada.setText("Memoria usada: " + Memoria.usada() + " MB");
 		cambioTiempoMedicion();
 	}
 

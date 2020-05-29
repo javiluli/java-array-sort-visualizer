@@ -1,4 +1,4 @@
-package principal;
+package Principal;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.border.LineBorder;
 
 import Algoritmos.*;
+import Adicionales.*;
 
 import java.awt.Color;
 
@@ -19,7 +20,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
+
 import javax.swing.event.ChangeEvent;
+import java.awt.Panel;
 
 public class Main extends Sorts {
 
@@ -36,14 +39,9 @@ public class Main extends Sorts {
 	JLabel lblTamBarras;
 	JLabel lblVelocidad;
 	JSlider sliderVelocidad;
+	Panel panelVisorMemoria;
 	public static JLabel lblCambios;
 	public static JLabel lblAccesos;
-
-	Main() {
-		lblCambios.setText("Cambios en el Array: " + cambiosArray);
-		lblAccesos.setText("Accesos al Array: " + accesoArray);
-		lblTiempo.setText("Tiempo real: " + tiempo + " ms");
-	}
 
 	// Tamaño de la ventana
 	public final static int WIN_WIDTH = 1280;
@@ -55,10 +53,15 @@ public class Main extends Sorts {
 
 //	Objetos de mis Clases
 	Barras barras;
-	Sorts sort;
+	Sorts sorts;
+	Memoria memoria;
 
 	static int BAR_WIDTH = 4;
 	public static JLabel lblTiempo;
+	public static JLabel lblMemoriaUsada;
+	public static JLabel lblMemoriaMax;
+	public static JLabel lblMemoriaLibre;
+	public static JLabel lblMemoriaTotal;
 
 	/**
 	 * Launch the application.
@@ -90,6 +93,7 @@ public class Main extends Sorts {
 		barras.setLayout(null);
 
 		panelBarras.setVisible(true);
+
 		frame.setVisible(true);
 
 		sorting();
@@ -99,8 +103,8 @@ public class Main extends Sorts {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+
 		frame = new JFrame();
-		frame.setResizable(false);
 		frame.setBounds(100, 100, WIN_WIDTH, WIN_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -203,7 +207,7 @@ public class Main extends Sorts {
 		});
 		sliderVelocidad.setValue(1);
 		sliderVelocidad.setPaintTicks(true);
-		sliderVelocidad.setBounds(10, 364, 260, 30);
+		sliderVelocidad.setBounds(10, 365, 260, 30);
 		panelOpcionesMenu.add(sliderVelocidad);
 
 		lblTiempo = new JLabel("Tiempo: 0 ms");
@@ -211,6 +215,32 @@ public class Main extends Sorts {
 		lblTiempo.setToolTipText("Tiempo mas la velocidad.");
 		lblTiempo.setBounds(10, 405, 253, 30);
 		panelOpcionesMenu.add(lblTiempo);
+
+		panelVisorMemoria = new Panel();
+		panelVisorMemoria.setBackground(Color.WHITE);
+		panelVisorMemoria.setBounds(10, 441, 260, 140);
+		panelOpcionesMenu.add(panelVisorMemoria);
+		panelVisorMemoria.setLayout(null);
+
+		lblMemoriaUsada = new JLabel("Memoria usada: 0 MB");
+		lblMemoriaUsada.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblMemoriaUsada.setBounds(10, 12, 240, 20);
+		panelVisorMemoria.add(lblMemoriaUsada);
+
+		lblMemoriaMax = new JLabel("Memoria maxima: 0 MB");
+		lblMemoriaMax.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblMemoriaMax.setBounds(10, 44, 240, 20);
+		panelVisorMemoria.add(lblMemoriaMax);
+
+		lblMemoriaLibre = new JLabel("Memoria libre: 0 MB");
+		lblMemoriaLibre.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblMemoriaLibre.setBounds(10, 76, 240, 20);
+		panelVisorMemoria.add(lblMemoriaLibre);
+
+		lblMemoriaTotal = new JLabel("Memoria total: 0 MB");
+		lblMemoriaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblMemoriaTotal.setBounds(10, 108, 240, 20);
+		panelVisorMemoria.add(lblMemoriaTotal);
 
 		lblTitle = new JLabel("Controles");
 		lblTitle.setBounds(10, 11, 280, 24);
@@ -221,19 +251,16 @@ public class Main extends Sorts {
 
 	public void sorting() {
 		if (puedeOrdenar) {
-			lblCambios.setText("Cambios en el Array: " + cambiosArray);
-			lblAccesos.setText("Accesos al Array: " + accesoArray);
-			lblTiempo.setText("Tiempo real: " + tiempo + " ms");
-
+			textos();
 			switch (seleccionAlgoritmo) {
 			case 0:
-				sort = new Bubble(seleccionAlgoritmo, seleccionAlgoritmo, panelBarras, Barras.getN());
+				sorts = new Bubble(seleccionAlgoritmo, seleccionAlgoritmo, panelBarras, Barras.getN());
 				break;
 			case 1:
-				sort = new Inserccion(seleccionAlgoritmo, seleccionAlgoritmo, panelBarras, Barras.getN());
+				sorts = new Inserccion(seleccionAlgoritmo, seleccionAlgoritmo, panelBarras, Barras.getN());
 				break;
 			case 2:
-				sort = new Seleccion(seleccionAlgoritmo, seleccionAlgoritmo, panelBarras, Barras.getN());
+				sorts = new Seleccion(seleccionAlgoritmo, seleccionAlgoritmo, panelBarras, Barras.getN());
 				break;
 			default:
 				barras.shuffleArray(panelBarras);
@@ -244,13 +271,23 @@ public class Main extends Sorts {
 		pausa();
 	}
 
+	public void textos() {
+		lblCambios.setText("Cambios en el Array: " + cambiosArray);
+		lblAccesos.setText("Accesos al Array: " + accesoArray);
+		lblTiempo.setText("Tiempo: " + tiempo + " ms");
+		lblMemoriaMax.setText("Memoria maxima: " + Memoria.getMax() + " MB");
+		lblMemoriaTotal.setText("Memoria total: " + Memoria.getTotal() + " MB");
+		lblMemoriaLibre.setText("Memoria libre: " + Memoria.getLibre() + " MB");
+		lblMemoriaUsada.setText("Memoria usada: " + Memoria.getUsada() + " MB");
+
+	}
+
 	// Reinicia algunas variables despues de terminar un sort
 	public void reinicio() {
 		puedeOrdenar = false;
 		puedeDesordenar = true;
-		cambiosArray = 0;
-		accesoArray = 0;
-		tiempo = 0;
+		sorts = new Sorts();
+		memoria = new Memoria();
 	}
 
 	// mantiene un loop cerrado para la seleccion del Sort
@@ -271,7 +308,6 @@ public class Main extends Sorts {
 		barras.barras();
 		barras.repaint();
 		lblTamBarras.setText("Tama\u00F1o de las barras: " + BAR_WIDTH + " px");
-
 	}
 
 	public void cambioVelocidad() {
@@ -279,4 +315,5 @@ public class Main extends Sorts {
 		Delay.delay();
 		lblVelocidad.setText("Velocidad: " + Delay.n + " ms");
 	}
+
 }

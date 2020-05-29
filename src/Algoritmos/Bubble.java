@@ -2,11 +2,13 @@ package Algoritmos;
 
 import javax.swing.JPanel;
 
-import principal.*;
+import Adicionales.*;
+import Principal.*;
 
 public class Bubble extends Sorts implements Sort {
 
 //	Sorts s;
+	Memoria memoria;
 
 	public Bubble(long accesoArray, long cambiosArray, JPanel panel, int[] n) {
 		super(accesoArray, cambiosArray, panel, n);
@@ -33,13 +35,16 @@ public class Bubble extends Sorts implements Sort {
 			}
 			lblTexto();
 		}
-
 	}
 
 	@Override
 	public void lblTexto() {
 		Main.lblCambios.setText("Cambios en el Array: " + cambiosArray);
 		Main.lblAccesos.setText("Accesos al Array: " + accesoArray);
+		Main.lblMemoriaMax.setText("Memoria maxima: " + Memoria.max() + " MB");
+		Main.lblMemoriaTotal.setText("Memoria total: " + Memoria.total() + " MB");
+		Main.lblMemoriaLibre.setText("Memoria libre: " + Memoria.libre() + " MB");
+		Main.lblMemoriaUsada.setText("Memoria usada: " + Memoria.usada() + " MB");
 		cambioTiempoMedicion();
 	}
 
@@ -51,9 +56,9 @@ public class Bubble extends Sorts implements Sort {
 	@Override
 	public void cambioTiempoMedicion() {
 		if (calcularTiempo() <= 1000)
-			Main.lblTiempo.setText("Tiempo real: " + calcularTiempo() + " ms");
+			Main.lblTiempo.setText("Tiempo: " + calcularTiempo() + " ms");
 		else if (calcularTiempo() > 1000)
-			Main.lblTiempo.setText("Tiempo real: " + calcularTiempo() / 1000 + " s");
+			Main.lblTiempo.setText("Tiempo: " + calcularTiempo() / 1000 + " s");
 	}
 
 	@Override

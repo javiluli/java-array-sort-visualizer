@@ -1,4 +1,4 @@
-package principal;
+package Principal;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,11 +8,12 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
+import Adicionales.Delay;
+
 public class Barras extends JPanel {
 	private static final long serialVersionUID = 1L;
 	final static int WIN_WIDTH = 964;
 	final static int WIN_HEIGHT = 681;
-
 	static int NUM_BARS = WIN_WIDTH / Main.BAR_WIDTH;
 	static int BAR_HEIGHT = WIN_HEIGHT / NUM_BARS;
 	private static int[] n;
