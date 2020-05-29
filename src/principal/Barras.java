@@ -16,7 +16,6 @@ public class Barras extends JPanel {
 	public final static int NUM_BARS = WIN_WIDTH / BAR_WIDTH;
 	public final static int BAR_HEIGHT = WIN_HEIGHT / NUM_BARS;
 	public static int[] n;
-	public static long accesoArray, cambiosArray;
 
 	/**
 	 * Constructor de iniciar el array con numeros ordenados.
@@ -58,14 +57,13 @@ public class Barras extends JPanel {
 		super.paintComponent(graphics);
 		for (int i = 0; i < NUM_BARS; i++) {
 			graphics.setColor(Color.WHITE);
-			if (i == mismo)
-				graphics.setColor(Color.red);
+//			if (i == mismo)
+//				graphics.setColor(Color.red);
 
 			int height = n[i] * BAR_HEIGHT;
 			int xBegin = i + (BAR_WIDTH - 1) * i;
 			int yBegin = WIN_HEIGHT - height;
 			graphics.fillRect(xBegin, yBegin, BAR_WIDTH, height);
-
 		}
 	}
 

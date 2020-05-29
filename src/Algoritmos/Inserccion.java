@@ -4,38 +4,40 @@ import javax.swing.JPanel;
 
 import principal.*;
 
-public class Inserccion {
+public class Inserccion extends Sorts implements Sort {
 
-	public Inserccion(JPanel panel, int[] n) {
-		sort(panel, n);
+	public Inserccion(long accesoArray, long cambiosArray, JPanel panel, int[] n) {
+		super(accesoArray, cambiosArray, panel, n);
+		sort();
 	}
 
-	public void sort(JPanel panel, int[] n) {
+	@Override
+	public void sort() {
 		for (int i = 0; i < n.length; i++) {
 			int pos = i;
 			int aux = n[i];
-
+			accesoArray++;
 			while ((pos > 0) && (n[pos - 1] > aux)) {
 				n[pos] = n[pos - 1];
 				pos--;
-//				LineasArray.cambiosArray++;
+				cambiosArray++;
 			}
-			n[pos] = aux;
 
-			Barras.mismo = i + 1;
-//			LineasArray.accesoArray++;
-			Delay.delay(10);
+			n[pos] = aux;
+			Delay.delay(1);
+			lblTexto();
 			panel.repaint();
-//			texto();
 		}
 	}
 
-//	public void texto() {
-//		Main.getLblEstadisticas().setText(getName() + " | Accesos al array " + LineasArray.accesoArray
-//				+ " | Cambios en el array " + LineasArray.cambiosArray);
-//	}
+	@Override
+	public void lblTexto() {
+		Main.lblCambios.setText("Cambios en el Array: " + cambiosArray);
+		Main.lblAccesos.setText("Accesos al Array: " + accesoArray);
+	}
 
-	String getName() {
+	@Override
+	public String getNombre() {
 		return "Inserccion Sort";
 	}
 }

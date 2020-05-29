@@ -4,38 +4,44 @@ import javax.swing.JPanel;
 
 import principal.*;
 
-public class Seleccion {
+public class Seleccion extends Sorts implements Sort {
 
-	public Seleccion(JPanel panel, int[] n) {
-		sort(panel, n);
+	public Seleccion(long accesoArray, long cambiosArray, JPanel panel, int[] n) {
+		super(accesoArray, cambiosArray, panel, n);
+		sort();
 	}
 
-	public void sort(JPanel panel, int[] n) {
+	@Override
+	public void sort() {
 		for (int i = 0; i < n.length; i++) {
 			int min = i;
+			accesoArray++;
 			for (int j = i + 1; j < n.length; j++) {
-				if (n[j] < n[min])
+				accesoArray++;
+				if (n[j] < n[min]) {
 					min = j;
+					cambiosArray++;
+				}
 			}
 			int aux = n[i];
 			n[i] = n[min];
 			n[min] = aux;
-//			LineasArray.cambiosArray++;
 
-			Barras.mismo = n[min];
-			Delay.delay(10);
+			Delay.delay(1);
+			lblTexto();
 			panel.repaint();
-//			texto();
-//			LineasArray.accesoArray++;
 		}
 	}
 
-//	public void texto() {
-//		Main.getLblEstadisticas().setText(getName() + " | Accesos al array " + LineasArray.accesoArray
-//				+ " | Cambios en el array " + LineasArray.cambiosArray);
-//	}
+	@Override
+	public void lblTexto() {
+		Main.lblCambios.setText("Cambios en el Array: " + cambiosArray);
+		Main.lblAccesos.setText("Accesos al Array: " + accesoArray);
+	}
 
-	String getName() {
+	@Override
+	public String getNombre() {
 		return "Seleccion Sort";
 	}
+
 }

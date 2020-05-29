@@ -4,38 +4,51 @@ import javax.swing.JPanel;
 
 import principal.*;
 
-public class Bubble {
+public class Bubble extends Sorts implements Sort {
 
-	public Bubble(JPanel panel, int[] n) {
-		sort(panel, n);
+	public Bubble(long accesoArray, long cambiosArray, JPanel panel, int[] n) {
+		super(accesoArray, cambiosArray, panel, n);
+		sort();
 	}
 
-	public static void sort(JPanel panel, int[] n) {
+	// @Override
+	public void sort() {
 		for (int i = 0; i < n.length; i++) {
 			for (int j = 0; j < n.length - 1 - i; j++) {
 				if (n[j] > n[j + 1]) {
 					int temp = n[j];
 					n[j] = n[j + 1];
 					n[j + 1] = temp;
-//					LineasArray.cambiosArray++;
+					cambiosArray++;
 				}
-				Barras.mismo = j + 1;
-//				LineasArray.accesoArray++;
+//				Barras.mismo = j + 1;
+				accesoArray++;
+				lblTexto();
 				Delay.delay(1);
 				panel.repaint();
-//				texto();
 			}
-//			LineasArray.accesoArray++;
-//			texto();
+			accesoArray++;
+			lblTexto();
 		}
+		pintar();
 	}
 
-//	public void texto() {
-//		Main.getLblEstadisticas().setText(getName() + " | Accesos al array " + LineasArray.accesoArray
-//				+ " | Cambios en el array " + LineasArray.cambiosArray);
-//	}
+	public void pintar() {
+		for (int i = 0; i < n.length; i++) {
+			Barras.mismo = i;
 
-	String getName() {
+		}
+
+	}
+
+	@Override
+	public void lblTexto() {
+		Main.lblCambios.setText("Cambios en el Array: " + cambiosArray);
+		Main.lblAccesos.setText("Accesos al Array: " + accesoArray);
+	}
+
+	@Override
+	public String getNombre() {
 		return "Bubble Sort";
 	}
 }

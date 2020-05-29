@@ -18,7 +18,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Main {
+public class Main extends Sorts {
+
 	private JFrame frame;
 	static Barras barras;
 	public static JPanel panelMenu;
@@ -28,14 +29,22 @@ public class Main {
 	JButton btnOrdenar;
 	JButton btnDesordenar;
 	JLabel lblTitle;
+	public static JLabel lblCambios;
+	public static JLabel lblAccesos;
 	private static JPanel panelPintar;
 
-	public final static int WIN_WIDTH = 1280; // ancho del menu * 2
+	public final static int WIN_WIDTH = 1280;
 	public final static int WIN_HEIGHT = 720;
 
-	int curAlg = -1;
-	boolean ordenar = false;
-	boolean desordenar = true;
+	int seleccionAlgoritmo = -1;
+	boolean puedeOrdenar = false;
+	boolean puedeDesordenar = true;
+
+//	public static long accesoArray, cambiosArray;
+
+	Bubble bubble;
+	Inserccion inserccion;
+	Seleccion seleccion;
 
 	/**
 	 * Launch the application.
@@ -44,7 +53,7 @@ public class Main {
 //		EventQueue.invokeLater(new Runnable() {
 //		public void run() {
 //			try {
-		Main window = new Main();
+		Main window = new Main(accesoArray, cambiosArray, panel, n);
 		window.frame.setVisible(true);
 //				} catch (Exception e) {
 //					e.printStackTrace();
@@ -56,7 +65,8 @@ public class Main {
 	/**
 	 * Create the application.
 	 */
-	public Main() {
+	public Main(long accesArr, long cambArr, JPanel panel, int[] n) {
+		super(accesArr, cambArr, panel, n);
 		initialize();
 		panelPintar.setLayout(null);
 		barras = new Barras();
@@ -64,10 +74,13 @@ public class Main {
 
 		panelPintar.add(barras);
 		barras.setLayout(null);
-		barras.shuffleArray(panelPintar);
+//		barras.shuffleArray(panelPintar);
 		barras.repaint();
 
 		panelPintar.setVisible(true);
+		lblCambios.setText("Cambios en el Array: " + cambiosArray);
+		lblAccesos.setText("Accesos al Array: " + accesoArray);
+
 		frame.setVisible(true);
 
 		sorting();
@@ -114,27 +127,36 @@ public class Main {
 		btnOrdenar = new JButton("Ordenar");
 		btnOrdenar.setFont(new Font("Arial", Font.BOLD, 13));
 		btnOrdenar.setBounds(24, 95, 110, 30);
-		panelOpcionesMenu.add(btnOrdenar);
 		btnOrdenar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ordenar = true;
-				desordenar = false;
-				curAlg = comboBoxTipoSort.getSelectedIndex();
-
+				puedeOrdenar = true;
+				puedeDesordenar = false;
+				seleccionAlgoritmo = comboBoxTipoSort.getSelectedIndex();
 			}
 		});
+		panelOpcionesMenu.add(btnOrdenar);
 
 		btnDesordenar = new JButton("Desordenar");
 		btnDesordenar.setFont(new Font("Arial", Font.BOLD, 13));
 		btnDesordenar.setBounds(153, 95, 110, 30);
 		btnDesordenar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (desordenar) {
+				if (puedeDesordenar) {
 					barras.shuffleArray(panelPintar);
 				}
 			}
 		});
 		panelOpcionesMenu.add(btnDesordenar);
+
+		lblCambios = new JLabel("Cambios en el Array:");
+		lblCambios.setFont(new Font("Arial", Font.BOLD, 13));
+		lblCambios.setBounds(10, 212, 260, 30);
+		panelOpcionesMenu.add(lblCambios);
+
+		lblAccesos = new JLabel("Accesos al Array:");
+		lblAccesos.setFont(new Font("Arial", Font.BOLD, 13));
+		lblAccesos.setBounds(10, 267, 260, 30);
+		panelOpcionesMenu.add(lblAccesos);
 
 		lblTitle = new JLabel("Controles");
 		lblTitle.setBounds(10, 11, 280, 24);
@@ -144,16 +166,16 @@ public class Main {
 	}
 
 	public void sorting() {
-		if (ordenar) {
-			switch (curAlg) {
+		if (puedeOrdenar) {
+			switch (seleccionAlgoritmo) {
 			case 0:
-				Bubble bubble = new Bubble(panelPintar, Barras.n);
+				bubble = new Bubble(seleccionAlgoritmo, seleccionAlgoritmo, panelPintar, Barras.n);
 				break;
 			case 1:
-				Inserccion inserccion = new Inserccion(panelPintar, Barras.n);
+				inserccion = new Inserccion(seleccionAlgoritmo, seleccionAlgoritmo, panelPintar, Barras.n);
 				break;
 			case 2:
-				Seleccion seleccion = new Seleccion(panelPintar, Barras.n);
+				seleccion = new Seleccion(seleccionAlgoritmo, seleccionAlgoritmo, panelPintar, Barras.n);
 				break;
 			default:
 				break;
@@ -165,22 +187,21 @@ public class Main {
 
 	// Reinicia algunas variables despues de terminar un sort
 	public void reset() {
-		ordenar = false;
-		desordenar = true;
+		puedeOrdenar = false;
+		puedeDesordenar = true;
+		cambiosArray = 0;
+		accesoArray = 0;
 	}
 
 	// mantiene un llop cerrado para la seleccion del Sort
 	public void pause() {
-		int i = 0;
-		do {
-			i++;
-			if (i > 100)
-				i = 0;
+		for (; !puedeOrdenar;) {
 			try {
 				Thread.sleep(1);
 			} catch (Exception e) {
 			}
-		} while (!ordenar);
+		}
+
 		sorting();
 	}
 }
