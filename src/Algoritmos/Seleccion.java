@@ -13,6 +13,7 @@ public class Seleccion extends Sorts implements Sort {
 
 	@Override
 	public void sort() {
+		inicio = System.currentTimeMillis();
 		for (int i = 0; i < n.length; i++) {
 			int min = i;
 			accesoArray++;
@@ -27,9 +28,10 @@ public class Seleccion extends Sorts implements Sort {
 			n[i] = n[min];
 			n[min] = aux;
 
-			Delay.delay(1);
+			fin = System.currentTimeMillis();
 			lblTexto();
 			panel.repaint();
+			Delay.delay();
 		}
 	}
 
@@ -37,6 +39,20 @@ public class Seleccion extends Sorts implements Sort {
 	public void lblTexto() {
 		Main.lblCambios.setText("Cambios en el Array: " + cambiosArray);
 		Main.lblAccesos.setText("Accesos al Array: " + accesoArray);
+		cambioTiempoMedicion();
+	}
+
+	@Override
+	public long calcularTiempo() {
+		return tiempo = (fin - inicio);
+	}
+
+	@Override
+	public void cambioTiempoMedicion() {
+		if (calcularTiempo() <= 1000)
+			Main.lblTiempo.setText("Tiempo real: " + calcularTiempo() + " ms");
+		else if (calcularTiempo() > 1000)
+			Main.lblTiempo.setText("Tiempo real: " + calcularTiempo() / 1000 + " s");
 	}
 
 	@Override

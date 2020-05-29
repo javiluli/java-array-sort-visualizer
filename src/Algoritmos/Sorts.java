@@ -7,6 +7,10 @@ public abstract class Sorts {
 	protected static int[] n;
 	protected static long accesoArray;
 	protected static long cambiosArray;
+	public static long inicio, fin, tiempo;
+
+	public Sorts() {
+	}
 
 	public Sorts(long accesoArray, long cambiosArray, JPanel panel, int[] n) {
 		Sorts.panel = panel;
@@ -14,4 +18,5 @@ public abstract class Sorts {
 		Sorts.accesoArray = accesoArray;
 		Sorts.cambiosArray = cambiosArray;
 	}
+
 }

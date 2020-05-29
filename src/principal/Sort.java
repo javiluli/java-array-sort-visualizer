@@ -1,14 +1,14 @@
 package principal;
 
-import javax.swing.JPanel;
+public interface Sort {
 
-public abstract class Sort {
-	JPanel panel;
-	int[] n;
+	public void sort();
 
-	public Sort(JPanel panel, int[] n) {
-		this.panel = panel;
-		this.n = n;
-	}
+	public void lblTexto();
 
+	long calcularTiempo();
+
+	void cambioTiempoMedicion();
+
+	String getNombre();
 }

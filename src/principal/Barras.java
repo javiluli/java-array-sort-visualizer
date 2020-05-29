@@ -6,26 +6,33 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Random;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Barras extends JPanel {
-	public final static int WIN_WIDTH = 964;
-	public final static int WIN_HEIGHT = 681;
-	public final static int BAR_WIDTH = 2;
-	public final static int NUM_BARS = WIN_WIDTH / BAR_WIDTH;
-	public final static int BAR_HEIGHT = WIN_HEIGHT / NUM_BARS;
-	public static int[] n;
+	private static final long serialVersionUID = 1L;
+	final static int WIN_WIDTH = 964;
+	final static int WIN_HEIGHT = 681;
+
+	static int NUM_BARS = WIN_WIDTH / Main.BAR_WIDTH;
+	static int BAR_HEIGHT = WIN_HEIGHT / NUM_BARS;
+	private static int[] n;
 
 	/**
 	 * Constructor de iniciar el array con numeros ordenados.
 	 */
 	public Barras() {
-		n = new int[NUM_BARS];
-		for (int i = 0; i < NUM_BARS; i++) {
-			n[i] = i;
-		}
+		barras();
 		setBackground(Color.DARK_GRAY);
+	}
+
+	/**
+	 * Constructor de iniciar el array con numeros ordenados.
+	 */
+	public void barras() {
+		setN(new int[NUM_BARS]);
+		for (int i = 0; i < NUM_BARS; i++) {
+			getN()[i] = i;
+		}
 	}
 
 	/**
@@ -37,9 +44,10 @@ public class Barras extends JPanel {
 		Random rng = new Random();
 		for (int i = 0; i < NUM_BARS; i++) {
 			int swapWidthIndex = rng.nextInt(NUM_BARS - 1);
-			int temp = n[i];
-			n[i] = n[swapWidthIndex];
-			n[swapWidthIndex] = temp;
+			int temp = getN()[i];
+			getN()[i] = getN()[swapWidthIndex];
+			getN()[swapWidthIndex] = temp;
+			Delay.delay(1);
 			panel.repaint();
 		}
 	}
@@ -60,10 +68,10 @@ public class Barras extends JPanel {
 //			if (i == mismo)
 //				graphics.setColor(Color.red);
 
-			int height = n[i] * BAR_HEIGHT;
-			int xBegin = i + (BAR_WIDTH - 1) * i;
+			int height = getN()[i] * BAR_HEIGHT;
+			int xBegin = i + (Main.BAR_WIDTH - 1) * i;
 			int yBegin = WIN_HEIGHT - height;
-			graphics.fillRect(xBegin, yBegin, BAR_WIDTH, height);
+			graphics.fillRect(xBegin, yBegin, Main.BAR_WIDTH, height);
 		}
 	}
 
@@ -75,6 +83,14 @@ public class Barras extends JPanel {
 	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(WIN_WIDTH, WIN_HEIGHT);
+	}
+
+	public static int[] getN() {
+		return n;
+	}
+
+	public static void setN(int[] n) {
+		Barras.n = n;
 	}
 
 }
