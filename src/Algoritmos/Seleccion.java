@@ -1,21 +1,17 @@
 package Algoritmos;
 
-import javax.swing.JPanel;
-
-import Adicionales.Delay;
-import Adicionales.Memoria;
+import Adicionales.*;
 import Principal.*;
 
 public class Seleccion extends Sorts implements Sort {
 
-	public Seleccion(long accesoArray, long cambiosArray, JPanel panel, int[] n) {
-		super(accesoArray, cambiosArray, panel, n);
+	public Seleccion() {
 		sort();
 	}
 
 	@Override
 	public void sort() {
-		inicio = System.currentTimeMillis();
+		setInicio(System.currentTimeMillis());
 		for (int i = 0; i < n.length; i++) {
 			int min = i;
 			accesoArray++;
@@ -30,35 +26,35 @@ public class Seleccion extends Sorts implements Sort {
 			n[i] = n[min];
 			n[min] = aux;
 
-			fin = System.currentTimeMillis();
+			setFin(System.currentTimeMillis());
 			lblTexto();
-			panel.repaint();
+			Main.getPanelBarras().repaint();
 			Delay.delay();
 		}
 	}
 
 	@Override
 	public void lblTexto() {
-		Main.lblCambios.setText("Cambios en el Array: " + cambiosArray);
-		Main.lblAccesos.setText("Accesos al Array: " + accesoArray);
-		Main.lblMemoriaMax.setText("Memoria maxima: " + Memoria.max() + " MB");
-		Main.lblMemoriaTotal.setText("Memoria total: " + Memoria.total() + " MB");
-		Main.lblMemoriaLibre.setText("Memoria libre: " + Memoria.libre() + " MB");
-		Main.lblMemoriaUsada.setText("Memoria usada: " + Memoria.usada() + " MB");
+		Main.getLblCambios().setText("Cambios en el Array: " + cambiosArray);
+		Main.getLblAccesos().setText("Accesos al Array: " + accesoArray);
+		Main.getLblMemoriaMax().setText("Memoria maxima: " + Memoria.max() + " MB");
+		Main.getLblMemoriaTotal().setText("Memoria total: " + Memoria.total() + " MB");
+		Main.getLblMemoriaLibre().setText("Memoria libre: " + Memoria.libre() + " MB");
+		Main.getLblMemoriaUsada().setText("Memoria usada: " + Memoria.usada() + " MB");
 		cambioTiempoMedicion();
 	}
 
 	@Override
 	public long calcularTiempo() {
-		return tiempo = (fin - inicio);
+		return setTiempo((getFin() - getInicio()));
 	}
 
 	@Override
 	public void cambioTiempoMedicion() {
 		if (calcularTiempo() <= 1000)
-			Main.lblTiempo.setText("Tiempo real: " + calcularTiempo() + " ms");
+			Main.getLblTiempo().setText("Tiempo real: " + calcularTiempo() + " ms");
 		else if (calcularTiempo() > 1000)
-			Main.lblTiempo.setText("Tiempo real: " + calcularTiempo() / 1000 + " s");
+			Main.getLblTiempo().setText("Tiempo real: " + calcularTiempo() / 1000 + " s");
 	}
 
 	@Override

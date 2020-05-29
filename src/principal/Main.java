@@ -27,75 +27,67 @@ import java.awt.Panel;
 public class Main extends Sorts {
 
 	private JFrame frame;
-	public JPanel panelMenu;
-	JPanel panelOpcionesMenu;
-	private JPanel panelBarras;
-	JLabel lblTitleAlgoritmo;
-	JComboBox<String> comboBoxTipoSort;
-	JButton btnOrdenar;
-	JButton btnDesordenar;
-	JLabel lblTitle;
-	JSlider sliderTamBarras;
-	JLabel lblTamBarras;
-	JLabel lblVelocidad;
-	JSlider sliderVelocidad;
-	Panel panelVisorMemoria;
-	public static JLabel lblCambios;
-	public static JLabel lblAccesos;
+	private JPanel panelMenu;
+	private JPanel panelOpcionesMenu;
+	private static JPanel panelBarras;
+	private Panel panelVisorMemoria;
+	private JComboBox<String> comboBoxTipoSort;
+	private JLabel lblTitleAlgoritmo;
+	private JLabel lblTitle;
+	private JLabel lblTamBarras;
+	private JLabel lblVelocidad;
+	private static JLabel lblTiempo;
+	private static JLabel lblMemoriaUsada;
+	private static JLabel lblMemoriaMax;
+	private static JLabel lblMemoriaLibre;
+	private static JLabel lblMemoriaTotal;
+	private static JLabel lblCambios;
+	private static JLabel lblAccesos;
+	private JButton btnOrdenar;
+	private JButton btnDesordenar;
+	private JSlider sliderTamBarras;
+	private JSlider sliderVelocidad;
 
 	// Tamaño de la ventana
 	public final static int WIN_WIDTH = 1280;
 	public final static int WIN_HEIGHT = 720;
 
-	int seleccionAlgoritmo = -1;
-	boolean puedeOrdenar = false;
-	boolean puedeDesordenar = true;
+	private int seleccionAlgoritmo = -1;
+	private boolean puedeOrdenar = false;
+	private boolean puedeDesordenar = true;
 
 //	Objetos de mis Clases
 	Barras barras;
 	Sorts sorts;
 	Memoria memoria;
 
-	static int BAR_WIDTH = 4;
-	public static JLabel lblTiempo;
-	public static JLabel lblMemoriaUsada;
-	public static JLabel lblMemoriaMax;
-	public static JLabel lblMemoriaLibre;
-	public static JLabel lblMemoriaTotal;
-
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//		public void run() {
-//			try {
-		Main window = new Main(accesoArray, cambiosArray, panel, n);
-		window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
+		try {
+			Main window = new Main();
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+		}
 	}
 
 	/**
 	 * Create the application.
 	 */
-	public Main(long accesArr, long cambArr, JPanel panel, int[] n) {
-		super(accesArr, cambArr, panel, n);
+
+	/**
+	 * Create the application.
+	 */
+	public Main() {
 		initialize();
-		panelBarras.setLayout(null);
+		getPanelBarras().setLayout(null);
 		barras = new Barras();
 		barras.setBounds(0, 0, 964, 681);
-
-		panelBarras.add(barras);
+		getPanelBarras().add(barras);
 		barras.setLayout(null);
-
-		panelBarras.setVisible(true);
-
+		getPanelBarras().setVisible(true);
 		frame.setVisible(true);
-
 		sorting();
 	}
 
@@ -109,10 +101,10 @@ public class Main extends Sorts {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		panelBarras = new JPanel();
-		panelBarras.setBackground(Color.BLACK);
-		panelBarras.setBounds(300, 0, 964, 681);
-		frame.getContentPane().add(panelBarras);
+		setPanelBarras(new JPanel());
+		getPanelBarras().setBackground(Color.BLACK);
+		getPanelBarras().setBounds(300, 0, 964, 681);
+		frame.getContentPane().add(getPanelBarras());
 
 		panelMenu = new JPanel();
 		panelMenu.setBounds(0, 0, 300, 681);
@@ -165,23 +157,23 @@ public class Main extends Sorts {
 		});
 		panelOpcionesMenu.add(btnDesordenar);
 
-		lblCambios = new JLabel("Cambios en el Array:");
-		lblCambios.setFont(new Font("Arial", Font.BOLD, 13));
-		lblCambios.setBounds(10, 156, 250, 30);
-		panelOpcionesMenu.add(lblCambios);
+		setLblCambios(new JLabel("Cambios en el Array:"));
+		getLblCambios().setFont(new Font("Arial", Font.BOLD, 13));
+		getLblCambios().setBounds(10, 156, 250, 30);
+		panelOpcionesMenu.add(getLblCambios());
 
-		lblAccesos = new JLabel("Accesos al Array:");
-		lblAccesos.setFont(new Font("Arial", Font.BOLD, 13));
-		lblAccesos.setBounds(10, 197, 237, 30);
-		panelOpcionesMenu.add(lblAccesos);
+		setLblAccesos(new JLabel("Accesos al Array:"));
+		getLblAccesos().setFont(new Font("Arial", Font.BOLD, 13));
+		getLblAccesos().setBounds(10, 197, 237, 30);
+		panelOpcionesMenu.add(getLblAccesos());
 
-		lblTamBarras = new JLabel("Tama\u00F1o de las barras: " + BAR_WIDTH + " px");
+		lblTamBarras = new JLabel("Tama\u00F1o de las barras: " + Barras.BAR_WIDTH + " px");
 		lblTamBarras.setFont(new Font("Arial", Font.BOLD, 13));
 		lblTamBarras.setBounds(10, 238, 191, 30);
 		panelOpcionesMenu.add(lblTamBarras);
 
 		sliderTamBarras = new JSlider();
-		sliderTamBarras.setValue(BAR_WIDTH);
+		sliderTamBarras.setValue(Barras.BAR_WIDTH);
 		sliderTamBarras.setMaximum(50);
 		sliderTamBarras.setMinimum(2);
 		sliderTamBarras.setPaintTicks(true);
@@ -210,11 +202,10 @@ public class Main extends Sorts {
 		sliderVelocidad.setBounds(10, 365, 260, 30);
 		panelOpcionesMenu.add(sliderVelocidad);
 
-		lblTiempo = new JLabel("Tiempo: 0 ms");
-		lblTiempo.setFont(new Font("Arial", Font.BOLD, 13));
-		lblTiempo.setToolTipText("Tiempo mas la velocidad.");
-		lblTiempo.setBounds(10, 405, 253, 30);
-		panelOpcionesMenu.add(lblTiempo);
+		setLblTiempo(new JLabel("Tiempo: 0 ms"));
+		getLblTiempo().setFont(new Font("Arial", Font.BOLD, 13));
+		getLblTiempo().setBounds(10, 405, 253, 30);
+		panelOpcionesMenu.add(getLblTiempo());
 
 		panelVisorMemoria = new Panel();
 		panelVisorMemoria.setBackground(Color.WHITE);
@@ -222,25 +213,25 @@ public class Main extends Sorts {
 		panelOpcionesMenu.add(panelVisorMemoria);
 		panelVisorMemoria.setLayout(null);
 
-		lblMemoriaUsada = new JLabel("Memoria usada: 0 MB");
-		lblMemoriaUsada.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblMemoriaUsada.setBounds(10, 12, 240, 20);
-		panelVisorMemoria.add(lblMemoriaUsada);
+		setLblMemoriaUsada(new JLabel("Memoria usada: 0 MB"));
+		getLblMemoriaUsada().setFont(new Font("Arial", Font.PLAIN, 12));
+		getLblMemoriaUsada().setBounds(10, 12, 240, 20);
+		panelVisorMemoria.add(getLblMemoriaUsada());
 
-		lblMemoriaMax = new JLabel("Memoria maxima: 0 MB");
-		lblMemoriaMax.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblMemoriaMax.setBounds(10, 44, 240, 20);
-		panelVisorMemoria.add(lblMemoriaMax);
+		setLblMemoriaMax(new JLabel("Memoria maxima: 0 MB"));
+		getLblMemoriaMax().setFont(new Font("Arial", Font.PLAIN, 12));
+		getLblMemoriaMax().setBounds(10, 44, 240, 20);
+		panelVisorMemoria.add(getLblMemoriaMax());
 
-		lblMemoriaLibre = new JLabel("Memoria libre: 0 MB");
-		lblMemoriaLibre.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblMemoriaLibre.setBounds(10, 76, 240, 20);
-		panelVisorMemoria.add(lblMemoriaLibre);
+		setLblMemoriaLibre(new JLabel("Memoria libre: 0 MB"));
+		getLblMemoriaLibre().setFont(new Font("Arial", Font.PLAIN, 12));
+		getLblMemoriaLibre().setBounds(10, 76, 240, 20);
+		panelVisorMemoria.add(getLblMemoriaLibre());
 
-		lblMemoriaTotal = new JLabel("Memoria total: 0 MB");
-		lblMemoriaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblMemoriaTotal.setBounds(10, 108, 240, 20);
-		panelVisorMemoria.add(lblMemoriaTotal);
+		setLblMemoriaTotal(new JLabel("Memoria total: 0 MB"));
+		getLblMemoriaTotal().setFont(new Font("Arial", Font.PLAIN, 12));
+		getLblMemoriaTotal().setBounds(10, 108, 240, 20);
+		panelVisorMemoria.add(getLblMemoriaTotal());
 
 		lblTitle = new JLabel("Controles");
 		lblTitle.setBounds(10, 11, 280, 24);
@@ -254,16 +245,16 @@ public class Main extends Sorts {
 			textos();
 			switch (seleccionAlgoritmo) {
 			case 0:
-				sorts = new Bubble(seleccionAlgoritmo, seleccionAlgoritmo, panelBarras, Barras.getN());
+				sorts = new Bubble();
 				break;
 			case 1:
-				sorts = new Inserccion(seleccionAlgoritmo, seleccionAlgoritmo, panelBarras, Barras.getN());
+				sorts = new Inserccion();
 				break;
 			case 2:
-				sorts = new Seleccion(seleccionAlgoritmo, seleccionAlgoritmo, panelBarras, Barras.getN());
+				sorts = new Seleccion();
 				break;
 			default:
-				barras.shuffleArray(panelBarras);
+				barras.shuffleArray();
 				break;
 			}
 		}
@@ -272,13 +263,13 @@ public class Main extends Sorts {
 	}
 
 	public void textos() {
-		lblCambios.setText("Cambios en el Array: " + cambiosArray);
-		lblAccesos.setText("Accesos al Array: " + accesoArray);
-		lblTiempo.setText("Tiempo: " + tiempo + " ms");
-		lblMemoriaMax.setText("Memoria maxima: " + Memoria.getMax() + " MB");
-		lblMemoriaTotal.setText("Memoria total: " + Memoria.getTotal() + " MB");
-		lblMemoriaLibre.setText("Memoria libre: " + Memoria.getLibre() + " MB");
-		lblMemoriaUsada.setText("Memoria usada: " + Memoria.getUsada() + " MB");
+//		lblCambios.setText("Cambios en el Array: " + cambiosArray);
+		getLblAccesos().setText("Accesos al Array: " + accesoArray);
+		getLblTiempo().setText("Tiempo: " + getTiempo() + " ms");
+		getLblMemoriaMax().setText("Memoria maxima: " + Memoria.getMax() + " MB");
+		getLblMemoriaTotal().setText("Memoria total: " + Memoria.getTotal() + " MB");
+		getLblMemoriaLibre().setText("Memoria libre: " + Memoria.getLibre() + " MB");
+		getLblMemoriaUsada().setText("Memoria usada: " + Memoria.getUsada() + " MB");
 
 	}
 
@@ -302,18 +293,82 @@ public class Main extends Sorts {
 	}
 
 	public void cambioSizeBarras() {
-		BAR_WIDTH = sliderTamBarras.getValue();
-		Barras.NUM_BARS = Barras.WIN_WIDTH / BAR_WIDTH;
+		Barras.BAR_WIDTH = sliderTamBarras.getValue();
+		Barras.NUM_BARS = Barras.WIN_WIDTH / Barras.BAR_WIDTH;
 		Barras.BAR_HEIGHT = Barras.WIN_HEIGHT / Barras.NUM_BARS;
 		barras.barras();
 		barras.repaint();
-		lblTamBarras.setText("Tama\u00F1o de las barras: " + BAR_WIDTH + " px");
+		lblTamBarras.setText("Tama\u00F1o de las barras: " + Barras.BAR_WIDTH + " px");
 	}
 
 	public void cambioVelocidad() {
 		Delay.n = sliderVelocidad.getValue();
 		Delay.delay();
 		lblVelocidad.setText("Velocidad: " + Delay.n + " ms");
+	}
+
+	public static JLabel getLblCambios() {
+		return lblCambios;
+	}
+
+	public static void setLblCambios(JLabel lblCambios) {
+		Main.lblCambios = lblCambios;
+	}
+
+	public static JLabel getLblAccesos() {
+		return lblAccesos;
+	}
+
+	public static void setLblAccesos(JLabel lblAccesos) {
+		Main.lblAccesos = lblAccesos;
+	}
+
+	public static JLabel getLblMemoriaMax() {
+		return lblMemoriaMax;
+	}
+
+	public static void setLblMemoriaMax(JLabel lblMemoriaMax) {
+		Main.lblMemoriaMax = lblMemoriaMax;
+	}
+
+	public static JLabel getLblMemoriaTotal() {
+		return lblMemoriaTotal;
+	}
+
+	public static void setLblMemoriaTotal(JLabel lblMemoriaTotal) {
+		Main.lblMemoriaTotal = lblMemoriaTotal;
+	}
+
+	public static JLabel getLblMemoriaLibre() {
+		return lblMemoriaLibre;
+	}
+
+	public static void setLblMemoriaLibre(JLabel lblMemoriaLibre) {
+		Main.lblMemoriaLibre = lblMemoriaLibre;
+	}
+
+	public static JLabel getLblMemoriaUsada() {
+		return lblMemoriaUsada;
+	}
+
+	public static void setLblMemoriaUsada(JLabel lblMemoriaUsada) {
+		Main.lblMemoriaUsada = lblMemoriaUsada;
+	}
+
+	public static JLabel getLblTiempo() {
+		return lblTiempo;
+	}
+
+	public static void setLblTiempo(JLabel lblTiempo) {
+		Main.lblTiempo = lblTiempo;
+	}
+
+	public static JPanel getPanelBarras() {
+		return panelBarras;
+	}
+
+	public void setPanelBarras(JPanel panelBarras) {
+		Main.panelBarras = panelBarras;
 	}
 
 }
