@@ -13,12 +13,15 @@ public class Sorts {
 	public Main m;
 
 	public Sorts() {
-		cambiosArray = 0;
-		accesoArray = 0;
-		tiempo = 0;
 	}
 
-	public static long getInicio() {
+	public Sorts(int n) {
+		cambiosArray = n;
+		accesoArray = n;
+		tiempo = n;
+	}
+
+	public long getInicio() {
 		return inicio;
 	}
 
@@ -34,7 +37,7 @@ public class Sorts {
 		Sorts.tiempo = tiempo;
 	}
 
-	public static long getFin() {
+	public long getFin() {
 		return fin;
 	}
 

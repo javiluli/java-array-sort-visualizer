@@ -9,9 +9,7 @@ import javax.swing.border.LineBorder;
 
 import Adicionales.*;
 import Sorts.*;
-import Sorts.Algoritmos.Bubble;
-import Sorts.Algoritmos.Inserccion;
-import Sorts.Algoritmos.Seleccion;
+import Sorts.Algoritmos.*;
 
 import java.awt.Color;
 
@@ -62,7 +60,6 @@ public class Main extends Sorts {
 
 	// Objetos de mis Clases
 	Barras barras;
-	Sorts sorts;
 
 	public static void main(String[] args) {
 		try {
@@ -81,6 +78,12 @@ public class Main extends Sorts {
 
 	Main(Memoria memoria) {
 		this.memoria = memoria;
+	}
+
+	Sorts sorts = new Sorts();
+
+	Main(Sorts sorts) {
+		this.sorts = sorts;
 	}
 
 	public void main() {
@@ -132,8 +135,8 @@ public class Main extends Sorts {
 		// Menu desplegable para la seleccion de algoritmo.
 		comboBoxTipoSort = new JComboBox<String>();
 		comboBoxTipoSort.setFont(new Font("Arial", Font.BOLD, 13));
-		comboBoxTipoSort
-				.setModel(new DefaultComboBoxModel<String>(new String[] { "Burbuja", "Insercion", "Seleccion" }));
+		comboBoxTipoSort.setModel(new DefaultComboBoxModel<String>(
+				new String[] { "Burbuja", "Insercion", "Seleccion", "Cocktail", "Merge" }));
 		comboBoxTipoSort.setBounds(80, 46, 120, 30);
 		panelOpcionesMenu.add(comboBoxTipoSort);
 
@@ -294,6 +297,12 @@ public class Main extends Sorts {
 			case 2:
 				sorts = new Seleccion(new Main());
 				break;
+			case 3:
+				sorts = new Cocktail(new Main());
+				break;
+			case 4:
+				sorts = new Merge(new Main());
+				break;
 			default:
 				barras.shuffleArray();
 				break;
@@ -310,8 +319,9 @@ public class Main extends Sorts {
 	public void textos() {
 		lblCambios.setText("Cambios en el Array: " + cambiosArray);
 		lblAccesos.setText("Accesos al Array: " + accesoArray);
-		calcularMemoria();
 		calcularTiempo();
+		calcularMemoria();
+
 	}
 
 	/**
@@ -325,12 +335,25 @@ public class Main extends Sorts {
 	}
 
 	/**
+	 * Tiempo usado para en la ejecucion entre el inicio y final de un algoritmo de
+	 * ordenacion.
+	 */
+	public void calcularTiempo() {
+		lblTiempo.setText("Tiempo: " + 0 + " ms");
+		sorts.setTiempo((sorts.getFin() - sorts.getInicio()));
+//		if (sorts.getTiempo() <= 1000)
+//			lblTiempo.setText("Tiempo: " + sorts.getTiempo() + " ms");
+//		else if (sorts.getTiempo() > 1000)
+//			lblTiempo.setText("Tiempo: " + sorts.getTiempo() / 1000 + " s");
+	}
+
+	/**
 	 * Reinicia algunas variables y textos despues de terminar un sort.
 	 */
 	public void reinicio() {
 		puedeOrdenar = false;
 		puedeDesordenar = true;
-		sorts = new Sorts();
+		sorts = new Sorts(0);
 		memoria = new Memoria(0);
 	}
 
@@ -369,18 +392,6 @@ public class Main extends Sorts {
 		Delay.n = sliderRetardo.getValue();
 		Delay.delay();
 		lblRetardo.setText("Retardo: " + Delay.n + " ms");
-	}
-
-	/**
-	 * Tiempo usado para en la ejecucion entre el inicio y final de un algoritmo de
-	 * ordenacion.
-	 */
-	public void calcularTiempo() {
-		tiempo = (getFin() - getInicio());
-		if (tiempo <= 1000)
-			Main.getLblTiempo().setText("Tiempo: " + tiempo + " ms");
-		else if (tiempo > 1000)
-			Main.getLblTiempo().setText("Tiempo: " + tiempo / 1000 + " s");
 	}
 
 	public static JLabel getLblAccesos() {
