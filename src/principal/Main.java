@@ -26,13 +26,12 @@ import javax.swing.event.ChangeListener;
 
 import javax.swing.event.ChangeEvent;
 import java.awt.Panel;
-import javax.swing.JRadioButton;
 
 public class Main extends Sorts {
 
 	private JFrame frame;
 	private JPanel panelMenu;
-	public JPanel panelOpcionesMenu;
+	private JPanel panelOpcionesMenu;
 	private static JPanel panelBarras;
 	private Panel panelVisorMemoria;
 	private JComboBox<String> comboBoxTipoSort;
@@ -51,23 +50,20 @@ public class Main extends Sorts {
 	private JButton btnDesordenar;
 	private JSlider sliderTamBarras;
 	private JSlider sliderRetardo;
-	private JRadioButton rdbtnDarkMode;
 
-	// Tamaño de la ventana
+	// Tamaño de la ventana.
 	public final static int WIN_WIDTH = 1280;
 	public final static int WIN_HEIGHT = 720;
 
+	// Variables antes y despues de la ejecucion de una ordenacion.
 	private int seleccionAlgoritmo = -1;
 	private boolean puedeOrdenar = false;
 	private boolean puedeDesordenar = true;
 
-//	Objetos de mis Clases
+	// Objetos de mis Clases
 	Barras barras;
 	Sorts sorts;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		try {
 			Main window = new Main();
@@ -78,9 +74,6 @@ public class Main extends Sorts {
 		}
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public Main() {
 	}
 
@@ -102,11 +95,7 @@ public class Main extends Sorts {
 		sorting();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
-		Color darkMode = new Color(0, 0, 0);
 
 		// Frame principal.
 		frame = new JFrame();
@@ -115,10 +104,10 @@ public class Main extends Sorts {
 		frame.getContentPane().setLayout(null);
 
 		// Panel donde se dibujan las barras.
-		setPanelBarras(new JPanel());
-		getPanelBarras().setBackground(Color.BLACK);
-		getPanelBarras().setBounds(300, 0, 964, 681);
-		frame.getContentPane().add(getPanelBarras());
+		panelBarras = new JPanel();
+		panelBarras.setBackground(Color.BLACK);
+		panelBarras.setBounds(300, 0, 964, 681);
+		frame.getContentPane().add(panelBarras);
 
 		// Panel para el menu de occiones.
 		panelMenu = new JPanel();
@@ -190,16 +179,16 @@ public class Main extends Sorts {
 		panelOpcionesMenu.add(btnDesordenar);
 
 		// Label para el recuento de cambios realizados en el array.
-		lblCambios = new JLabel("Cambios en el Array:");
+		lblCambios = new JLabel("Cambios en el Array: 0");
 		lblCambios.setFont(new Font("Arial", Font.BOLD, 13));
 		lblCambios.setBounds(10, 156, 250, 30);
 		panelOpcionesMenu.add(lblCambios);
 
 		// Label para el recuento de accesos realizados en el array.
-		setLblAccesos(new JLabel("Accesos al Array:"));
-		getLblAccesos().setFont(new Font("Arial", Font.BOLD, 13));
-		getLblAccesos().setBounds(10, 197, 237, 30);
-		panelOpcionesMenu.add(getLblAccesos());
+		lblAccesos = new JLabel("Accesos al Array: 0");
+		lblAccesos.setFont(new Font("Arial", Font.BOLD, 13));
+		lblAccesos.setBounds(10, 197, 237, 30);
+		panelOpcionesMenu.add(lblAccesos);
 
 		// Label para el tamaño de las barras pintadas en pantalla.
 		lblTamBarras = new JLabel("Tama\u00F1o de las barras: " + Barras.BAR_WIDTH + " px");
@@ -227,7 +216,7 @@ public class Main extends Sorts {
 		panelOpcionesMenu.add(sliderTamBarras);
 
 		// Label para el retardo en la que se ordena.
-		lblRetardo = new JLabel("Retardo: " + Delay.n + " ms");
+		lblRetardo = new JLabel("Retardo: 1 ms");
 		lblRetardo.setFont(new Font("Arial", Font.BOLD, 13));
 		lblRetardo.setBounds(10, 324, 190, 30);
 		panelOpcionesMenu.add(lblRetardo);
@@ -245,10 +234,10 @@ public class Main extends Sorts {
 		panelOpcionesMenu.add(sliderRetardo);
 
 		// Tiempo de ejecucion de un Sort/
-		setLblTiempo(new JLabel("Tiempo: 0 ms"));
-		getLblTiempo().setFont(new Font("Arial", Font.BOLD, 13));
-		getLblTiempo().setBounds(10, 405, 253, 30);
-		panelOpcionesMenu.add(getLblTiempo());
+		lblTiempo = new JLabel("Tiempo: 0 ms");
+		lblTiempo.setFont(new Font("Arial", Font.BOLD, 13));
+		lblTiempo.setBounds(10, 405, 253, 30);
+		panelOpcionesMenu.add(lblTiempo);
 
 		// Panel para visualizar la memoria.
 		panelVisorMemoria = new Panel();
@@ -258,33 +247,28 @@ public class Main extends Sorts {
 		panelVisorMemoria.setLayout(null);
 
 		// Label para visualizar la memoria utilizada.
-		setLblMemoriaUsada(new JLabel("Memoria usada: 0 MB"));
-		getLblMemoriaUsada().setFont(new Font("Arial", Font.PLAIN, 12));
-		getLblMemoriaUsada().setBounds(10, 12, 240, 20);
-		panelVisorMemoria.add(getLblMemoriaUsada());
+		lblMemoriaUsada = new JLabel("Memoria usada: 0 MB");
+		lblMemoriaUsada.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblMemoriaUsada.setBounds(10, 12, 240, 20);
+		panelVisorMemoria.add(lblMemoriaUsada);
 
 		// Label para visualizar la memoria maxima.
-		setLblMemoriaMax(new JLabel("Memoria maxima: 0 MB"));
-		getLblMemoriaMax().setFont(new Font("Arial", Font.PLAIN, 12));
-		getLblMemoriaMax().setBounds(10, 44, 240, 20);
-		panelVisorMemoria.add(getLblMemoriaMax());
+		lblMemoriaMax = new JLabel("Memoria maxima: 0 MB");
+		lblMemoriaMax.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblMemoriaMax.setBounds(10, 44, 240, 20);
+		panelVisorMemoria.add(lblMemoriaMax);
 
 		// Label para visualizar la memoria libre.
-		setLblMemoriaLibre(new JLabel("Memoria libre: 0 MB"));
-		getLblMemoriaLibre().setFont(new Font("Arial", Font.PLAIN, 12));
-		getLblMemoriaLibre().setBounds(10, 76, 240, 20);
-		panelVisorMemoria.add(getLblMemoriaLibre());
+		lblMemoriaLibre = new JLabel("Memoria libre: 0 MB");
+		lblMemoriaLibre.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblMemoriaLibre.setBounds(10, 76, 240, 20);
+		panelVisorMemoria.add(lblMemoriaLibre);
 
 		// Label para visualizar la memoria total.
-		setLblMemoriaTotal(new JLabel("Memoria total: 0 MB"));
-		getLblMemoriaTotal().setFont(new Font("Arial", Font.PLAIN, 12));
-		getLblMemoriaTotal().setBounds(10, 108, 240, 20);
-		panelVisorMemoria.add(getLblMemoriaTotal());
-
-		rdbtnDarkMode = new JRadioButton("Modo oscuro");
-		rdbtnDarkMode.setFont(new Font("Arial", Font.BOLD, 12));
-		rdbtnDarkMode.setBounds(10, 594, 260, 23);
-		panelOpcionesMenu.add(rdbtnDarkMode);
+		lblMemoriaTotal = new JLabel("Memoria total: 0 MB");
+		lblMemoriaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblMemoriaTotal.setBounds(10, 108, 240, 20);
+		panelVisorMemoria.add(lblMemoriaTotal);
 
 		// Label para el titulo de los controles.
 		lblTitle = new JLabel("Controles");
@@ -384,7 +368,7 @@ public class Main extends Sorts {
 	public void cambioRetardo() {
 		Delay.n = sliderRetardo.getValue();
 		Delay.delay();
-		lblRetardo.setText("Velocidad: " + Delay.n + " ms");
+		lblRetardo.setText("Retardo: " + Delay.n + " ms");
 	}
 
 	/**
