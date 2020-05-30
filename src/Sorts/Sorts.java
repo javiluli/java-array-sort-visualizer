@@ -1,40 +1,44 @@
 package Sorts;
 
+import Principal.Main;
+
 public class Sorts {
 //	protected static JPanel panel;
 	public static int[] n;
-	protected long accesoArray;
-	protected long cambiosArray;
-	private static long inicio, fin, tiempo;
+	protected static long accesoArray;
+	protected static long cambiosArray;
+	protected static long inicio;
+	protected static long fin;
+	protected static long tiempo;
+	public Main m;
 
 	public Sorts() {
 		cambiosArray = 0;
 		accesoArray = 0;
-		setTiempo(0);
+		tiempo = 0;
 	}
 
 	public static long getInicio() {
 		return inicio;
 	}
 
-	public static void setInicio(long inicio) {
+	public void setInicio(long inicio) {
 		Sorts.inicio = inicio;
 	}
 
-	public static long getTiempo() {
+	public long getTiempo() {
 		return tiempo;
 	}
 
-	public static long setTiempo(long tiempo) {
+	public void setTiempo(long tiempo) {
 		Sorts.tiempo = tiempo;
-		return tiempo;
 	}
 
 	public static long getFin() {
 		return fin;
 	}
 
-	public static void setFin(long fin) {
+	public void setFin(long fin) {
 		Sorts.fin = fin;
 	}
 
