@@ -20,6 +20,7 @@ public class Merge extends Sorts implements Sort {
 
 	public void sortingMerge(int left, int right) {
 		if (left < right) {
+			cambiosArray++;
 			int mitad = (left + right) / 2;
 			sortingMerge(left, mitad);
 			sortingMerge(mitad + 1, right);
@@ -36,20 +37,26 @@ public class Merge extends Sorts implements Sort {
 
 		for (int i = 0; i < len_left; i++) {
 			arr_left[i] = n[left + i];
+			accesoArray++;
+			cambiosArray++;
 		}
 		for (int j = 0; j < len_right; j++) {
 			arr_right[j] = n[mitad + 1 + j];
+			accesoArray++;
+			cambiosArray++;
 		}
 		int i = 0, j = 0;
-
 		int k = left;
 		while (i < len_left && j < len_right) {
+			accesoArray++;
 			if (arr_left[i] <= arr_right[j]) {
 				n[k] = arr_left[i];
 				i++;
+				cambiosArray++;
 			} else {
 				n[k] = arr_right[j];
 				j++;
+				cambiosArray++;
 			}
 			k++;
 			m.textos();
@@ -61,6 +68,8 @@ public class Merge extends Sorts implements Sort {
 			n[k] = arr_left[i];
 			i++;
 			k++;
+			accesoArray++;
+			cambiosArray++;
 			m.textos();
 			Main.getPanelBarras().repaint();
 			Delay.delay();
@@ -70,6 +79,8 @@ public class Merge extends Sorts implements Sort {
 			n[k] = arr_right[j];
 			j++;
 			k++;
+			accesoArray++;
+			cambiosArray++;
 			m.textos();
 			Main.getPanelBarras().repaint();
 			Delay.delay();

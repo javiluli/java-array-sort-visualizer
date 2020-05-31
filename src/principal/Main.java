@@ -26,28 +26,29 @@ import javax.swing.event.ChangeEvent;
 import java.awt.Panel;
 
 public class Main extends Sorts {
-
-	private JFrame frame;
-	private JPanel panelMenu;
-	private JPanel panelOpcionesMenu;
-	private static JPanel panelBarras;
-	private Panel panelVisorMemoria;
-	private JComboBox<String> comboBoxTipoSort;
-	private JLabel lblTitleAlgoritmo;
-	private JLabel lblTitle;
-	private JLabel lblTamBarras;
-	private JLabel lblRetardo;
-	private static JLabel lblTiempo;
-	private static JLabel lblMemoriaUsada;
-	private static JLabel lblMemoriaMax;
-	private static JLabel lblMemoriaLibre;
-	private static JLabel lblMemoriaTotal;
-	private static JLabel lblCambios;
-	private static JLabel lblAccesos;
-	private JButton btnOrdenar;
-	private JButton btnDesordenar;
-	private JSlider sliderTamBarras;
-	private JSlider sliderRetardo;
+	private String[] nombreAlgoritmos = { "Buuble", "Insertion", "Selection", "Cocktail", "Merge", "Odd Even",
+			"Quicksort", "Heap", "Pigeonhole", "Radix", "Gnome", "Cyrcle", "Pancake" };
+	private JFrame frame = new JFrame();
+	private JPanel panelMenu = new JPanel();
+	private JPanel panelOpcionesMenu = new JPanel();
+	private static JPanel panelBarras = new JPanel();
+	private Panel panelVisorMemoria = new Panel();
+	private JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
+	private JLabel lblTitleAlgoritmo = new JLabel("Algoritmo de ordenacion");
+	private JLabel lblTitle = new JLabel("Controles");
+	private JLabel lblTamBarras = new JLabel("Tama\u00F1o de las barras: " + Barras.BAR_WIDTH + " px");
+	private JLabel lblRetardo = new JLabel("Retardo: 1 ms");
+	private static JLabel lblTiempo = new JLabel("Tiempo: 0 ms");
+	private static JLabel lblMemoriaUsada = new JLabel("Memoria usada: 0 MB");
+	private static JLabel lblMemoriaMax = new JLabel("Memoria maxima: 0 MB");
+	private static JLabel lblMemoriaLibre = new JLabel("Memoria libre: 0 MB");
+	private static JLabel lblMemoriaTotal = new JLabel("Memoria total: 0 MB");
+	private static JLabel lblCambios = new JLabel("Cambios en el Array: 0");
+	private static JLabel lblAccesos = new JLabel("Accesos al Array: 0");
+	private JButton btnOrdenar = new JButton("Ordenar");
+	private JButton btnDesordenar = new JButton("Desordenar");
+	private JSlider sliderTamBarras = new JSlider();
+	private JSlider sliderRetardo = new JSlider();
 
 	// Tamaño de la ventana.
 	public final static int WIN_WIDTH = 1280;
@@ -101,51 +102,41 @@ public class Main extends Sorts {
 	private void initialize() {
 
 		// Frame principal.
-		frame = new JFrame();
 		frame.setBounds(100, 100, WIN_WIDTH, WIN_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		// Panel donde se dibujan las barras.
-		panelBarras = new JPanel();
 		panelBarras.setBackground(Color.BLACK);
 		panelBarras.setBounds(300, 0, 964, 681);
 		frame.getContentPane().add(panelBarras);
 
 		// Panel para el menu de occiones.
-		panelMenu = new JPanel();
 		panelMenu.setBounds(0, 0, 300, 681);
 		panelMenu.setLayout(null);
 		frame.getContentPane().add(panelMenu);
 
 		// Panel hijo para las ocopnes.
-		panelOpcionesMenu = new JPanel();
 		panelOpcionesMenu.setBounds(10, 46, 280, 624);
 		panelOpcionesMenu.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		panelOpcionesMenu.setLayout(null);
 		panelMenu.add(panelOpcionesMenu);
 
 		// Titulo para seleccion del algoritmo de ordenacion.
-		lblTitleAlgoritmo = new JLabel("Algoritmo de ordenacion");
 		lblTitleAlgoritmo.setFont(new Font("Arial", Font.BOLD, 13));
 		lblTitleAlgoritmo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitleAlgoritmo.setBounds(47, 11, 186, 25);
 		panelOpcionesMenu.add(lblTitleAlgoritmo);
 
 		// Menu desplegable para la seleccion de algoritmo.
-		comboBoxTipoSort = new JComboBox<String>();
 		comboBoxTipoSort.setFont(new Font("Arial", Font.BOLD, 13));
-		comboBoxTipoSort.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "Burbuja", "Insercion", "Seleccion", "Cocktail", "Merge" }));
 		comboBoxTipoSort.setBounds(80, 46, 120, 30);
 		panelOpcionesMenu.add(comboBoxTipoSort);
 
 		// Boton para iniciar la ordenacion.
-		btnOrdenar = new JButton("Ordenar");
 		btnOrdenar.setFont(new Font("Arial", Font.BOLD, 13));
 		btnOrdenar.setBounds(24, 95, 110, 30);
 		btnOrdenar.addActionListener(new ActionListener() {
-
 			/*
 			 * Este obtiene la posicion en la lista de algorimos para su seleccion, y una
 			 * vez iniciada la orneacion evita que se pueda desordenar o reiniciar la
@@ -160,7 +151,6 @@ public class Main extends Sorts {
 		panelOpcionesMenu.add(btnOrdenar);
 
 		// Boton para desordenar el array.
-		btnDesordenar = new JButton("Desordenar");
 		btnDesordenar.setFont(new Font("Arial", Font.BOLD, 13));
 		btnDesordenar.setBounds(153, 95, 110, 30);
 		btnDesordenar.addActionListener(new ActionListener() {
@@ -182,25 +172,21 @@ public class Main extends Sorts {
 		panelOpcionesMenu.add(btnDesordenar);
 
 		// Label para el recuento de cambios realizados en el array.
-		lblCambios = new JLabel("Cambios en el Array: 0");
 		lblCambios.setFont(new Font("Arial", Font.BOLD, 13));
 		lblCambios.setBounds(10, 156, 250, 30);
 		panelOpcionesMenu.add(lblCambios);
 
 		// Label para el recuento de accesos realizados en el array.
-		lblAccesos = new JLabel("Accesos al Array: 0");
 		lblAccesos.setFont(new Font("Arial", Font.BOLD, 13));
 		lblAccesos.setBounds(10, 197, 237, 30);
 		panelOpcionesMenu.add(lblAccesos);
 
 		// Label para el tamaño de las barras pintadas en pantalla.
-		lblTamBarras = new JLabel("Tama\u00F1o de las barras: " + Barras.BAR_WIDTH + " px");
 		lblTamBarras.setFont(new Font("Arial", Font.BOLD, 13));
 		lblTamBarras.setBounds(10, 238, 191, 30);
 		panelOpcionesMenu.add(lblTamBarras);
 
 		// Slider para seleccionar el tamaño de las barras pintadas en pantalla.
-		sliderTamBarras = new JSlider();
 		sliderTamBarras.setValue(Barras.BAR_WIDTH);
 		sliderTamBarras.setMaximum(50);
 		sliderTamBarras.setMinimum(2);
@@ -219,13 +205,11 @@ public class Main extends Sorts {
 		panelOpcionesMenu.add(sliderTamBarras);
 
 		// Label para el retardo en la que se ordena.
-		lblRetardo = new JLabel("Retardo: 1 ms");
 		lblRetardo.setFont(new Font("Arial", Font.BOLD, 13));
 		lblRetardo.setBounds(10, 324, 190, 30);
 		panelOpcionesMenu.add(lblRetardo);
 
 		// Slider para la seleccion del retardo.
-		sliderRetardo = new JSlider();
 		sliderRetardo.setValue(1);
 		sliderRetardo.setPaintTicks(true);
 		sliderRetardo.setBounds(10, 365, 260, 30);
@@ -237,44 +221,38 @@ public class Main extends Sorts {
 		panelOpcionesMenu.add(sliderRetardo);
 
 		// Tiempo de ejecucion de un Sort/
-		lblTiempo = new JLabel("Tiempo: 0 ms");
 		lblTiempo.setFont(new Font("Arial", Font.BOLD, 13));
 		lblTiempo.setBounds(10, 405, 253, 30);
 		panelOpcionesMenu.add(lblTiempo);
 
 		// Panel para visualizar la memoria.
-		panelVisorMemoria = new Panel();
 		panelVisorMemoria.setBackground(Color.WHITE);
 		panelVisorMemoria.setBounds(10, 441, 260, 140);
 		panelOpcionesMenu.add(panelVisorMemoria);
 		panelVisorMemoria.setLayout(null);
 
 		// Label para visualizar la memoria utilizada.
-		lblMemoriaUsada = new JLabel("Memoria usada: 0 MB");
+
 		lblMemoriaUsada.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblMemoriaUsada.setBounds(10, 12, 240, 20);
 		panelVisorMemoria.add(lblMemoriaUsada);
 
 		// Label para visualizar la memoria maxima.
-		lblMemoriaMax = new JLabel("Memoria maxima: 0 MB");
 		lblMemoriaMax.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblMemoriaMax.setBounds(10, 44, 240, 20);
 		panelVisorMemoria.add(lblMemoriaMax);
 
 		// Label para visualizar la memoria libre.
-		lblMemoriaLibre = new JLabel("Memoria libre: 0 MB");
 		lblMemoriaLibre.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblMemoriaLibre.setBounds(10, 76, 240, 20);
 		panelVisorMemoria.add(lblMemoriaLibre);
 
 		// Label para visualizar la memoria total.
-		lblMemoriaTotal = new JLabel("Memoria total: 0 MB");
 		lblMemoriaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblMemoriaTotal.setBounds(10, 108, 240, 20);
 		panelVisorMemoria.add(lblMemoriaTotal);
 
 		// Label para el titulo de los controles.
-		lblTitle = new JLabel("Controles");
 		lblTitle.setBounds(10, 11, 280, 24);
 		panelMenu.add(lblTitle);
 		lblTitle.setFont(new Font("Arial", Font.BOLD, 13));
@@ -295,13 +273,37 @@ public class Main extends Sorts {
 				sorts = new Inserccion(new Main());
 				break;
 			case 2:
-				sorts = new Seleccion(new Main());
+				sorts = new Selection(new Main());
 				break;
 			case 3:
 				sorts = new Cocktail(new Main());
 				break;
 			case 4:
 				sorts = new Merge(new Main());
+				break;
+			case 5:
+				sorts = new OddEven(new Main());
+				break;
+			case 6:
+				sorts = new Quick(new Main());
+				break;
+			case 7:
+				sorts = new Heap(new Main());
+				break;
+			case 8:
+				sorts = new Pigeonhole(new Main());
+				break;
+			case 9:
+				sorts = new Radix(new Main());
+				break;
+			case 10:
+				sorts = new Gnome(new Main());
+				break;
+			case 11:
+				sorts = new Cyrcle(new Main());
+				break;
+			case 12:
+				sorts = new Pancake(new Main());
 				break;
 			default:
 				barras.shuffleArray();
@@ -321,17 +323,16 @@ public class Main extends Sorts {
 		lblAccesos.setText("Accesos al Array: " + accesoArray);
 		calcularTiempo();
 		calcularMemoria();
-
 	}
 
 	/**
 	 * Calcula la memoria y cambia los labels correspondientes.
 	 */
 	public void calcularMemoria() {
-		getLblMemoriaTotal().setText("Memoria total: " + memoria.total + " MB");
-		getLblMemoriaMax().setText("Memoria maxima: " + memoria.max + " MB");
-		getLblMemoriaLibre().setText("Memoria libre: " + memoria.libre + " MB");
-		getLblMemoriaUsada().setText("Memoria usada: " + memoria.usada + " MB");
+		lblMemoriaTotal.setText("Memoria total: " + memoria.total + " MB");
+		lblMemoriaMax.setText("Memoria maxima: " + memoria.max + " MB");
+		lblMemoriaLibre.setText("Memoria libre: " + memoria.libre + " MB");
+		lblMemoriaUsada.setText("Memoria usada: " + memoria.usada + " MB");
 	}
 
 	/**
@@ -339,12 +340,11 @@ public class Main extends Sorts {
 	 * ordenacion.
 	 */
 	public void calcularTiempo() {
-		lblTiempo.setText("Tiempo: " + 0 + " ms");
-		sorts.setTiempo((sorts.getFin() - sorts.getInicio()));
-//		if (sorts.getTiempo() <= 1000)
-//			lblTiempo.setText("Tiempo: " + sorts.getTiempo() + " ms");
-//		else if (sorts.getTiempo() > 1000)
-//			lblTiempo.setText("Tiempo: " + sorts.getTiempo() / 1000 + " s");
+		tiempo = fin - inicio;
+		if (tiempo <= 1000)
+			lblTiempo.setText("Tiempo: " + tiempo + " ms");
+		else if (tiempo > 1000)
+			lblTiempo.setText("Tiempo: " + tiempo / 1000 + " s");
 	}
 
 	/**

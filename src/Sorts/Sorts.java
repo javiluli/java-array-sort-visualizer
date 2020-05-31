@@ -18,6 +18,8 @@ public class Sorts {
 	public Sorts(int n) {
 		cambiosArray = n;
 		accesoArray = n;
+		inicio = 0;
+		fin = 0;
 		tiempo = n;
 	}
 

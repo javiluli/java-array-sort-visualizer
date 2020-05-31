@@ -5,9 +5,9 @@ import Interfaz.Sort;
 import Principal.*;
 import Sorts.Sorts;
 
-public class Seleccion extends Sorts implements Sort {
+public class Selection extends Sorts implements Sort {
 
-	public Seleccion(Main m) {
+	public Selection(Main m) {
 		this.m = m;
 		sort();
 	}
