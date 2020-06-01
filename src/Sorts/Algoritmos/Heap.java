@@ -63,8 +63,7 @@ public class Heap extends Sorts implements Sort {
 
 	@Override
 	public String getNombre() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Heap Sort";
 	}
 
 }

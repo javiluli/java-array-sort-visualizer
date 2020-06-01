@@ -20,6 +20,10 @@ public class Radix extends Sorts implements Sort {
 		int max = getMax(n.length);
 		for (int exp = 1; max / exp > 0; exp *= 10) {
 			countSort(n.length, exp);
+			m.textos();
+			setFin(System.currentTimeMillis());
+			Main.getPanelBarras().repaint();
+			Delay.delay();
 		}
 	}
 
@@ -31,20 +35,12 @@ public class Radix extends Sorts implements Sort {
 
 		for (i = 0; i < len; i++) {
 			count[(n[i] / exp) % 10]++;
-			
 			accesoArray++;
-			m.textos();
-			setFin(System.currentTimeMillis());
-			Main.getPanelBarras().repaint();
-			Delay.delay();
 		}
 
 		for (i = 1; i < 10; i++) {
 			count[i] += count[i - 1];
-			m.textos();
-			setFin(System.currentTimeMillis());
-			Main.getPanelBarras().repaint();
-			Delay.delay();
+
 		}
 
 		for (i = len - 1; i >= 0; i--) {
@@ -52,10 +48,6 @@ public class Radix extends Sorts implements Sort {
 			accesoArray++;
 			count[(n[i] / exp) % 10]--;
 			accesoArray++;
-			m.textos();
-			setFin(System.currentTimeMillis());
-			Main.getPanelBarras().repaint();
-			Delay.delay();
 		}
 		for (i = 0; i < len; i++) {
 			n[i] = output[i];
@@ -80,7 +72,7 @@ public class Radix extends Sorts implements Sort {
 
 	@Override
 	public String getNombre() {
-		return null;
+		return "Radix Sort";
 	}
 
 }

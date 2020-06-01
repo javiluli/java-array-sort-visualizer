@@ -14,7 +14,6 @@ public class Cycle extends Sorts implements Sort {
 	// @Override
 	public void sort() {
 		setInicio(System.currentTimeMillis());
-		
 		int writes = 0;
 		for (int cycle_start = 0; cycle_start <= n.length - 2; cycle_start++) {
 			int item = n[cycle_start];
@@ -68,7 +67,7 @@ public class Cycle extends Sorts implements Sort {
 
 	// @Override
 	public String getNombre() {
-		return null;
+		return "Cycle Sort";
 	}
 
 }

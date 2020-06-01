@@ -13,11 +13,11 @@ import Sorts.Sorts;
 
 public class Barras extends JPanel {
 	private static final long serialVersionUID = 1L;
-	final static int WIN_WIDTH = 964;
-	final static int WIN_HEIGHT = 681;
-	static int BAR_WIDTH = 4;
-	static int NUM_BARS = WIN_WIDTH / BAR_WIDTH;
-	static int BAR_HEIGHT = WIN_HEIGHT / NUM_BARS;
+	private final static int WIN_WIDTH = 1024;
+	private final static int WIN_HEIGHT = 1024;
+	private static int NUM_BARS = 32;
+	private static int BAR_WIDTH = getWinWidth() / getNUM_BARS();
+	private static int BAR_HEIGHT = getWinHeight() / getNUM_BARS();
 
 	/**
 	 * Constructor de iniciar el array con numeros ordenados.
@@ -31,8 +31,8 @@ public class Barras extends JPanel {
 	 * Constructor de iniciar el array con numeros ordenados.
 	 */
 	public void barras() {
-		Sorts.n = new int[NUM_BARS];
-		for (int i = 0; i < NUM_BARS; i++) {
+		Sorts.n = new int[getNUM_BARS()];
+		for (int i = 0; i < getNUM_BARS(); i++) {
 			Sorts.n[i] = i;
 		}
 	}
@@ -44,8 +44,8 @@ public class Barras extends JPanel {
 	 */
 	public void shuffleArray() {
 		Random rng = new Random();
-		for (int i = 0; i < NUM_BARS; i++) {
-			int swapWidthIndex = rng.nextInt(NUM_BARS - 1);
+		for (int i = 0; i < getNUM_BARS(); i++) {
+			int swapWidthIndex = rng.nextInt(getNUM_BARS() - 1);
 			int temp = Sorts.n[i];
 			Sorts.n[i] = Sorts.n[swapWidthIndex];
 			Sorts.n[swapWidthIndex] = temp;
@@ -63,12 +63,12 @@ public class Barras extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D graphics = (Graphics2D) g;
 		super.paintComponent(graphics);
-		for (int i = 0; i < NUM_BARS; i++) {
-			graphics.setColor(Color.WHITE);
-			int height = Sorts.n[i] * BAR_HEIGHT;
-			int xBegin = i + (BAR_WIDTH - 1) * i;
-			int yBegin = WIN_HEIGHT - height;
-			graphics.fillRect(xBegin, yBegin, BAR_WIDTH, height);
+		graphics.setColor(Color.WHITE);
+		for (int i = 0; i < getNUM_BARS(); i++) {
+			int height = Sorts.n[i] * getBAR_HEIGHT() + getBAR_HEIGHT();
+			int xBegin = i + (getBAR_WIDTH() - 1) * i;
+			int yBegin = getWinHeight() - height;
+			graphics.fillRect(xBegin, yBegin, getBAR_WIDTH(), height);
 		}
 	}
 
@@ -79,6 +79,38 @@ public class Barras extends JPanel {
 	 */
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(WIN_WIDTH, WIN_HEIGHT);
+		return new Dimension(getWinWidth(), getWinHeight());
+	}
+
+	public static int getWinWidth() {
+		return WIN_WIDTH;
+	}
+
+	public static int getWinHeight() {
+		return WIN_HEIGHT;
+	}
+
+	public static int getNUM_BARS() {
+		return NUM_BARS;
+	}
+
+	public static void setNUM_BARS(int nUM_BARS) {
+		NUM_BARS = nUM_BARS;
+	}
+
+	public static int getBAR_WIDTH() {
+		return BAR_WIDTH;
+	}
+
+	public static void setBAR_WIDTH(int bAR_WIDTH) {
+		BAR_WIDTH = bAR_WIDTH;
+	}
+
+	public static int getBAR_HEIGHT() {
+		return BAR_HEIGHT;
+	}
+
+	public static void setBAR_HEIGHT(int bAR_HEIGHT) {
+		BAR_HEIGHT = bAR_HEIGHT;
 	}
 }

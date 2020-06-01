@@ -49,8 +49,7 @@ public class Pancake extends Sorts implements Sort {
 
 	@Override
 	public String getNombre() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Pancake Sort";
 	}
 
 }

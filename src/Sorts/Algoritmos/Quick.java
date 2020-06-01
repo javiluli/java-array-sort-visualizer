@@ -53,7 +53,7 @@ public class Quick extends Sorts implements Sort {
 
 	// @Override
 	public String getNombre() {
-		return "Quicksort";
+		return "Quick Sort";
 	}
 
 }

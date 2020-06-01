@@ -36,7 +36,7 @@ public class Gnome extends Sorts implements Sort {
 
 	@Override
 	public String getNombre() {
-		return null;
+		return "Gnome Sort";
 	}
 
 }

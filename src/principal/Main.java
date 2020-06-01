@@ -15,9 +15,9 @@ import java.awt.Color;
 
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
@@ -25,21 +25,26 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.Panel;
 import java.awt.SystemColor;
-import javax.swing.UIManager;
 
 public class Main extends Sorts {
+	// Nombre de cada algoritmo Sort
 	private String[] nombreAlgoritmos = { "Buuble", "Insertion", "Selection", "Cocktail", "Merge", "Odd Even", "Quick",
 			"Heap", "Pigeonhole", "Radix", "Gnome", "Cycle", "Pancake" };
-	private JFrame frame = new JFrame();
+	// JFRAME PRINCIPAL
+	private JFrame frmVisualizadorDe = new JFrame();
+	// JPANEL
 	private JPanel panelMenu = new JPanel();
 	private JPanel panelOpcionesMenu = new JPanel();
 	private static JPanel panelBarras = new JPanel();
 	private Panel panelVisorMemoria = new Panel();
+	// COMBOBOX
 	private JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
-//	private JComboBox comboBoxTipoSort = new JComboBox();
+//	private JComboBox<String> comboBoxTipoSort = new JComboBox<String>();
+
+	// JLABEL
 	private JLabel lblTitleAlgoritmo = new JLabel("Algoritmo de ordenacion");
 	private JLabel lblTitle = new JLabel("Panel de control");
-	private JLabel lblTamBarras = new JLabel("Tama\u00F1o de las barras: " + Barras.BAR_WIDTH + " px");
+	private JLabel lblNumeroBarras = new JLabel("Numero de barras");
 	private JLabel lblRetardo = new JLabel("Retardo: 1 ms");
 	private static JLabel lblTiempo = new JLabel("Tiempo: 0 s 0 ms");
 	private static JLabel lblMemoriaUsada = new JLabel("Memoria usada: 0 MB");
@@ -48,14 +53,17 @@ public class Main extends Sorts {
 	private static JLabel lblMemoriaTotal = new JLabel("Memoria total: 0 MB");
 	private static JLabel lblCambios = new JLabel("Cambios en el Array: 0");
 	private static JLabel lblAccesos = new JLabel("Accesos al Array: 0");
+	// JBUTTON
 	private JButton btnOrdenar = new JButton("Ordenar");
 	private JButton btnDesordenar = new JButton("Desordenar");
+	private JButton btnSaltarSort = new JButton("Saltar Sort");
+	// JSLIDER
 	private JSlider sliderTamBarras = new JSlider();
 	private JSlider sliderRetardo = new JSlider();
 
 	// Tamaño de la ventana.
-	public final static int WIN_WIDTH = 1280;
-	public final static int WIN_HEIGHT = 720;
+	public final static int WIN_WIDTH = 1340;
+	public final static int WIN_HEIGHT = 1063;
 
 	// Variables antes y despues de la ejecucion de una ordenacion.
 	private int seleccionAlgoritmo = -1;
@@ -64,14 +72,13 @@ public class Main extends Sorts {
 
 	// Objetos de mis Clases
 	Barras barras;
+	SliderNumBarasPersonalizado snbp = new SliderNumBarasPersonalizado();
 
 	public static void main(String[] args) {
 		try {
 			Main window = new Main();
 			window.main();
-			window.frame.setVisible(true);
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -94,35 +101,38 @@ public class Main extends Sorts {
 		initialize();
 		getPanelBarras().setLayout(null);
 		barras = new Barras();
-		barras.setBounds(0, 0, 964, 681);
+		barras.setBounds(0, 0, Barras.getWinWidth(), Barras.getWinHeight());
 		getPanelBarras().add(barras);
 		barras.setLayout(null);
 		getPanelBarras().setVisible(true);
-		frame.setVisible(true);
+		frmVisualizadorDe.setTitle("Visualizador de prdenacion de matrices");
+		frmVisualizadorDe.setResizable(false);
+		frmVisualizadorDe.setVisible(true);
 		sorting();
 	}
 
 	private void initialize() {
-
+		Color oscuro = new Color(15, 15, 15);
 		// Frame principal.
-		frame.setBounds(100, 100, WIN_WIDTH, WIN_HEIGHT);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmVisualizadorDe.setBounds(100, 100, WIN_WIDTH, WIN_HEIGHT);
+		frmVisualizadorDe.setLocationRelativeTo(null);
+		frmVisualizadorDe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmVisualizadorDe.getContentPane().setLayout(null);
 
 		// Panel donde se dibujan las barras.
 		panelBarras.setBackground(SystemColor.desktop);
-		panelBarras.setBounds(300, 0, 964, 681);
-		frame.getContentPane().add(panelBarras);
+		panelBarras.setBounds(300, 0, Barras.getWinWidth(), Barras.getWinHeight());
+		frmVisualizadorDe.getContentPane().add(panelBarras);
 		panelMenu.setBackground(SystemColor.activeCaptionText);
 
 		// Panel para el menu de occiones.
-		panelMenu.setBounds(0, 0, 300, 681);
+		panelMenu.setBounds(0, 0, 300, 1024);
 		panelMenu.setLayout(null);
-		frame.getContentPane().add(panelMenu);
-		panelOpcionesMenu.setBackground(Color.DARK_GRAY);
+		frmVisualizadorDe.getContentPane().add(panelMenu);
+		panelOpcionesMenu.setBackground(oscuro);
 
 		// Panel hijo para las ocopnes.
-		panelOpcionesMenu.setBounds(10, 46, 280, 593);
+		panelOpcionesMenu.setBounds(10, 46, 280, 823);
 		panelOpcionesMenu.setBorder(new LineBorder(SystemColor.textInactiveText));
 		panelOpcionesMenu.setLayout(null);
 		panelMenu.add(panelOpcionesMenu);
@@ -136,7 +146,7 @@ public class Main extends Sorts {
 		comboBoxTipoSort.setForeground(Color.WHITE);
 		comboBoxTipoSort.setBackground(Color.DARK_GRAY);
 
-//		 Menu desplegable para la seleccion de algoritmo.
+		// Menu desplegable para la seleccion de algoritmo.
 		comboBoxTipoSort.setFont(new Font("Arial", Font.BOLD, 13));
 		comboBoxTipoSort.setBounds(10, 47, 120, 30);
 		panelOpcionesMenu.add(comboBoxTipoSort);
@@ -194,26 +204,30 @@ public class Main extends Sorts {
 		lblAccesos.setFont(new Font("Arial", Font.BOLD, 13));
 		lblAccesos.setBounds(10, 177, 237, 30);
 		panelOpcionesMenu.add(lblAccesos);
-		lblTamBarras.setForeground(Color.WHITE);
+		lblNumeroBarras.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNumeroBarras.setForeground(Color.WHITE);
 
 		// Label para el tamaño de las barras pintadas en pantalla.
-		lblTamBarras.setFont(new Font("Arial", Font.BOLD, 13));
-		lblTamBarras.setBounds(10, 218, 191, 30);
-		panelOpcionesMenu.add(lblTamBarras);
-		sliderTamBarras.setForeground(Color.WHITE);
-		sliderTamBarras.setBackground(Color.DARK_GRAY);
-		sliderTamBarras.setMaximum(74);
-		sliderTamBarras.setFont(new Font("Arial", Font.PLAIN, 10));
-		sliderTamBarras.setMinorTickSpacing(1);
-		sliderTamBarras.setSnapToTicks(true);
-		sliderTamBarras.setMajorTickSpacing(8);
-		sliderTamBarras.setPaintLabels(true);
+		lblNumeroBarras.setFont(new Font("Arial", Font.BOLD, 13));
+		lblNumeroBarras.setBounds(139, 259, 131, 30);
+		panelOpcionesMenu.add(lblNumeroBarras);
 
 		// Slider para seleccionar el tamaño de las barras pintadas en pantalla.
-		sliderTamBarras.setValue(Barras.BAR_WIDTH);
-		sliderTamBarras.setMinimum(2);
+		int maximum = 9;
+		sliderTamBarras.setOrientation(SwingConstants.VERTICAL);
+		sliderTamBarras.setMajorTickSpacing(1);
+		sliderTamBarras.setForeground(Color.WHITE);
+		sliderTamBarras.setBackground(oscuro);
+		sliderTamBarras.setLabelTable(snbp.establecerValoresSlider(maximum));
+		sliderTamBarras.setMinimum(1);
+		sliderTamBarras.setMaximum(maximum);
+		sliderTamBarras.setFont(new Font("Arial", Font.BOLD, 13));
+		sliderTamBarras.setMinorTickSpacing(1);
+		sliderTamBarras.setSnapToTicks(true);
+		sliderTamBarras.setPaintLabels(true);
+		sliderTamBarras.setValue(5);
 		sliderTamBarras.setPaintTicks(true);
-		sliderTamBarras.setBounds(10, 259, 260, 40);
+		sliderTamBarras.setBounds(173, 300, 90, 360);
 		sliderTamBarras.addChangeListener(new ChangeListener() {
 			/*
 			 * Este realizara el cambio de tamaño siempre que no se este ejecutando la
@@ -221,7 +235,7 @@ public class Main extends Sorts {
 			 */
 			public void stateChanged(ChangeEvent e) {
 				if (puedeDesordenar)
-					cambioTamBarras();
+					cambioNumBarras();
 			}
 		});
 		panelOpcionesMenu.add(sliderTamBarras);
@@ -229,19 +243,20 @@ public class Main extends Sorts {
 
 		// Label para el retardo en la que se ordena.
 		lblRetardo.setFont(new Font("Arial", Font.BOLD, 13));
-		lblRetardo.setBounds(11, 310, 190, 30);
+		lblRetardo.setBounds(10, 259, 120, 30);
 		panelOpcionesMenu.add(lblRetardo);
-		sliderRetardo.setBackground(Color.DARK_GRAY);
+		sliderRetardo.setOrientation(SwingConstants.VERTICAL);
+		sliderRetardo.setBackground(oscuro);
 		sliderRetardo.setForeground(Color.WHITE);
 		sliderRetardo.setMinorTickSpacing(1);
 		sliderRetardo.setMajorTickSpacing(10);
 		sliderRetardo.setPaintLabels(true);
-		sliderRetardo.setFont(new Font("Arial", Font.PLAIN, 10));
+		sliderRetardo.setFont(new Font("Arial", Font.BOLD, 13));
 
 		// Slider para la seleccion del retardo.
 		sliderRetardo.setValue(1);
 		sliderRetardo.setPaintTicks(true);
-		sliderRetardo.setBounds(10, 351, 260, 40);
+		sliderRetardo.setBounds(10, 300, 90, 360);
 		sliderRetardo.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				if (sliderRetardo.getValue() == 0)
@@ -254,18 +269,17 @@ public class Main extends Sorts {
 
 		// Tiempo de ejecucion de un Sort/
 		lblTiempo.setFont(new Font("Arial", Font.BOLD, 13));
-		lblTiempo.setBounds(10, 402, 253, 30);
+		lblTiempo.setBounds(10, 218, 253, 30);
 		panelOpcionesMenu.add(lblTiempo);
 
 		// Panel para visualizar la memoria.
 		panelVisorMemoria.setBackground(SystemColor.desktop);
-		panelVisorMemoria.setBounds(10, 443, 260, 140);
+		panelVisorMemoria.setBounds(10, 673, 260, 140);
 		panelOpcionesMenu.add(panelVisorMemoria);
 		panelVisorMemoria.setLayout(null);
 		lblMemoriaUsada.setForeground(SystemColor.text);
 
 		// Label para visualizar la memoria utilizada.
-
 		lblMemoriaUsada.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		lblMemoriaUsada.setBounds(10, 12, 240, 20);
 		panelVisorMemoria.add(lblMemoriaUsada);
@@ -288,7 +302,7 @@ public class Main extends Sorts {
 		lblMemoriaTotal.setBounds(10, 108, 240, 20);
 		panelVisorMemoria.add(lblMemoriaTotal);
 
-		JButton btnSaltarSort = new JButton("Saltar Sort");
+		// Boton para saltar o salir de la animacion
 		btnSaltarSort.setBackground(Color.BLACK);
 		btnSaltarSort.setForeground(Color.WHITE);
 		btnSaltarSort.addActionListener(new ActionListener() {
@@ -305,54 +319,54 @@ public class Main extends Sorts {
 		lblTitle.setBounds(10, 11, 280, 24);
 		panelMenu.add(lblTitle);
 		lblTitle.setFont(new Font("Arial", Font.BOLD, 18));
-
 	}
 
 	/**
 	 * Seleccion se cada uno de los metodos de ordenacion.
 	 */
 	public void sorting() {
+		Main main = new Main();
 		if (puedeOrdenar) {
 			textos();
 			switch (seleccionAlgoritmo) {
 			case 0:
-				sorts = new Bubble(new Main());
+				sorts = new Bubble(main);
 				break;
 			case 1:
-				sorts = new Inserccion(new Main());
+				sorts = new Inserccion(main);
 				break;
 			case 2:
-				sorts = new Selection(new Main());
+				sorts = new Selection(main);
 				break;
 			case 3:
-				sorts = new Cocktail(new Main());
+				sorts = new Cocktail(main);
 				break;
 			case 4:
-				sorts = new Merge(new Main());
+				sorts = new Merge(main);
 				break;
 			case 5:
-				sorts = new OddEven(new Main());
+				sorts = new OddEven(main);
 				break;
 			case 6:
-				sorts = new Quick(new Main());
+				sorts = new Quick(main);
 				break;
 			case 7:
-				sorts = new Heap(new Main());
+				sorts = new Heap(main);
 				break;
 			case 8:
-				sorts = new Pigeonhole(new Main());
+				sorts = new Pigeonhole(main);
 				break;
 			case 9:
-				sorts = new Radix(new Main());
+				sorts = new Radix(main);
 				break;
 			case 10:
-				sorts = new Gnome(new Main());
+				sorts = new Gnome(main);
 				break;
 			case 11:
-				sorts = new Cycle(new Main());
+				sorts = new Cycle(main);
 				break;
 			case 12:
-				sorts = new Pancake(new Main());
+				sorts = new Pancake(main);
 				break;
 			default:
 				barras.shuffleArray();
@@ -431,13 +445,12 @@ public class Main extends Sorts {
 	 * Obtiene el tamaño seleccionado en el menu y cambia el tamaño de las barras
 	 * pintandolas en patanlla.
 	 */
-	public void cambioTamBarras() {
-		Barras.BAR_WIDTH = sliderTamBarras.getValue();
-		Barras.NUM_BARS = Barras.WIN_WIDTH / Barras.BAR_WIDTH;
-		Barras.BAR_HEIGHT = Barras.WIN_HEIGHT / Barras.NUM_BARS;
+	public void cambioNumBarras() {
+		Barras.setNUM_BARS((int) Math.pow(2, sliderTamBarras.getValue()));
+		Barras.setBAR_WIDTH(Barras.getWinWidth() / Barras.getNUM_BARS());
+		Barras.setBAR_HEIGHT(Barras.getWinHeight() / Barras.getNUM_BARS());
 		barras.barras();
 		barras.repaint();
-		lblTamBarras.setText("Tama\u00F1o de las barras: " + Barras.BAR_WIDTH + " px");
 	}
 
 	/**
@@ -448,6 +461,25 @@ public class Main extends Sorts {
 		Delay.n = sliderRetardo.getValue();
 		Delay.delay();
 		lblRetardo.setText("Retardo: " + Delay.n + " ms");
+	}
+
+	class SliderNumBarasPersonalizado {
+
+		private String convertirIntToString(int n) {
+			final int base = 2;
+			String valor = String.valueOf((int) Math.pow(base, n));
+			return valor;
+		}
+
+		public Hashtable<Integer, JLabel> establecerValoresSlider(int n) {
+			Hashtable<Integer, JLabel> position = new Hashtable<Integer, JLabel>();
+			JLabel lblLabel;
+			for (int i = 0; i <= n; i++) {
+				position.put(i, lblLabel = new JLabel(convertirIntToString(i)));
+				lblLabel.setForeground(Color.WHITE);
+			}
+			return position;
+		}
 	}
 
 	public static JLabel getLblAccesos() {

@@ -53,6 +53,6 @@ public class OddEven extends Sorts implements Sort {
 
 	@Override
 	public String getNombre() {
-		return "Odd Even";
+		return "Odd Even Sort";
 	}
 }
