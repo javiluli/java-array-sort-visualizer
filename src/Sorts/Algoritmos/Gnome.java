@@ -13,6 +13,7 @@ public class Gnome extends Sorts implements Sort {
 
 	@Override
 	public void sort() {
+		setInicio(System.currentTimeMillis());
 		int index = 0;
 		while (index < n.length) {
 			if (index == 0)

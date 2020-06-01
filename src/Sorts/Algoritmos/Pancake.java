@@ -13,6 +13,8 @@ public class Pancake extends Sorts implements Sort {
 
 	@Override
 	public void sort() {
+		setInicio(System.currentTimeMillis());
+
 		for (int curr_size = n.length; curr_size > 1; --curr_size) {
 			int mi = findMax(n, curr_size);
 			if (mi != curr_size - 1) {

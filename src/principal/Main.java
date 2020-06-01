@@ -24,6 +24,8 @@ import javax.swing.event.ChangeListener;
 
 import javax.swing.event.ChangeEvent;
 import java.awt.Panel;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
 
 public class Main extends Sorts {
 	private String[] nombreAlgoritmos = { "Buuble", "Insertion", "Selection", "Cocktail", "Merge", "Odd Even", "Quick",
@@ -36,7 +38,7 @@ public class Main extends Sorts {
 	private JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
 //	private JComboBox comboBoxTipoSort = new JComboBox();
 	private JLabel lblTitleAlgoritmo = new JLabel("Algoritmo de ordenacion");
-	private JLabel lblTitle = new JLabel("Controles");
+	private JLabel lblTitle = new JLabel("Panel de control");
 	private JLabel lblTamBarras = new JLabel("Tama\u00F1o de las barras: " + Barras.BAR_WIDTH + " px");
 	private JLabel lblRetardo = new JLabel("Retardo: 1 ms");
 	private static JLabel lblTiempo = new JLabel("Tiempo: 0 ms");
@@ -108,31 +110,38 @@ public class Main extends Sorts {
 		frame.getContentPane().setLayout(null);
 
 		// Panel donde se dibujan las barras.
-		panelBarras.setBackground(Color.BLACK);
+		panelBarras.setBackground(SystemColor.desktop);
 		panelBarras.setBounds(300, 0, 964, 681);
 		frame.getContentPane().add(panelBarras);
+		panelMenu.setBackground(SystemColor.activeCaptionText);
 
 		// Panel para el menu de occiones.
 		panelMenu.setBounds(0, 0, 300, 681);
 		panelMenu.setLayout(null);
 		frame.getContentPane().add(panelMenu);
+		panelOpcionesMenu.setBackground(Color.DARK_GRAY);
 
 		// Panel hijo para las ocopnes.
-		panelOpcionesMenu.setBounds(10, 46, 280, 624);
-		panelOpcionesMenu.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		panelOpcionesMenu.setBounds(10, 46, 280, 593);
+		panelOpcionesMenu.setBorder(new LineBorder(SystemColor.textInactiveText));
 		panelOpcionesMenu.setLayout(null);
 		panelMenu.add(panelOpcionesMenu);
+		lblTitleAlgoritmo.setForeground(Color.WHITE);
 
 		// Titulo para seleccion del algoritmo de ordenacion.
 		lblTitleAlgoritmo.setFont(new Font("Arial", Font.BOLD, 13));
 		lblTitleAlgoritmo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitleAlgoritmo.setBounds(10, 11, 186, 25);
 		panelOpcionesMenu.add(lblTitleAlgoritmo);
+		comboBoxTipoSort.setForeground(Color.WHITE);
+		comboBoxTipoSort.setBackground(Color.DARK_GRAY);
 
 //		 Menu desplegable para la seleccion de algoritmo.
 		comboBoxTipoSort.setFont(new Font("Arial", Font.BOLD, 13));
 		comboBoxTipoSort.setBounds(10, 47, 120, 30);
 		panelOpcionesMenu.add(comboBoxTipoSort);
+		btnOrdenar.setBackground(Color.BLACK);
+		btnOrdenar.setForeground(Color.WHITE);
 
 		// Boton para iniciar la ordenacion.
 		btnOrdenar.setFont(new Font("Arial", Font.BOLD, 13));
@@ -150,6 +159,8 @@ public class Main extends Sorts {
 			}
 		});
 		panelOpcionesMenu.add(btnOrdenar);
+		btnDesordenar.setBackground(Color.BLACK);
+		btnDesordenar.setForeground(Color.WHITE);
 
 		// Boton para desordenar el array.
 		btnDesordenar.setFont(new Font("Arial", Font.BOLD, 13));
@@ -171,21 +182,26 @@ public class Main extends Sorts {
 			}
 		});
 		panelOpcionesMenu.add(btnDesordenar);
+		lblCambios.setForeground(Color.WHITE);
 
 		// Label para el recuento de cambios realizados en el array.
 		lblCambios.setFont(new Font("Arial", Font.BOLD, 13));
 		lblCambios.setBounds(10, 136, 250, 30);
 		panelOpcionesMenu.add(lblCambios);
+		lblAccesos.setForeground(Color.WHITE);
 
 		// Label para el recuento de accesos realizados en el array.
 		lblAccesos.setFont(new Font("Arial", Font.BOLD, 13));
 		lblAccesos.setBounds(10, 177, 237, 30);
 		panelOpcionesMenu.add(lblAccesos);
+		lblTamBarras.setForeground(Color.WHITE);
 
 		// Label para el tamaño de las barras pintadas en pantalla.
 		lblTamBarras.setFont(new Font("Arial", Font.BOLD, 13));
 		lblTamBarras.setBounds(10, 218, 191, 30);
 		panelOpcionesMenu.add(lblTamBarras);
+		sliderTamBarras.setForeground(Color.WHITE);
+		sliderTamBarras.setBackground(Color.DARK_GRAY);
 		sliderTamBarras.setMaximum(74);
 		sliderTamBarras.setFont(new Font("Arial", Font.PLAIN, 10));
 		sliderTamBarras.setMinorTickSpacing(1);
@@ -209,11 +225,14 @@ public class Main extends Sorts {
 			}
 		});
 		panelOpcionesMenu.add(sliderTamBarras);
+		lblRetardo.setForeground(Color.WHITE);
 
 		// Label para el retardo en la que se ordena.
 		lblRetardo.setFont(new Font("Arial", Font.BOLD, 13));
 		lblRetardo.setBounds(11, 310, 190, 30);
 		panelOpcionesMenu.add(lblRetardo);
+		sliderRetardo.setBackground(Color.DARK_GRAY);
+		sliderRetardo.setForeground(Color.WHITE);
 		sliderRetardo.setMinorTickSpacing(1);
 		sliderRetardo.setMajorTickSpacing(10);
 		sliderRetardo.setPaintLabels(true);
@@ -231,6 +250,7 @@ public class Main extends Sorts {
 			}
 		});
 		panelOpcionesMenu.add(sliderRetardo);
+		lblTiempo.setForeground(Color.WHITE);
 
 		// Tiempo de ejecucion de un Sort/
 		lblTiempo.setFont(new Font("Arial", Font.BOLD, 13));
@@ -238,33 +258,39 @@ public class Main extends Sorts {
 		panelOpcionesMenu.add(lblTiempo);
 
 		// Panel para visualizar la memoria.
-		panelVisorMemoria.setBackground(Color.WHITE);
-		panelVisorMemoria.setBounds(10, 438, 260, 140);
+		panelVisorMemoria.setBackground(SystemColor.desktop);
+		panelVisorMemoria.setBounds(10, 443, 260, 140);
 		panelOpcionesMenu.add(panelVisorMemoria);
 		panelVisorMemoria.setLayout(null);
+		lblMemoriaUsada.setForeground(SystemColor.text);
 
 		// Label para visualizar la memoria utilizada.
 
-		lblMemoriaUsada.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblMemoriaUsada.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		lblMemoriaUsada.setBounds(10, 12, 240, 20);
 		panelVisorMemoria.add(lblMemoriaUsada);
+		lblMemoriaMax.setForeground(SystemColor.text);
 
 		// Label para visualizar la memoria maxima.
-		lblMemoriaMax.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblMemoriaMax.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		lblMemoriaMax.setBounds(10, 44, 240, 20);
 		panelVisorMemoria.add(lblMemoriaMax);
+		lblMemoriaLibre.setForeground(SystemColor.text);
 
 		// Label para visualizar la memoria libre.
-		lblMemoriaLibre.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblMemoriaLibre.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		lblMemoriaLibre.setBounds(10, 76, 240, 20);
 		panelVisorMemoria.add(lblMemoriaLibre);
+		lblMemoriaTotal.setForeground(SystemColor.text);
 
 		// Label para visualizar la memoria total.
-		lblMemoriaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblMemoriaTotal.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		lblMemoriaTotal.setBounds(10, 108, 240, 20);
 		panelVisorMemoria.add(lblMemoriaTotal);
 
 		JButton btnSaltarSort = new JButton("Saltar Sort");
+		btnSaltarSort.setBackground(Color.BLACK);
+		btnSaltarSort.setForeground(Color.WHITE);
 		btnSaltarSort.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Delay.n = 1 / 2;
@@ -273,11 +299,12 @@ public class Main extends Sorts {
 		btnSaltarSort.setFont(new Font("Arial", Font.BOLD, 13));
 		btnSaltarSort.setBounds(10, 95, 110, 30);
 		panelOpcionesMenu.add(btnSaltarSort);
+		lblTitle.setForeground(Color.WHITE);
 
 		// Label para el titulo de los controles.
 		lblTitle.setBounds(10, 11, 280, 24);
 		panelMenu.add(lblTitle);
-		lblTitle.setFont(new Font("Arial", Font.BOLD, 13));
+		lblTitle.setFont(new Font("Arial", Font.BOLD, 18));
 
 	}
 

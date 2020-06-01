@@ -13,6 +13,7 @@ public class Pigeonhole extends Sorts implements Sort {
 
 	@Override
 	public void sort() {
+		setInicio(System.currentTimeMillis());
 		int min = n[0], max = n[0];
 		for (int i : n) {
 			min = Math.min(i, min);
