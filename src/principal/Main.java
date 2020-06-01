@@ -41,7 +41,7 @@ public class Main extends Sorts {
 	private JLabel lblTitle = new JLabel("Panel de control");
 	private JLabel lblTamBarras = new JLabel("Tama\u00F1o de las barras: " + Barras.BAR_WIDTH + " px");
 	private JLabel lblRetardo = new JLabel("Retardo: 1 ms");
-	private static JLabel lblTiempo = new JLabel("Tiempo: 0 ms");
+	private static JLabel lblTiempo = new JLabel("Tiempo: 0 s 0 ms");
 	private static JLabel lblMemoriaUsada = new JLabel("Memoria usada: 0 MB");
 	private static JLabel lblMemoriaMax = new JLabel("Memoria maxima: 0 MB");
 	private static JLabel lblMemoriaLibre = new JLabel("Memoria libre: 0 MB");
@@ -388,12 +388,18 @@ public class Main extends Sorts {
 	 * Tiempo usado para en la ejecucion entre el inicio y final de un algoritmo de
 	 * ordenacion.
 	 */
+	private int calcSegundos(int tiempo) {
+		return (int) (tiempo / 1000);
+	}
+
+	private int calcMilisegundos(int tiempo) {
+		tiempo = tiempo - (1000 * calcSegundos((int) tiempo));
+		return tiempo;
+	}
+
 	public void calcularTiempo() {
 		tiempo = fin - inicio;
-		if (tiempo <= 1000)
-			lblTiempo.setText("Tiempo: " + tiempo + " ms");
-		else if (tiempo > 1000)
-			lblTiempo.setText("Tiempo: " + tiempo / 1000 + " s");
+		lblTiempo.setText("Tiempo: " + calcSegundos((int) tiempo) + " s " + calcMilisegundos((int) tiempo) + " ms");
 	}
 
 	/**
