@@ -31,6 +31,8 @@ public class Radix extends Sorts implements Sort {
 
 		for (i = 0; i < len; i++) {
 			count[(n[i] / exp) % 10]++;
+			
+			accesoArray++;
 			m.textos();
 			setFin(System.currentTimeMillis());
 			Main.getPanelBarras().repaint();
@@ -47,7 +49,9 @@ public class Radix extends Sorts implements Sort {
 
 		for (i = len - 1; i >= 0; i--) {
 			output[count[(n[i] / exp) % 10] - 1] = n[i];
+			accesoArray++;
 			count[(n[i] / exp) % 10]--;
+			accesoArray++;
 			m.textos();
 			setFin(System.currentTimeMillis());
 			Main.getPanelBarras().repaint();
@@ -55,6 +59,7 @@ public class Radix extends Sorts implements Sort {
 		}
 		for (i = 0; i < len; i++) {
 			n[i] = output[i];
+			accesoArray++;
 			m.textos();
 			setFin(System.currentTimeMillis());
 			Main.getPanelBarras().repaint();
@@ -67,6 +72,8 @@ public class Radix extends Sorts implements Sort {
 		for (int i = 1; i < len; i++) {
 			if (n[i] > mx)
 				mx = n[i];
+			accesoArray++;
+			cambiosArray++;
 		}
 		return mx;
 	}

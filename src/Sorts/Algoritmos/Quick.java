@@ -33,6 +33,8 @@ public class Quick extends Sorts implements Sort {
 				array[i] = array[j];
 				array[j] = aux;
 			}
+			accesoArray++;
+			cambiosArray++;
 			m.textos();
 			setFin(System.currentTimeMillis());
 			Main.getPanelBarras().repaint();

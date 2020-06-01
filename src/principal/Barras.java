@@ -24,7 +24,7 @@ public class Barras extends JPanel {
 	 */
 	public Barras() {
 		barras();
-		setBackground(Color.DARK_GRAY);
+		setBackground(Color.BLACK);
 	}
 
 	/**
@@ -54,8 +54,6 @@ public class Barras extends JPanel {
 		}
 	}
 
-	public static int mismo;
-
 	/**
 	 * Pinta los componentes.
 	 *
@@ -67,9 +65,6 @@ public class Barras extends JPanel {
 		super.paintComponent(graphics);
 		for (int i = 0; i < NUM_BARS; i++) {
 			graphics.setColor(Color.WHITE);
-//			if (i == mismo)
-//				graphics.setColor(Color.red);
-
 			int height = Sorts.n[i] * BAR_HEIGHT;
 			int xBegin = i + (BAR_WIDTH - 1) * i;
 			int yBegin = WIN_HEIGHT - height;
@@ -86,5 +81,4 @@ public class Barras extends JPanel {
 	public Dimension getPreferredSize() {
 		return new Dimension(WIN_WIDTH, WIN_HEIGHT);
 	}
-
 }

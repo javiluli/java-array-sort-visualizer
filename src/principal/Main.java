@@ -26,14 +26,15 @@ import javax.swing.event.ChangeEvent;
 import java.awt.Panel;
 
 public class Main extends Sorts {
-	private String[] nombreAlgoritmos = { "Buuble", "Insertion", "Selection", "Cocktail", "Merge", "Odd Even",
-			"Quicksort", "Heap", "Pigeonhole", "Radix", "Gnome", "Cyrcle", "Pancake" };
+	private String[] nombreAlgoritmos = { "Buuble", "Insertion", "Selection", "Cocktail", "Merge", "Odd Even", "Quick",
+			"Heap", "Pigeonhole", "Radix", "Gnome", "Cycle", "Pancake" };
 	private JFrame frame = new JFrame();
 	private JPanel panelMenu = new JPanel();
 	private JPanel panelOpcionesMenu = new JPanel();
 	private static JPanel panelBarras = new JPanel();
 	private Panel panelVisorMemoria = new Panel();
 	private JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
+//	private JComboBox comboBoxTipoSort = new JComboBox();
 	private JLabel lblTitleAlgoritmo = new JLabel("Algoritmo de ordenacion");
 	private JLabel lblTitle = new JLabel("Controles");
 	private JLabel lblTamBarras = new JLabel("Tama\u00F1o de las barras: " + Barras.BAR_WIDTH + " px");
@@ -125,17 +126,17 @@ public class Main extends Sorts {
 		// Titulo para seleccion del algoritmo de ordenacion.
 		lblTitleAlgoritmo.setFont(new Font("Arial", Font.BOLD, 13));
 		lblTitleAlgoritmo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitleAlgoritmo.setBounds(47, 11, 186, 25);
+		lblTitleAlgoritmo.setBounds(10, 11, 186, 25);
 		panelOpcionesMenu.add(lblTitleAlgoritmo);
 
-		// Menu desplegable para la seleccion de algoritmo.
+//		 Menu desplegable para la seleccion de algoritmo.
 		comboBoxTipoSort.setFont(new Font("Arial", Font.BOLD, 13));
-		comboBoxTipoSort.setBounds(80, 46, 120, 30);
+		comboBoxTipoSort.setBounds(10, 47, 120, 30);
 		panelOpcionesMenu.add(comboBoxTipoSort);
 
 		// Boton para iniciar la ordenacion.
 		btnOrdenar.setFont(new Font("Arial", Font.BOLD, 13));
-		btnOrdenar.setBounds(24, 95, 110, 30);
+		btnOrdenar.setBounds(153, 47, 110, 30);
 		btnOrdenar.addActionListener(new ActionListener() {
 			/*
 			 * Este obtiene la posicion en la lista de algorimos para su seleccion, y una
@@ -173,25 +174,30 @@ public class Main extends Sorts {
 
 		// Label para el recuento de cambios realizados en el array.
 		lblCambios.setFont(new Font("Arial", Font.BOLD, 13));
-		lblCambios.setBounds(10, 156, 250, 30);
+		lblCambios.setBounds(10, 136, 250, 30);
 		panelOpcionesMenu.add(lblCambios);
 
 		// Label para el recuento de accesos realizados en el array.
 		lblAccesos.setFont(new Font("Arial", Font.BOLD, 13));
-		lblAccesos.setBounds(10, 197, 237, 30);
+		lblAccesos.setBounds(10, 177, 237, 30);
 		panelOpcionesMenu.add(lblAccesos);
 
 		// Label para el tamaño de las barras pintadas en pantalla.
 		lblTamBarras.setFont(new Font("Arial", Font.BOLD, 13));
-		lblTamBarras.setBounds(10, 238, 191, 30);
+		lblTamBarras.setBounds(10, 218, 191, 30);
 		panelOpcionesMenu.add(lblTamBarras);
+		sliderTamBarras.setMaximum(74);
+		sliderTamBarras.setFont(new Font("Arial", Font.PLAIN, 10));
+		sliderTamBarras.setMinorTickSpacing(1);
+		sliderTamBarras.setSnapToTicks(true);
+		sliderTamBarras.setMajorTickSpacing(8);
+		sliderTamBarras.setPaintLabels(true);
 
 		// Slider para seleccionar el tamaño de las barras pintadas en pantalla.
 		sliderTamBarras.setValue(Barras.BAR_WIDTH);
-		sliderTamBarras.setMaximum(50);
 		sliderTamBarras.setMinimum(2);
 		sliderTamBarras.setPaintTicks(true);
-		sliderTamBarras.setBounds(10, 283, 260, 30);
+		sliderTamBarras.setBounds(10, 259, 260, 40);
 		sliderTamBarras.addChangeListener(new ChangeListener() {
 			/*
 			 * Este realizara el cambio de tamaño siempre que no se este ejecutando la
@@ -206,15 +212,21 @@ public class Main extends Sorts {
 
 		// Label para el retardo en la que se ordena.
 		lblRetardo.setFont(new Font("Arial", Font.BOLD, 13));
-		lblRetardo.setBounds(10, 324, 190, 30);
+		lblRetardo.setBounds(11, 310, 190, 30);
 		panelOpcionesMenu.add(lblRetardo);
+		sliderRetardo.setMinorTickSpacing(1);
+		sliderRetardo.setMajorTickSpacing(10);
+		sliderRetardo.setPaintLabels(true);
+		sliderRetardo.setFont(new Font("Arial", Font.PLAIN, 10));
 
 		// Slider para la seleccion del retardo.
 		sliderRetardo.setValue(1);
 		sliderRetardo.setPaintTicks(true);
-		sliderRetardo.setBounds(10, 365, 260, 30);
+		sliderRetardo.setBounds(10, 351, 260, 40);
 		sliderRetardo.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
+				if (sliderRetardo.getValue() == 0)
+					sliderRetardo.setValue(1);
 				cambioRetardo();
 			}
 		});
@@ -222,12 +234,12 @@ public class Main extends Sorts {
 
 		// Tiempo de ejecucion de un Sort/
 		lblTiempo.setFont(new Font("Arial", Font.BOLD, 13));
-		lblTiempo.setBounds(10, 405, 253, 30);
+		lblTiempo.setBounds(10, 402, 253, 30);
 		panelOpcionesMenu.add(lblTiempo);
 
 		// Panel para visualizar la memoria.
 		panelVisorMemoria.setBackground(Color.WHITE);
-		panelVisorMemoria.setBounds(10, 441, 260, 140);
+		panelVisorMemoria.setBounds(10, 438, 260, 140);
 		panelOpcionesMenu.add(panelVisorMemoria);
 		panelVisorMemoria.setLayout(null);
 
@@ -251,6 +263,16 @@ public class Main extends Sorts {
 		lblMemoriaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblMemoriaTotal.setBounds(10, 108, 240, 20);
 		panelVisorMemoria.add(lblMemoriaTotal);
+
+		JButton btnSaltarSort = new JButton("Saltar Sort");
+		btnSaltarSort.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Delay.n = 1 / 2;
+			}
+		});
+		btnSaltarSort.setFont(new Font("Arial", Font.BOLD, 13));
+		btnSaltarSort.setBounds(10, 95, 110, 30);
+		panelOpcionesMenu.add(btnSaltarSort);
 
 		// Label para el titulo de los controles.
 		lblTitle.setBounds(10, 11, 280, 24);
@@ -300,7 +322,7 @@ public class Main extends Sorts {
 				sorts = new Gnome(new Main());
 				break;
 			case 11:
-				sorts = new Cyrcle(new Main());
+				sorts = new Cycle(new Main());
 				break;
 			case 12:
 				sorts = new Pancake(new Main());
@@ -355,6 +377,7 @@ public class Main extends Sorts {
 		puedeDesordenar = true;
 		sorts = new Sorts(0);
 		memoria = new Memoria(0);
+		Delay.n = sliderRetardo.getValue();
 	}
 
 	/**

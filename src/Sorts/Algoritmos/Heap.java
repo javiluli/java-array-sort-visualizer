@@ -57,6 +57,8 @@ public class Heap extends Sorts implements Sort {
 
 			heapify(arr, n, largest);
 		}
+		accesoArray += 4;
+		cambiosArray += 3;
 	}
 
 	@Override

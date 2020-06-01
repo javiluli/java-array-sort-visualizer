@@ -5,8 +5,8 @@ import Interfaz.Sort;
 import Principal.Main;
 import Sorts.Sorts;
 
-public class Cyrcle extends Sorts implements Sort {
-	public Cyrcle(Main m) {
+public class Cycle extends Sorts implements Sort {
+	public Cycle(Main m) {
 		this.m = m;
 		sort();
 	}
@@ -67,7 +67,6 @@ public class Cyrcle extends Sorts implements Sort {
 
 	// @Override
 	public String getNombre() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -29,6 +29,7 @@ public class Pigeonhole extends Sorts implements Sort {
 		for (int count = 0; count < size; count++) {
 			while (holes[count]-- > 0) {
 				n[i++] = count + min;
+				accesoArray++;
 				m.textos();
 				setFin(System.currentTimeMillis());
 				Main.getPanelBarras().repaint();

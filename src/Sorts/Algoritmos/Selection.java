@@ -18,13 +18,13 @@ public class Selection extends Sorts implements Sort {
 		setInicio(System.currentTimeMillis());
 		for (int i = 0; i < n.length; i++) {
 			int min = i;
-			accesoArray++;
+
 			for (int j = i + 1; j < n.length; j++) {
-				accesoArray++;
 				if (n[j] < n[min]) {
 					min = j;
 					cambiosArray++;
 				}
+				accesoArray += 2;
 			}
 			int aux = n[i];
 			n[i] = n[min];
