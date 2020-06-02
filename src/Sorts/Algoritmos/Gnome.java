@@ -16,6 +16,7 @@ public class Gnome extends Sorts implements Sort {
 		setInicio(System.currentTimeMillis());
 		int index = 0;
 		while (index < n.length) {
+			accesoArray++;
 			if (index == 0)
 				index++;
 			if (n[index] >= n[index - 1])
@@ -26,6 +27,7 @@ public class Gnome extends Sorts implements Sort {
 				n[index] = n[index - 1];
 				n[index - 1] = temp;
 				index--;
+				cambiosArray++;
 			}
 			m.textos();
 			setFin(System.currentTimeMillis());

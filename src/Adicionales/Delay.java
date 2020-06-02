@@ -7,7 +7,6 @@ public class Delay {
 		try {
 			Thread.sleep(n);
 		} catch (InterruptedException e) {
-			System.out.println(e);
 		}
 	}
 
@@ -15,7 +14,6 @@ public class Delay {
 		try {
 			Thread.sleep(m);
 		} catch (InterruptedException e) {
-			System.out.println(e);
 		}
 	}
 }

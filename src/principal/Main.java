@@ -3,6 +3,8 @@ package Principal;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 
 import javax.swing.border.LineBorder;
@@ -28,10 +30,10 @@ import java.awt.SystemColor;
 
 public class Main extends Sorts {
 	// Nombre de cada algoritmo Sort
-	private String[] nombreAlgoritmos = { "Buuble", "Insertion", "Selection", "Cocktail", "Merge", "Odd Even", "Quick",
-			"Heap", "Pigeonhole", "Radix", "Gnome", "Cycle", "Pancake" };
+	private String[] nombreAlgoritmos = { "Bubble", "Cocktail", "Cycle", "Gnome", "Heap", "Insertion", "Merge",
+			"Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix", "Selection" };
 	// JFRAME PRINCIPAL
-	private JFrame frmVisualizadorDe = new JFrame();
+	private JFrame frame = new JFrame();
 	// JPANEL
 	private JPanel panelMenu = new JPanel();
 	private JPanel panelOpcionesMenu = new JPanel();
@@ -39,8 +41,6 @@ public class Main extends Sorts {
 	private Panel panelVisorMemoria = new Panel();
 	// COMBOBOX
 	private JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
-//	private JComboBox<String> comboBoxTipoSort = new JComboBox<String>();
-
 	// JLABEL
 	private JLabel lblTitleAlgoritmo = new JLabel("Algoritmo de ordenacion");
 	private JLabel lblTitle = new JLabel("Panel de control");
@@ -60,16 +60,13 @@ public class Main extends Sorts {
 	// JSLIDER
 	private JSlider sliderTamBarras = new JSlider();
 	private JSlider sliderRetardo = new JSlider();
-
 	// Tamaño de la ventana.
 	public final static int WIN_WIDTH = 1340;
 	public final static int WIN_HEIGHT = 1063;
-
 	// Variables antes y despues de la ejecucion de una ordenacion.
 	private int seleccionAlgoritmo = -1;
 	private boolean puedeOrdenar = false;
 	private boolean puedeDesordenar = true;
-
 	// Objetos de mis Clases
 	Barras barras;
 	SliderNumBarasPersonalizado snbp = new SliderNumBarasPersonalizado();
@@ -105,34 +102,34 @@ public class Main extends Sorts {
 		getPanelBarras().add(barras);
 		barras.setLayout(null);
 		getPanelBarras().setVisible(true);
-		frmVisualizadorDe.setTitle("Visualizador de prdenacion de matrices");
-		frmVisualizadorDe.setResizable(false);
-		frmVisualizadorDe.setVisible(true);
+		frame.setTitle("Visualizador de prdenacion de matrices");
+		frame.setResizable(false);
+		frame.setVisible(true);
 		sorting();
 	}
 
 	private void initialize() {
 		Color oscuro = new Color(15, 15, 15);
 		// Frame principal.
-		frmVisualizadorDe.setBounds(100, 100, WIN_WIDTH, WIN_HEIGHT);
-		frmVisualizadorDe.setLocationRelativeTo(null);
-		frmVisualizadorDe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmVisualizadorDe.getContentPane().setLayout(null);
+		frame.setBounds(100, 100, WIN_WIDTH, WIN_HEIGHT);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 
 		// Panel donde se dibujan las barras.
 		panelBarras.setBackground(SystemColor.desktop);
 		panelBarras.setBounds(300, 0, Barras.getWinWidth(), Barras.getWinHeight());
-		frmVisualizadorDe.getContentPane().add(panelBarras);
+		frame.getContentPane().add(panelBarras);
 		panelMenu.setBackground(SystemColor.activeCaptionText);
 
 		// Panel para el menu de occiones.
 		panelMenu.setBounds(0, 0, 300, 1024);
 		panelMenu.setLayout(null);
-		frmVisualizadorDe.getContentPane().add(panelMenu);
+		frame.getContentPane().add(panelMenu);
 		panelOpcionesMenu.setBackground(oscuro);
 
 		// Panel hijo para las ocopnes.
-		panelOpcionesMenu.setBounds(10, 46, 280, 823);
+		panelOpcionesMenu.setBounds(10, 46, 280, 873);
 		panelOpcionesMenu.setBorder(new LineBorder(SystemColor.textInactiveText));
 		panelOpcionesMenu.setLayout(null);
 		panelMenu.add(panelOpcionesMenu);
@@ -313,6 +310,24 @@ public class Main extends Sorts {
 		btnSaltarSort.setFont(new Font("Arial", Font.BOLD, 13));
 		btnSaltarSort.setBounds(10, 95, 110, 30);
 		panelOpcionesMenu.add(btnSaltarSort);
+
+		JButton btnInformacion = new JButton("Informacion");
+		btnInformacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int c = 2202;
+				String symbol = "\\u" + c;
+
+				String s = Character.toString((char) c);
+				JOptionPane.showMessageDialog(frame,
+						"Visualizador de ordenacion de matrices\n" + "                      Copyleft 2020\n"
+								+ "                            Javiluli\n" + "       Fecha de creacion: Julio 1, 2020");
+			}
+		});
+		btnInformacion.setForeground(Color.WHITE);
+		btnInformacion.setBackground(Color.BLACK);
+		btnInformacion.setFont(new Font("Arial", Font.BOLD, 13));
+		btnInformacion.setBounds(10, 832, 110, 30);
+		panelOpcionesMenu.add(btnInformacion);
 		lblTitle.setForeground(Color.WHITE);
 
 		// Label para el titulo de los controles.
@@ -333,40 +348,40 @@ public class Main extends Sorts {
 				sorts = new Bubble(main);
 				break;
 			case 1:
-				sorts = new Inserccion(main);
-				break;
-			case 2:
-				sorts = new Selection(main);
-				break;
-			case 3:
 				sorts = new Cocktail(main);
 				break;
-			case 4:
-				sorts = new Merge(main);
-				break;
-			case 5:
-				sorts = new OddEven(main);
-				break;
-			case 6:
-				sorts = new Quick(main);
-				break;
-			case 7:
-				sorts = new Heap(main);
-				break;
-			case 8:
-				sorts = new Pigeonhole(main);
-				break;
-			case 9:
-				sorts = new Radix(main);
-				break;
-			case 10:
-				sorts = new Gnome(main);
-				break;
-			case 11:
+			case 2:
 				sorts = new Cycle(main);
 				break;
-			case 12:
+			case 3:
+				sorts = new Gnome(main);
+				break;
+			case 4:
+				sorts = new Heap(main);
+				break;
+			case 5:
+				sorts = new Inserccion(main);
+				break;
+			case 6:
+				sorts = new Merge(main);
+				break;
+			case 7:
+				sorts = new OddEven(main);
+				break;
+			case 8:
 				sorts = new Pancake(main);
+				break;
+			case 9:
+				sorts = new Pigeonhole(main);
+				break;
+			case 10:
+				sorts = new Quick(main);
+				break;
+			case 11:
+				sorts = new Radix(main);
+				break;
+			case 12:
+				sorts = new Selection(main);
 				break;
 			default:
 				barras.shuffleArray();
