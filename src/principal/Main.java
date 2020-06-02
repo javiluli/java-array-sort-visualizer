@@ -42,14 +42,12 @@ public class Main extends Sorts {
 	private final Panel panelVisorMemoria = new Panel();
 	// COMBOBOX
 	private final JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
-//	private JComboBox<String> comboBoxTipoSort = new JComboBox<String>();
-
 	// JLABEL
 	private final JLabel lblTitleAlgoritmo = new JLabel("Algoritmo de ordenacion");
 	private final JLabel lblTitle = new JLabel("Panel de control");
 	private JLabel lblNumeroBarras = new JLabel("Numero de barras");
 	private JLabel lblRetardo = new JLabel("Retardo: 1 ms");
-	private static JLabel lblTiempo = new JLabel("Tiempo: 0 s 0 ms");
+	private static JLabel lblTiempo = new JLabel("Tiempo: 0 m 0 s 0 ms");
 	private static JLabel lblMemoriaUsada = new JLabel("Memoria usada: 0 MB");
 	private static JLabel lblMemoriaMax = new JLabel("Memoria maxima: 0 MB");
 	private static JLabel lblMemoriaLibre = new JLabel("Memoria libre: 0 MB");
@@ -84,6 +82,7 @@ public class Main extends Sorts {
 		} catch (Exception e) {
 		}
 	}
+	// ---------------------------------------------------------------------------------------------
 
 	public Main() {
 	}
@@ -99,6 +98,7 @@ public class Main extends Sorts {
 	Main(Sorts sorts) {
 		this.sorts = sorts;
 	}
+	// ---------------------------------------------------------------------------------------------
 
 	public void main() {
 		initialize();
@@ -108,11 +108,12 @@ public class Main extends Sorts {
 		getPanelBarras().add(barras);
 		barras.setLayout(null);
 		getPanelBarras().setVisible(true);
-		frame.setTitle("Visualizador de prdenacion de matrices");
+		frame.setTitle("Visualizador de ordenacion de matrices");
 		frame.setResizable(false);
 		frame.setVisible(true);
 		sorting();
 	}
+	// ---------------------------------------------------------------------------------------------
 
 	private void initialize() {
 		final Color BLACK_SECUNDARIO = new Color(15, 15, 15);
@@ -359,6 +360,7 @@ public class Main extends Sorts {
 		lblTitle.setFont(new Font("Arial", Font.BOLD, 18));
 		panelMenu.add(lblTitle);
 	}
+	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Seleccion se cada uno de los metodos de ordenacion.
@@ -415,6 +417,7 @@ public class Main extends Sorts {
 		reinicio();
 		pausa();
 	}
+	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Pinta los textos debidamente actualizados en funcion del metodo de
@@ -426,6 +429,7 @@ public class Main extends Sorts {
 		calcularTiempo();
 		calcularMemoria();
 	}
+	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Calcula la memoria y cambia los labels correspondientes.
@@ -436,24 +440,37 @@ public class Main extends Sorts {
 		lblMemoriaLibre.setText("Memoria libre: " + memoria.libre + " MB");
 		lblMemoriaUsada.setText("Memoria usada: " + memoria.usada + " MB");
 	}
+	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Tiempo usado para en la ejecucion entre el inicio y final de un algoritmo de
 	 * ordenacion.
 	 */
-	private int calcSegundos(int tiempo) {
-		return (int) (tiempo / 1000);
+	private int calcMin(int tiempo) {
+		int min = tiempo;
+		min = (min / 1000) / 60;
+		return min;
+
 	}
 
-	private int calcMilisegundos(int tiempo) {
-		tiempo = tiempo - (1000 * calcSegundos((int) tiempo));
-		return tiempo;
+	private int calcSeg(int tiempo) {
+		int seg = tiempo;
+		seg = (seg / 1000) - (60 * calcMin(seg));
+		return seg;
+	}
+
+	private int calcMil(int tiempo) {
+		int mil = tiempo;
+		mil = mil - (1000 * (mil / 1000));
+		return mil;
 	}
 
 	public void calcularTiempo() {
 		tiempo = fin - inicio;
-		lblTiempo.setText("Tiempo: " + calcSegundos((int) tiempo) + " s " + calcMilisegundos((int) tiempo) + " ms");
+		lblTiempo.setText("Tiempo: " + calcMin((int) tiempo) + " m " + calcSeg((int) tiempo) + " s "
+				+ calcMil((int) tiempo) + " ms");
 	}
+	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Reinicia algunas variables y textos despues de terminar un sort.
@@ -465,6 +482,7 @@ public class Main extends Sorts {
 		memoria = new Memoria(0);
 		Delay.n = sliderRetardo.getValue();
 	}
+	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Mantiene un cicuito cerrado para la seleccion del Sort evitando que el
@@ -479,6 +497,7 @@ public class Main extends Sorts {
 		}
 		sorting();
 	}
+	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Obtiene el tamaño seleccionado en el menu y cambia el tamaño de las barras
@@ -491,6 +510,7 @@ public class Main extends Sorts {
 		barras.barras();
 		barras.repaint();
 	}
+	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Cambio el retardo o lentitud con la que se sejecuta la animacion de la
@@ -501,25 +521,44 @@ public class Main extends Sorts {
 		Delay.delay();
 		lblRetardo.setText("Retardo: " + Delay.n + " ms");
 	}
+	// ---------------------------------------------------------------------------------------------
 
+	/**
+	 * La clase SliderNumBarasPersonalizado agrega valores a un Slider para
+	 * personalizar la forma de mostrar los distintos valores. En concreto agrega
+	 * valores en base 2 del binario.
+	 */
 	class SliderNumBarasPersonalizado {
 
+		/**
+		 * Convierte un numero entero en un String.
+		 *
+		 * @param n la n indica el exponente por el cual se calcula.
+		 * @return the string
+		 */
 		private String convertirIntToString(int n) {
 			final int base = 2;
 			String valor = String.valueOf((int) Math.pow(base, n));
 			return valor;
 		}
 
+		/**
+		 * Establece los valores em funcion de la cantidad recividad por parametro.
+		 *
+		 * @param n la n es el numero de valores agreados.
+		 * @return un hashtable con los valores agregados en base 2.
+		 */
 		public Hashtable<Integer, JLabel> establecerValoresSlider(int n) {
-			Hashtable<Integer, JLabel> position = new Hashtable<Integer, JLabel>();
+			Hashtable<Integer, JLabel> posiciones = new Hashtable<Integer, JLabel>();
 			JLabel lblLabel;
 			for (int i = 0; i <= n; i++) {
-				position.put(i, lblLabel = new JLabel(convertirIntToString(i)));
+				posiciones.put(i, lblLabel = new JLabel(convertirIntToString(i)));
 				lblLabel.setForeground(Color.WHITE);
 			}
-			return position;
+			return posiciones;
 		}
 	}
+	// ---------------------------------------------------------------------------------------------
 
 	public static JLabel getLblAccesos() {
 		return lblAccesos;
