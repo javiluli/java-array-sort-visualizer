@@ -61,8 +61,8 @@ public class Main extends Sorts {
 	private JSlider sliderTamBarras = new JSlider();
 	private JSlider sliderRetardo = new JSlider();
 	// Tamaño de la ventana.
-	public final static int WIN_WIDTH = 1340;
-	public final static int WIN_HEIGHT = 1063;
+	public final static int WIN_WIDTH = 1330;
+	public final static int WIN_HEIGHT = 1053;
 	// Variables antes y despues de la ejecucion de una ordenacion.
 	private int seleccionAlgoritmo = -1;
 	private boolean puedeOrdenar = false;
