@@ -27,23 +27,26 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.Panel;
 import java.awt.SystemColor;
+import javax.swing.ImageIcon;
 
 public class Main extends Sorts {
 	// Nombre de cada algoritmo Sort
-	private String[] nombreAlgoritmos = { "Bubble", "Cocktail", "Cycle", "Gnome", "Heap", "Insertion", "Merge",
+	private final String[] nombreAlgoritmos = { "Bubble", "Cocktail", "Cycle", "Gnome", "Heap", "Insertion", "Merge",
 			"Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix", "Selection" };
 	// JFRAME PRINCIPAL
-	private JFrame frame = new JFrame();
+	private final JFrame frame = new JFrame();
 	// JPANEL
-	private JPanel panelMenu = new JPanel();
+	private final JPanel panelMenu = new JPanel();
 	private JPanel panelOpcionesMenu = new JPanel();
 	private static JPanel panelBarras = new JPanel();
-	private Panel panelVisorMemoria = new Panel();
+	private final Panel panelVisorMemoria = new Panel();
 	// COMBOBOX
-	private JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
+	private final JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
+//	private JComboBox<String> comboBoxTipoSort = new JComboBox<String>();
+
 	// JLABEL
-	private JLabel lblTitleAlgoritmo = new JLabel("Algoritmo de ordenacion");
-	private JLabel lblTitle = new JLabel("Panel de control");
+	private final JLabel lblTitleAlgoritmo = new JLabel("Algoritmo de ordenacion");
+	private final JLabel lblTitle = new JLabel("Panel de control");
 	private JLabel lblNumeroBarras = new JLabel("Numero de barras");
 	private JLabel lblRetardo = new JLabel("Retardo: 1 ms");
 	private static JLabel lblTiempo = new JLabel("Tiempo: 0 s 0 ms");
@@ -54,12 +57,15 @@ public class Main extends Sorts {
 	private static JLabel lblCambios = new JLabel("Cambios en el Array: 0");
 	private static JLabel lblAccesos = new JLabel("Accesos al Array: 0");
 	// JBUTTON
-	private JButton btnOrdenar = new JButton("Ordenar");
-	private JButton btnDesordenar = new JButton("Desordenar");
-	private JButton btnSaltarSort = new JButton("Saltar Sort");
+	private final JButton btnOrdenar = new JButton("Ordenar");
+	private final JButton btnDesordenar = new JButton("Desordenar");
+	private final JButton btnSaltarSort = new JButton("Saltar Sort");
+	private final JButton btnInformacion = new JButton("Informacion");
+	private final JButton btnGithub = new JButton();
+	private final JButton btnCodepen = new JButton();
 	// JSLIDER
-	private JSlider sliderTamBarras = new JSlider();
-	private JSlider sliderRetardo = new JSlider();
+	private final JSlider sliderTamBarras = new JSlider();
+	private final JSlider sliderRetardo = new JSlider();
 	// Tamaño de la ventana.
 	public final static int WIN_WIDTH = 1330;
 	public final static int WIN_HEIGHT = 1053;
@@ -109,7 +115,7 @@ public class Main extends Sorts {
 	}
 
 	private void initialize() {
-		Color oscuro = new Color(15, 15, 15);
+		final Color BLACK_SECUNDARIO = new Color(15, 15, 15);
 		// Frame principal.
 		frame.setBounds(100, 100, WIN_WIDTH, WIN_HEIGHT);
 		frame.setLocationRelativeTo(null);
@@ -126,10 +132,10 @@ public class Main extends Sorts {
 		panelMenu.setBounds(0, 0, 300, 1024);
 		panelMenu.setLayout(null);
 		frame.getContentPane().add(panelMenu);
-		panelOpcionesMenu.setBackground(oscuro);
+		panelOpcionesMenu.setBackground(BLACK_SECUNDARIO);
 
 		// Panel hijo para las ocopnes.
-		panelOpcionesMenu.setBounds(10, 46, 280, 873);
+		panelOpcionesMenu.setBounds(10, 46, 280, 880);
 		panelOpcionesMenu.setBorder(new LineBorder(SystemColor.textInactiveText));
 		panelOpcionesMenu.setLayout(null);
 		panelMenu.add(panelOpcionesMenu);
@@ -210,14 +216,14 @@ public class Main extends Sorts {
 		panelOpcionesMenu.add(lblNumeroBarras);
 
 		// Slider para seleccionar el tamaño de las barras pintadas en pantalla.
-		int maximum = 9;
+		final int maxNumBars = 9;
 		sliderTamBarras.setOrientation(SwingConstants.VERTICAL);
 		sliderTamBarras.setMajorTickSpacing(1);
 		sliderTamBarras.setForeground(Color.WHITE);
-		sliderTamBarras.setBackground(oscuro);
-		sliderTamBarras.setLabelTable(snbp.establecerValoresSlider(maximum));
+		sliderTamBarras.setBackground(BLACK_SECUNDARIO);
+		sliderTamBarras.setLabelTable(snbp.establecerValoresSlider(maxNumBars));
 		sliderTamBarras.setMinimum(1);
-		sliderTamBarras.setMaximum(maximum);
+		sliderTamBarras.setMaximum(maxNumBars);
 		sliderTamBarras.setFont(new Font("Arial", Font.BOLD, 13));
 		sliderTamBarras.setMinorTickSpacing(1);
 		sliderTamBarras.setSnapToTicks(true);
@@ -243,7 +249,7 @@ public class Main extends Sorts {
 		lblRetardo.setBounds(10, 259, 120, 30);
 		panelOpcionesMenu.add(lblRetardo);
 		sliderRetardo.setOrientation(SwingConstants.VERTICAL);
-		sliderRetardo.setBackground(oscuro);
+		sliderRetardo.setBackground(BLACK_SECUNDARIO);
 		sliderRetardo.setForeground(Color.WHITE);
 		sliderRetardo.setMinorTickSpacing(1);
 		sliderRetardo.setMajorTickSpacing(10);
@@ -311,13 +317,9 @@ public class Main extends Sorts {
 		btnSaltarSort.setBounds(10, 95, 110, 30);
 		panelOpcionesMenu.add(btnSaltarSort);
 
-		JButton btnInformacion = new JButton("Informacion");
+		// Boton para ver informacion sobre la aplicacion
 		btnInformacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int c = 2202;
-				String symbol = "\\u" + c;
-
-				String s = Character.toString((char) c);
 				JOptionPane.showMessageDialog(frame,
 						"Visualizador de ordenacion de matrices\n" + "                      Copyleft 2020\n"
 								+ "                            Javiluli\n" + "       Fecha de creacion: Julio 1, 2020");
@@ -326,14 +328,36 @@ public class Main extends Sorts {
 		btnInformacion.setForeground(Color.WHITE);
 		btnInformacion.setBackground(Color.BLACK);
 		btnInformacion.setFont(new Font("Arial", Font.BOLD, 13));
-		btnInformacion.setBounds(10, 832, 110, 30);
+		btnInformacion.setBounds(10, 839, 110, 30);
 		panelOpcionesMenu.add(btnInformacion);
-		lblTitle.setForeground(Color.WHITE);
+
+		// Boton de red social para GitHub
+		btnGithub.setBounds(200, 839, 30, 30);
+		btnGithub.setContentAreaFilled(false);
+		btnGithub.setIcon(new ImageIcon("data\\media\\img\\github.jpg"));
+		btnGithub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Social.redes(Social.getGithub());
+			}
+		});
+		panelOpcionesMenu.add(btnGithub);
+
+		// Boton de red social para Codepen
+		btnCodepen.setBounds(240, 839, 30, 30);
+		btnCodepen.setContentAreaFilled(false);
+		btnCodepen.setIcon(new ImageIcon("data\\media\\img\\codepen.jpg"));
+		btnCodepen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Social.redes(Social.getCodepen());
+			}
+		});
+		panelOpcionesMenu.add(btnCodepen);
 
 		// Label para el titulo de los controles.
 		lblTitle.setBounds(10, 11, 280, 24);
-		panelMenu.add(lblTitle);
+		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font("Arial", Font.BOLD, 18));
+		panelMenu.add(lblTitle);
 	}
 
 	/**
