@@ -1,13 +1,13 @@
 # Ordenacion visual en Java
 
-Aplicacion a nibel basico para visualizar de forma grafica la ordenacion de un Array con diferentes algoritmos.
+Aplicacion a nivel basico para visualizar de forma grafica la ordenacion de un Array con diferentes algoritmos.
 
-La carpeta DATA almacena archivos como videos y imagenes que afectan visualmente, no sin inprescindible para el funcionamiento del programa. Para su funcion se debe dejar de la misma forma en la que se decarga el repositorio, en una misma carpeta o directorio:
+La carpeta _data/_ almacena archivos como videos e imagenes que afectan visualmente, no son imprescindibles para el funcionamiento del programa. Para su uso correcto se debe dejar de la misma forma en la que se decarga el repositorio, en una misma carpeta o directorio:
 
 - ordenaciones.jar
 - data/
 
-## Algoritmos utilizados
+## Algoritmos utilizados.
 
 - Burbuja
 - Cocktail
@@ -23,10 +23,20 @@ La carpeta DATA almacena archivos como videos y imagenes que afectan visualmente
 - Radix
 - Seleccion
 
-Muestras del programa.
+### Cocktail Sort
 
-![muestra.gif](data/video_1.gif)
+![cocktailSort.gif](data/media/video/cocktailSort.gif)
 
-![muestra.gif](data/video_2.gif)
+---
 
-![muestra.gif](data/video_3.gif)
+### Cycle Sort
+
+![cycleSort.gif](data/media/video/cycleSort.gif)
+
+---
+
+### Ratrix Sort
+
+![ratrixSort.gif](data/media/video/ratrixSort.gif)
+
+---
