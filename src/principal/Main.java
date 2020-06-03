@@ -28,8 +28,6 @@ import javax.swing.event.ChangeEvent;
 import java.awt.Panel;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JToggleButton;
 
 public class Main extends Sorts {
 	// Nombre de cada algoritmo Sort
@@ -446,6 +444,19 @@ public class Main extends Sorts {
 		lblAccesos.setText("Accesos al Array: " + accesoArray);
 		calcularTiempo();
 		calcularMemoria();
+	}
+
+	public void updateAnimaciones() {
+		textos();
+		fin = System.currentTimeMillis();
+		panelBarras.repaint();
+		Delay.delay();
+	}
+
+	public void updateAnimacionesSinTiempo() {
+		textos();
+		panelBarras.repaint();
+		Delay.delay();
 	}
 	// ---------------------------------------------------------------------------------------------
 

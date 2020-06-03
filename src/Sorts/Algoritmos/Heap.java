@@ -1,6 +1,5 @@
 package Sorts.Algoritmos;
 
-import Adicionales.Delay;
 import Interfaz.Sort;
 import Principal.Main;
 import Sorts.Sorts;
@@ -18,10 +17,8 @@ public class Heap extends Sorts implements Sort {
 
 		for (int i = len / 2 - 1; i >= 0; i--) {
 			heapify(n, len, i);
-			m.textos();
-			setFin(System.currentTimeMillis());
-			Main.getPanelBarras().repaint();
-			Delay.delay();
+			m.updateAnimaciones();
+			;
 		}
 
 		for (int i = len - 1; i >= 0; i--) {
@@ -29,10 +26,7 @@ public class Heap extends Sorts implements Sort {
 			n[0] = n[i];
 			n[i] = temp;
 
-			m.textos();
-			setFin(System.currentTimeMillis());
-			Main.getPanelBarras().repaint();
-			Delay.delay();
+			m.updateAnimaciones();
 			heapify(n, i, 0);
 		}
 	}

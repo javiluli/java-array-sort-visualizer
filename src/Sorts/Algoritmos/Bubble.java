@@ -1,8 +1,7 @@
 package Sorts.Algoritmos;
 
-import Adicionales.*;
 import Interfaz.Sort;
-import Principal.*;
+import Principal.Main;
 import Sorts.Sorts;
 
 public class Bubble extends Sorts implements Sort {
@@ -24,10 +23,7 @@ public class Bubble extends Sorts implements Sort {
 					cambiosArray++;
 				}
 				accesoArray += 2;
-				m.textos();
-				setFin(System.currentTimeMillis());
-				Main.getPanelBarras().repaint();
-				Delay.delay();
+				m.updateAnimaciones();
 			}
 			m.textos();
 		}

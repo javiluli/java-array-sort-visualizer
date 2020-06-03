@@ -2,7 +2,6 @@ package Sorts.Algoritmos;
 
 import java.util.Arrays;
 
-import Adicionales.Delay;
 import Interfaz.Sort;
 import Principal.Main;
 import Sorts.Sorts;
@@ -20,10 +19,7 @@ public class Radix extends Sorts implements Sort {
 		int max = getMax(n.length);
 		for (int exp = 1; max / exp > 0; exp *= 10) {
 			countSort(n.length, exp);
-			m.textos();
-			setFin(System.currentTimeMillis());
-			Main.getPanelBarras().repaint();
-			Delay.delay();
+			m.updateAnimaciones();
 		}
 	}
 
@@ -52,10 +48,7 @@ public class Radix extends Sorts implements Sort {
 		for (i = 0; i < len; i++) {
 			n[i] = output[i];
 			accesoArray++;
-			m.textos();
-			setFin(System.currentTimeMillis());
-			Main.getPanelBarras().repaint();
-			Delay.delay();
+			m.updateAnimaciones();
 		}
 	}
 

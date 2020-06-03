@@ -1,6 +1,5 @@
 package Sorts.Algoritmos;
 
-import Adicionales.Delay;
 import Interfaz.Sort;
 import Principal.Main;
 import Sorts.Sorts;
@@ -29,10 +28,7 @@ public class Gnome extends Sorts implements Sort {
 				index--;
 				cambiosArray++;
 			}
-			m.textos();
-			setFin(System.currentTimeMillis());
-			Main.getPanelBarras().repaint();
-			Delay.delay();
+			m.updateAnimaciones();
 		}
 	}
 

@@ -8,8 +8,8 @@ public class Sorts {
 	protected static long accesoArray;
 	protected static long cambiosArray;
 	protected static long inicio;
-	protected static long fin;
-	protected static long tiempo;
+	protected long fin;
+	protected long tiempo;
 	public Main m;
 
 	public Sorts() {
@@ -36,7 +36,7 @@ public class Sorts {
 	}
 
 	public void setTiempo(long tiempo) {
-		Sorts.tiempo = tiempo;
+		this.tiempo = tiempo;
 	}
 
 	public long getFin() {
@@ -44,7 +44,7 @@ public class Sorts {
 	}
 
 	public void setFin(long fin) {
-		Sorts.fin = fin;
+		this.fin = fin;
 	}
 
 }

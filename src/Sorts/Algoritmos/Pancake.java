@@ -1,6 +1,5 @@
 package Sorts.Algoritmos;
 
-import Adicionales.Delay;
 import Interfaz.Sort;
 import Principal.Main;
 import Sorts.Sorts;
@@ -21,10 +20,7 @@ public class Pancake extends Sorts implements Sort {
 				flip(n, mi);
 				flip(n, curr_size - 1);
 			}
-			m.textos();
-			setFin(System.currentTimeMillis());
-			Main.getPanelBarras().repaint();
-			Delay.delay();
+			m.updateAnimaciones();
 		}
 	}
 

@@ -1,6 +1,5 @@
 package Sorts.Algoritmos;
 
-import Adicionales.Delay;
 import Interfaz.Sort;
 import Principal.Main;
 import Sorts.Sorts;
@@ -27,10 +26,7 @@ public class OddEven extends Sorts implements Sort {
 					isSorted = false;
 					cambiosArray++;
 				}
-				m.textos();
-				Main.getPanelBarras().repaint();
-				setFin(System.currentTimeMillis());
-				Delay.delay();
+				m.updateAnimaciones();
 			}
 			for (int i = 0; i <= n.length - 2; i = i + 2) {
 				accesoArray++;
@@ -41,10 +37,7 @@ public class OddEven extends Sorts implements Sort {
 					isSorted = false;
 					cambiosArray++;
 				}
-				m.textos();
-				Main.getPanelBarras().repaint();
-				setFin(System.currentTimeMillis());
-				Delay.delay();
+				m.updateAnimaciones();
 			}
 			m.textos();
 		}

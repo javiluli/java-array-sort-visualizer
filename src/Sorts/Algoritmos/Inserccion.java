@@ -1,8 +1,7 @@
 package Sorts.Algoritmos;
 
-import Adicionales.*;
 import Interfaz.Sort;
-import Principal.*;
+import Principal.Main;
 import Sorts.Sorts;
 
 public class Inserccion extends Sorts implements Sort {
@@ -25,10 +24,7 @@ public class Inserccion extends Sorts implements Sort {
 				cambiosArray++;
 				accesoArray += 2;
 				n[pos] = aux;
-				setFin(System.currentTimeMillis());
-				m.textos();
-				Main.getPanelBarras().repaint();
-				Delay.delay();
+				m.updateAnimaciones();
 			}
 		}
 	}

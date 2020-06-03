@@ -1,6 +1,5 @@
 package Sorts.Algoritmos;
 
-import Adicionales.Delay;
 import Interfaz.Sort;
 import Principal.Main;
 import Sorts.Sorts;
@@ -35,10 +34,7 @@ public class Quick extends Sorts implements Sort {
 			}
 			accesoArray++;
 			cambiosArray++;
-			m.textos();
-			setFin(System.currentTimeMillis());
-			Main.getPanelBarras().repaint();
-			Delay.delay();
+			m.updateAnimaciones();
 		}
 
 		array[izq] = array[j];

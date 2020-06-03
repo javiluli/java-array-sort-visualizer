@@ -1,8 +1,7 @@
 package Sorts.Algoritmos;
 
-import Adicionales.*;
 import Interfaz.Sort;
-import Principal.*;
+import Principal.Main;
 import Sorts.Sorts;
 
 public class Selection extends Sorts implements Sort {
@@ -30,10 +29,7 @@ public class Selection extends Sorts implements Sort {
 			n[i] = n[min];
 			n[min] = aux;
 
-			setFin(System.currentTimeMillis());
-			m.textos();
-			Main.getPanelBarras().repaint();
-			Delay.delay();
+			m.updateAnimaciones();
 		}
 	}
 

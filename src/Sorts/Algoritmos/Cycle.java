@@ -16,6 +16,7 @@ public class Cycle extends Sorts implements Sort {
 		setInicio(System.currentTimeMillis());
 		int writes = 0;
 		for (int cycle_start = 0; cycle_start <= n.length - 2; cycle_start++) {
+			accesoArray++;
 			int item = n[cycle_start];
 
 			int pos = cycle_start;
@@ -37,6 +38,7 @@ public class Cycle extends Sorts implements Sort {
 			}
 
 			while (pos != cycle_start) {
+				accesoArray++;
 				pos = cycle_start;
 
 				for (int i = cycle_start + 1; i < n.length; i++)
@@ -51,17 +53,10 @@ public class Cycle extends Sorts implements Sort {
 					item = n[pos];
 					n[pos] = temp;
 					writes++;
+					cambiosArray++;
 				}
-				m.textos();
-				setFin(System.currentTimeMillis());
-				Main.getPanelBarras().repaint();
-				Delay.delay();
-
+				m.updateAnimaciones();
 			}
-			m.textos();
-			setFin(System.currentTimeMillis());
-			Main.getPanelBarras().repaint();
-			Delay.delay();
 		}
 	}
 

@@ -1,6 +1,5 @@
 package Sorts.Algoritmos;
 
-import Adicionales.Delay;
 import Interfaz.Sort;
 import Principal.Main;
 import Sorts.Sorts;
@@ -57,9 +56,7 @@ public class Merge extends Sorts implements Sort {
 			}
 			k++;
 			cambiosArray++;
-			m.textos();
-			Main.getPanelBarras().repaint();
-			Delay.delay();
+			m.updateAnimacionesSinTiempo();
 		}
 
 		while (i < len_left) {
@@ -67,9 +64,7 @@ public class Merge extends Sorts implements Sort {
 			i++;
 			k++;
 			accesoArray++;
-			m.textos();
-			Main.getPanelBarras().repaint();
-			Delay.delay();
+			m.updateAnimacionesSinTiempo();
 		}
 
 		while (j < len_right) {
@@ -77,9 +72,7 @@ public class Merge extends Sorts implements Sort {
 			j++;
 			k++;
 			accesoArray++;
-			m.textos();
-			Main.getPanelBarras().repaint();
-			Delay.delay();
+			m.updateAnimacionesSinTiempo();
 		}
 		m.textos();
 		setFin(System.currentTimeMillis());

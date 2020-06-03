@@ -1,6 +1,5 @@
 package Sorts.Algoritmos;
 
-import Adicionales.Delay;
 import Interfaz.Sort;
 import Principal.Main;
 import Sorts.Sorts;
@@ -31,10 +30,7 @@ public class Pigeonhole extends Sorts implements Sort {
 			while (holes[count]-- > 0) {
 				n[i++] = count + min;
 				accesoArray++;
-				m.textos();
-				setFin(System.currentTimeMillis());
-				Main.getPanelBarras().repaint();
-				Delay.delay();
+				m.updateAnimaciones();
 			}
 		}
 	}

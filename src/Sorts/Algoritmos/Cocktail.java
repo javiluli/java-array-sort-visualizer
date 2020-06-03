@@ -1,6 +1,5 @@
 package Sorts.Algoritmos;
 
-import Adicionales.Delay;
 import Interfaz.Sort;
 import Principal.Main;
 import Sorts.Sorts;
@@ -30,10 +29,7 @@ public class Cocktail extends Sorts implements Sort {
 					cambiar = true;
 					cambiosArray++;
 				}
-				m.textos();
-				setFin(System.currentTimeMillis());
-				Main.getPanelBarras().repaint();
-				Delay.delay();
+				m.updateAnimaciones();
 			}
 
 			if (cambiar == false)
@@ -51,12 +47,8 @@ public class Cocktail extends Sorts implements Sort {
 					cambiar = true;
 					cambiosArray++;
 				}
-				m.textos();
-				setFin(System.currentTimeMillis());
-				Main.getPanelBarras().repaint();
-				Delay.delay();
+				m.updateAnimaciones();
 			}
-
 			inicio = inicio + 1;
 		}
 	}
