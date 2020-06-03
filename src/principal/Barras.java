@@ -18,6 +18,7 @@ public class Barras extends JPanel {
 	private static int NUM_BARS = 32;
 	private static int BAR_WIDTH = getWinWidth() / getNUM_BARS();
 	private static int BAR_HEIGHT = getWinHeight() / getNUM_BARS();
+	private boolean marcarSepacaion = false;
 
 	/**
 	 * Constructor de iniciar el array con numeros ordenados.
@@ -65,48 +66,38 @@ public class Barras extends JPanel {
 		super.paintComponent(graphics);
 		graphics.setColor(Color.WHITE);
 		int opcionGrafico = Main.getComboboxtiposgraficos().getSelectedIndex();
-		if (opcionGrafico == 0)
-			pintarEscalera(graphics);
-		else if (opcionGrafico == 1)
-			pintarPiramideHorizontal(graphics);
-		else if (opcionGrafico == 2)
-			pintarCuadrado(graphics);
-		else if (opcionGrafico == 3)
-			pintarPunto(graphics);
-	}
 
-	private void pintarEscalera(Graphics2D graphics) {
 		for (int i = 0; i < getNUM_BARS(); i++) {
-			int height = (Sorts.n[i] * getBAR_HEIGHT()) + getBAR_HEIGHT();
-			int xBegin = i + (getBAR_WIDTH() - 1) * i;
-			int yBegin = getWinHeight() - height;
-			graphics.fill3DRect(xBegin, yBegin, getBAR_WIDTH(), height, true);
+			comunes(i, graphics, opcionGrafico);
 		}
 	}
 
-	private void pintarPiramideHorizontal(Graphics2D graphics) {
-		for (int i = 0; i < getNUM_BARS(); i++) {
-			int height = (Sorts.n[i] * getBAR_HEIGHT()) + getBAR_HEIGHT();
-			int xBegin = i + (getBAR_WIDTH() - 1) * i;
-			int yBegin = ((getWinHeight() - height) / 2);
-			graphics.fill3DRect(xBegin, yBegin, getBAR_WIDTH(), height, true);
-		}
-	}
+	private void comunes(int i, Graphics2D graphics, int opcionGrafico) {
+		int height = 0, xBegin = 0, yBegin = 0;
+		height = (Sorts.n[i] * getBAR_HEIGHT()) + getBAR_HEIGHT();
+		xBegin = i + (getBAR_WIDTH() - 1) * i;
+		// --------------------------------------------------------------------------------------------
 
-	private void pintarCuadrado(Graphics2D graphics) {
-		for (int i = 0; i < getNUM_BARS(); i++) {
-			int xBegin = i + (getBAR_WIDTH() - 1) * i;
-			int auxDistancia = (Sorts.n[i] * getBAR_HEIGHT()) + getBAR_HEIGHT();
-			int yBegin = getWinHeight() - auxDistancia;
+		// SELECCION ENTRE EL ESTILO GRAFICO DE "ESCALERAS" Y "PIRAMIDE HORIZONTAL"
+		if (opcionGrafico == 1) { // GRAFICOS "Piramide horizontal"
+			// Al dividir entre 2 de divide el espacio entre las barras y los lados de la
+			// ventana.
+			yBegin = ((getWinHeight() - height) / 2);
+		} else if (opcionGrafico != 1) { // GRAFICOS "Escalera"
+			yBegin = ((getWinHeight() - height));
+		}
+		// --------------------------------------------------------------------------------------------
+
+		// SELECCION ENTRE LOS DISTINTOS TIPOS DE ESTILOS GRAFICOS
+		if (opcionGrafico == 0 || opcionGrafico == 1) { // GRAFICOS "Escalera" Y "Piramide horizontal"
+			if (marcarSepacaion) { // EFECTO GRAFICO CON EL CONTORNO BARRAS
+				graphics.fill3DRect(xBegin, yBegin, getBAR_WIDTH(), height, true);
+			} else if (!marcarSepacaion) { // EFECTO GRAFICO SIN EL CONTORNO BARRAS
+				graphics.fillRect(xBegin, yBegin, getBAR_HEIGHT(), height);
+			}
+		} else if (opcionGrafico == 2) { // GRAFICOS "Cuadrado"
 			graphics.fillRect(xBegin, yBegin, getBAR_HEIGHT(), getBAR_HEIGHT());
-		}
-	}
-
-	private void pintarPunto(Graphics2D graphics) {
-		for (int i = 0; i < getNUM_BARS(); i++) {
-			int xBegin = i + (getBAR_WIDTH() - 1) * i;
-			int auxDistancia = (Sorts.n[i] * getBAR_HEIGHT()) + getBAR_HEIGHT();
-			int yBegin = getWinHeight() - auxDistancia;
+		} else if (opcionGrafico == 3) { // GRAFICOS "Punto"
 			graphics.fillOval(xBegin, yBegin, getBAR_HEIGHT(), getBAR_HEIGHT());
 		}
 	}
@@ -151,5 +142,13 @@ public class Barras extends JPanel {
 
 	public static void setBAR_HEIGHT(int bAR_HEIGHT) {
 		BAR_HEIGHT = bAR_HEIGHT;
+	}
+
+	public boolean isMarcarSepacaion() {
+		return marcarSepacaion;
+	}
+
+	public void setMarcarSepacaion(boolean marcarSepacaion) {
+		this.marcarSepacaion = marcarSepacaion;
 	}
 }

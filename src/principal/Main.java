@@ -1,33 +1,30 @@
 package Principal;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
-
-import javax.swing.border.LineBorder;
-
-import Adicionales.*;
-import Sorts.*;
-import Sorts.Algoritmos.*;
-
 import java.awt.Color;
-
-import javax.swing.SwingConstants;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.Hashtable;
-import java.awt.event.ActionEvent;
-import javax.swing.JSlider;
-import javax.swing.event.ChangeListener;
-
-import javax.swing.event.ChangeEvent;
+import java.awt.Font;
 import java.awt.Panel;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Hashtable;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import Adicionales.*;
+import Sorts.Sorts;
+import Sorts.Algoritmos.*;
 
 public class Main extends Sorts {
 	// Nombre de cada algoritmo Sort
@@ -45,6 +42,8 @@ public class Main extends Sorts {
 	// COMBOBOX
 	private final JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
 	private static final JComboBox<Object> comboBoxTiposGraficos = new JComboBox<Object>(nombreGrafico);
+//	private final JComboBox<String> comboBoxTipoSort = new JComboBox<String>();
+//	private static final JComboBox<Object> comboBoxTiposGraficos = new JComboBox<Object>();
 	// JLABEL
 	private final JLabel lblTitleAlgoritmo = new JLabel("Seleccionar algoritmo de ordenacion");
 	private final JLabel lblTitle = new JLabel("Panel de control");
@@ -65,6 +64,8 @@ public class Main extends Sorts {
 	private final JButton btnInformacion = new JButton("Informacion");
 	private final JButton btnGithub = new JButton();
 	private final JButton btnCodepen = new JButton();
+	// JCHECKBOX
+	private final JCheckBox chckbxContornoBarras = new JCheckBox("Marcar el contorno de las barras");
 	// JSLIDER
 	private final JSlider sliderTamBarras = new JSlider();
 	private final JSlider sliderRetardo = new JSlider();
@@ -199,16 +200,16 @@ public class Main extends Sorts {
 			}
 		});
 		panelOpcionesMenu.add(btnDesordenar);
-		lblCambios.setForeground(Color.WHITE);
 
 		// Label para el recuento de cambios realizados en el array.
+		lblCambios.setForeground(Color.WHITE);
 		lblCambios.setFont(new Font("Arial", Font.BOLD, 13));
 		lblCambios.setBounds(10, 215, 250, 30);
 		panelOpcionesMenu.add(lblCambios);
-		lblAccesos.setForeground(Color.WHITE);
 
 		// Label para el recuento de accesos realizados en el array.
 		lblAccesos.setFont(new Font("Arial", Font.BOLD, 13));
+		lblAccesos.setForeground(Color.WHITE);
 		lblAccesos.setBounds(10, 256, 237, 30);
 		panelOpcionesMenu.add(lblAccesos);
 		lblNumeroBarras.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -312,13 +313,14 @@ public class Main extends Sorts {
 		// Boton para saltar o salir de la animacion
 		btnSaltarSort.setBackground(Color.BLACK);
 		btnSaltarSort.setForeground(Color.WHITE);
-		btnSaltarSort.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Delay.n = 1 / 2;
-			}
-		});
 		btnSaltarSort.setFont(new Font("Arial", Font.BOLD, 13));
 		btnSaltarSort.setBounds(160, 129, 110, 30);
+		btnSaltarSort.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Delay.n = 0;
+			}
+		});
+
 		panelOpcionesMenu.add(btnSaltarSort);
 
 		// Boton para ver informacion sobre la aplicacion
@@ -369,6 +371,22 @@ public class Main extends Sorts {
 		lblTituloGraficos.setForeground(Color.WHITE);
 		lblTituloGraficos.setBounds(10, 88, 120, 30);
 		panelOpcionesMenu.add(lblTituloGraficos);
+
+		// Radio button para poner o quitar separacion entre barras.
+		chckbxContornoBarras.setForeground(Color.WHITE);
+		chckbxContornoBarras.setBackground(Color.BLACK);
+		chckbxContornoBarras.setFont(new Font("Arial", Font.BOLD, 13));
+		chckbxContornoBarras.setBounds(10, 185, 260, 23);
+		chckbxContornoBarras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (chckbxContornoBarras.isSelected())
+					barras.setMarcarSepacaion(true);
+				else if (!chckbxContornoBarras.isSelected())
+					barras.setMarcarSepacaion(false);
+				panelBarras.repaint();
+			}
+		});
+		panelOpcionesMenu.add(chckbxContornoBarras);
 
 		// Label para el titulo de los controles.
 		lblTitle.setBounds(10, 11, 280, 24);
@@ -648,8 +666,4 @@ public class Main extends Sorts {
 	public static JComboBox<Object> getComboboxtiposgraficos() {
 		return comboBoxTiposGraficos;
 	}
-
-//	public static JComboBox<Object> getComboboxtiposgraficos() {
-//		return comboBoxTiposGraficos;
-//	}
 }
