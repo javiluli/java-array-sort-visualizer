@@ -28,11 +28,15 @@ import javax.swing.event.ChangeEvent;
 import java.awt.Panel;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JToggleButton;
 
 public class Main extends Sorts {
 	// Nombre de cada algoritmo Sort
 	private final String[] nombreAlgoritmos = { "Bubble", "Cocktail", "Cycle", "Gnome", "Heap", "Insertion", "Merge",
 			"Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix", "Selection" };
+	// DISEÑO GRAFICO DE LA ANIMACION
+	private final static String[] nombreGrafico = { "Escalera", "Piramide horizontal", "Cuadrados" };
 	// JFRAME PRINCIPAL
 	private final JFrame frame = new JFrame();
 	// JPANEL
@@ -42,8 +46,9 @@ public class Main extends Sorts {
 	private final Panel panelVisorMemoria = new Panel();
 	// COMBOBOX
 	private final JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
+	private static final JComboBox<Object> comboBoxTiposGraficos = new JComboBox<Object>(nombreGrafico);
 	// JLABEL
-	private final JLabel lblTitleAlgoritmo = new JLabel("Algoritmo de ordenacion");
+	private final JLabel lblTitleAlgoritmo = new JLabel("Seleccionar algoritmo de ordenacion");
 	private final JLabel lblTitle = new JLabel("Panel de control");
 	private JLabel lblNumeroBarras = new JLabel("Numero de barras");
 	private JLabel lblRetardo = new JLabel("Retardo: 1 ms");
@@ -54,6 +59,7 @@ public class Main extends Sorts {
 	private static JLabel lblMemoriaTotal = new JLabel("Memoria total: 0 MB");
 	private static JLabel lblCambios = new JLabel("Cambios en el Array: 0");
 	private static JLabel lblAccesos = new JLabel("Accesos al Array: 0");
+	private final JLabel lblTituloGraficos = new JLabel("Dise\u00F1o grafico");
 	// JBUTTON
 	private final JButton btnOrdenar = new JButton("Ordenar");
 	private final JButton btnDesordenar = new JButton("Desordenar");
@@ -108,8 +114,8 @@ public class Main extends Sorts {
 		getPanelBarras().add(barras);
 		barras.setLayout(null);
 		getPanelBarras().setVisible(true);
-		frame.setTitle("Visualizador de ordenacion de matrices");
 		frame.setResizable(false);
+		frame.setTitle("Visualizador de ordenacion de matrices");
 		frame.setVisible(true);
 		sorting();
 	}
@@ -119,47 +125,46 @@ public class Main extends Sorts {
 		final Color BLACK_SECUNDARIO = new Color(15, 15, 15);
 		// Frame principal.
 		frame.setBounds(100, 100, WIN_WIDTH, WIN_HEIGHT);
-		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 		frame.getContentPane().setLayout(null);
 
 		// Panel donde se dibujan las barras.
 		panelBarras.setBackground(SystemColor.desktop);
 		panelBarras.setBounds(300, 0, Barras.getWinWidth(), Barras.getWinHeight());
 		frame.getContentPane().add(panelBarras);
-		panelMenu.setBackground(SystemColor.activeCaptionText);
 
 		// Panel para el menu de occiones.
+		panelMenu.setBackground(SystemColor.activeCaptionText);
 		panelMenu.setBounds(0, 0, 300, 1024);
 		panelMenu.setLayout(null);
 		frame.getContentPane().add(panelMenu);
-		panelOpcionesMenu.setBackground(BLACK_SECUNDARIO);
 
 		// Panel hijo para las ocopnes.
-		panelOpcionesMenu.setBounds(10, 46, 280, 880);
+		panelOpcionesMenu.setBackground(BLACK_SECUNDARIO);
 		panelOpcionesMenu.setBorder(new LineBorder(SystemColor.textInactiveText));
+		panelOpcionesMenu.setBounds(10, 46, 280, 952);
 		panelOpcionesMenu.setLayout(null);
 		panelMenu.add(panelOpcionesMenu);
-		lblTitleAlgoritmo.setForeground(Color.WHITE);
 
 		// Titulo para seleccion del algoritmo de ordenacion.
+		lblTitleAlgoritmo.setBounds(10, 11, 260, 25);
 		lblTitleAlgoritmo.setFont(new Font("Arial", Font.BOLD, 13));
-		lblTitleAlgoritmo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitleAlgoritmo.setBounds(10, 11, 186, 25);
+		lblTitleAlgoritmo.setForeground(Color.WHITE);
 		panelOpcionesMenu.add(lblTitleAlgoritmo);
-		comboBoxTipoSort.setForeground(Color.WHITE);
-		comboBoxTipoSort.setBackground(Color.DARK_GRAY);
 
 		// Menu desplegable para la seleccion de algoritmo.
 		comboBoxTipoSort.setFont(new Font("Arial", Font.BOLD, 13));
-		comboBoxTipoSort.setBounds(10, 47, 120, 30);
+		comboBoxTipoSort.setForeground(Color.WHITE);
+		comboBoxTipoSort.setBackground(Color.DARK_GRAY);
+		comboBoxTipoSort.setBounds(10, 47, 140, 30);
 		panelOpcionesMenu.add(comboBoxTipoSort);
-		btnOrdenar.setBackground(Color.BLACK);
-		btnOrdenar.setForeground(Color.WHITE);
 
 		// Boton para iniciar la ordenacion.
 		btnOrdenar.setFont(new Font("Arial", Font.BOLD, 13));
-		btnOrdenar.setBounds(153, 47, 110, 30);
+		btnOrdenar.setBackground(Color.BLACK);
+		btnOrdenar.setForeground(Color.WHITE);
+		btnOrdenar.setBounds(160, 47, 110, 30);
 		btnOrdenar.addActionListener(new ActionListener() {
 			/*
 			 * Este obtiene la posicion en la lista de algorimos para su seleccion, y una
@@ -178,7 +183,7 @@ public class Main extends Sorts {
 
 		// Boton para desordenar el array.
 		btnDesordenar.setFont(new Font("Arial", Font.BOLD, 13));
-		btnDesordenar.setBounds(153, 95, 110, 30);
+		btnDesordenar.setBounds(160, 88, 110, 30);
 		btnDesordenar.addActionListener(new ActionListener() {
 			/*
 			 * Evitar que durante la desordenacion se pueda volver a marcar y se pueda
@@ -200,20 +205,20 @@ public class Main extends Sorts {
 
 		// Label para el recuento de cambios realizados en el array.
 		lblCambios.setFont(new Font("Arial", Font.BOLD, 13));
-		lblCambios.setBounds(10, 136, 250, 30);
+		lblCambios.setBounds(10, 215, 250, 30);
 		panelOpcionesMenu.add(lblCambios);
 		lblAccesos.setForeground(Color.WHITE);
 
 		// Label para el recuento de accesos realizados en el array.
 		lblAccesos.setFont(new Font("Arial", Font.BOLD, 13));
-		lblAccesos.setBounds(10, 177, 237, 30);
+		lblAccesos.setBounds(10, 256, 237, 30);
 		panelOpcionesMenu.add(lblAccesos);
 		lblNumeroBarras.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNumeroBarras.setForeground(Color.WHITE);
 
 		// Label para el tamaño de las barras pintadas en pantalla.
 		lblNumeroBarras.setFont(new Font("Arial", Font.BOLD, 13));
-		lblNumeroBarras.setBounds(139, 259, 131, 30);
+		lblNumeroBarras.setBounds(139, 338, 131, 30);
 		panelOpcionesMenu.add(lblNumeroBarras);
 
 		// Slider para seleccionar el tamaño de las barras pintadas en pantalla.
@@ -231,7 +236,7 @@ public class Main extends Sorts {
 		sliderTamBarras.setPaintLabels(true);
 		sliderTamBarras.setValue(5);
 		sliderTamBarras.setPaintTicks(true);
-		sliderTamBarras.setBounds(173, 300, 90, 360);
+		sliderTamBarras.setBounds(173, 379, 90, 360);
 		sliderTamBarras.addChangeListener(new ChangeListener() {
 			/*
 			 * Este realizara el cambio de tamaño siempre que no se este ejecutando la
@@ -243,12 +248,14 @@ public class Main extends Sorts {
 			}
 		});
 		panelOpcionesMenu.add(sliderTamBarras);
-		lblRetardo.setForeground(Color.WHITE);
 
 		// Label para el retardo en la que se ordena.
+		lblRetardo.setForeground(Color.WHITE);
 		lblRetardo.setFont(new Font("Arial", Font.BOLD, 13));
-		lblRetardo.setBounds(10, 259, 120, 30);
+		lblRetardo.setBounds(10, 338, 120, 30);
 		panelOpcionesMenu.add(lblRetardo);
+
+		// Slider para la seleccion del retardo.
 		sliderRetardo.setOrientation(SwingConstants.VERTICAL);
 		sliderRetardo.setBackground(BLACK_SECUNDARIO);
 		sliderRetardo.setForeground(Color.WHITE);
@@ -256,11 +263,9 @@ public class Main extends Sorts {
 		sliderRetardo.setMajorTickSpacing(10);
 		sliderRetardo.setPaintLabels(true);
 		sliderRetardo.setFont(new Font("Arial", Font.BOLD, 13));
-
-		// Slider para la seleccion del retardo.
 		sliderRetardo.setValue(1);
 		sliderRetardo.setPaintTicks(true);
-		sliderRetardo.setBounds(10, 300, 90, 360);
+		sliderRetardo.setBounds(10, 379, 90, 360);
 		sliderRetardo.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				if (sliderRetardo.getValue() == 0)
@@ -269,39 +274,39 @@ public class Main extends Sorts {
 			}
 		});
 		panelOpcionesMenu.add(sliderRetardo);
-		lblTiempo.setForeground(Color.WHITE);
 
 		// Tiempo de ejecucion de un Sort/
+		lblTiempo.setForeground(Color.WHITE);
 		lblTiempo.setFont(new Font("Arial", Font.BOLD, 13));
-		lblTiempo.setBounds(10, 218, 253, 30);
+		lblTiempo.setBounds(10, 297, 253, 30);
 		panelOpcionesMenu.add(lblTiempo);
 
 		// Panel para visualizar la memoria.
 		panelVisorMemoria.setBackground(SystemColor.desktop);
-		panelVisorMemoria.setBounds(10, 673, 260, 140);
-		panelOpcionesMenu.add(panelVisorMemoria);
+		panelVisorMemoria.setBounds(10, 753, 260, 140);
 		panelVisorMemoria.setLayout(null);
-		lblMemoriaUsada.setForeground(SystemColor.text);
+		panelOpcionesMenu.add(panelVisorMemoria);
 
 		// Label para visualizar la memoria utilizada.
+		lblMemoriaUsada.setForeground(SystemColor.text);
 		lblMemoriaUsada.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		lblMemoriaUsada.setBounds(10, 12, 240, 20);
 		panelVisorMemoria.add(lblMemoriaUsada);
-		lblMemoriaMax.setForeground(SystemColor.text);
 
 		// Label para visualizar la memoria maxima.
+		lblMemoriaMax.setForeground(SystemColor.text);
 		lblMemoriaMax.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		lblMemoriaMax.setBounds(10, 44, 240, 20);
 		panelVisorMemoria.add(lblMemoriaMax);
-		lblMemoriaLibre.setForeground(SystemColor.text);
 
 		// Label para visualizar la memoria libre.
+		lblMemoriaLibre.setForeground(SystemColor.text);
 		lblMemoriaLibre.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		lblMemoriaLibre.setBounds(10, 76, 240, 20);
 		panelVisorMemoria.add(lblMemoriaLibre);
-		lblMemoriaTotal.setForeground(SystemColor.text);
 
 		// Label para visualizar la memoria total.
+		lblMemoriaTotal.setForeground(SystemColor.text);
 		lblMemoriaTotal.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		lblMemoriaTotal.setBounds(10, 108, 240, 20);
 		panelVisorMemoria.add(lblMemoriaTotal);
@@ -315,7 +320,7 @@ public class Main extends Sorts {
 			}
 		});
 		btnSaltarSort.setFont(new Font("Arial", Font.BOLD, 13));
-		btnSaltarSort.setBounds(10, 95, 110, 30);
+		btnSaltarSort.setBounds(160, 129, 110, 30);
 		panelOpcionesMenu.add(btnSaltarSort);
 
 		// Boton para ver informacion sobre la aplicacion
@@ -329,11 +334,11 @@ public class Main extends Sorts {
 		btnInformacion.setForeground(Color.WHITE);
 		btnInformacion.setBackground(Color.BLACK);
 		btnInformacion.setFont(new Font("Arial", Font.BOLD, 13));
-		btnInformacion.setBounds(10, 839, 110, 30);
+		btnInformacion.setBounds(10, 911, 110, 30);
 		panelOpcionesMenu.add(btnInformacion);
 
 		// Boton de red social para GitHub
-		btnGithub.setBounds(200, 839, 30, 30);
+		btnGithub.setBounds(200, 911, 30, 30);
 		btnGithub.setContentAreaFilled(false);
 		btnGithub.setIcon(new ImageIcon("data\\media\\img\\github.jpg"));
 		btnGithub.addActionListener(new ActionListener() {
@@ -344,7 +349,7 @@ public class Main extends Sorts {
 		panelOpcionesMenu.add(btnGithub);
 
 		// Boton de red social para Codepen
-		btnCodepen.setBounds(240, 839, 30, 30);
+		btnCodepen.setBounds(240, 911, 30, 30);
 		btnCodepen.setContentAreaFilled(false);
 		btnCodepen.setIcon(new ImageIcon("data\\media\\img\\codepen.jpg"));
 		btnCodepen.addActionListener(new ActionListener() {
@@ -353,6 +358,19 @@ public class Main extends Sorts {
 			}
 		});
 		panelOpcionesMenu.add(btnCodepen);
+
+		// CombooBox para los diseños graficos de la animacion de ordenacion.
+		comboBoxTiposGraficos.setFont(new Font("Arial", Font.BOLD, 13));
+		comboBoxTiposGraficos.setBounds(10, 129, 140, 30);
+		comboBoxTiposGraficos.setForeground(Color.WHITE);
+		comboBoxTiposGraficos.setBackground(Color.DARK_GRAY);
+		panelOpcionesMenu.add(comboBoxTiposGraficos);
+
+		// JLabel para titulo en la seleccion del diseño grafico.
+		lblTituloGraficos.setFont(new Font("Arial", Font.BOLD, 13));
+		lblTituloGraficos.setForeground(Color.WHITE);
+		lblTituloGraficos.setBounds(10, 88, 120, 30);
+		panelOpcionesMenu.add(lblTituloGraficos);
 
 		// Label para el titulo de los controles.
 		lblTitle.setBounds(10, 11, 280, 24);
@@ -615,4 +633,12 @@ public class Main extends Sorts {
 	public void setPanelBarras(JPanel panelBarras) {
 		Main.panelBarras = panelBarras;
 	}
+
+	public static JComboBox<Object> getComboboxtiposgraficos() {
+		return comboBoxTiposGraficos;
+	}
+
+//	public static JComboBox<Object> getComboboxtiposgraficos() {
+//		return comboBoxTiposGraficos;
+//	}
 }
