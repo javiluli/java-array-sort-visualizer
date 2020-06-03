@@ -66,19 +66,21 @@ public class Barras extends JPanel {
 		graphics.setColor(Color.WHITE);
 		int opcionGrafico = Main.getComboboxtiposgraficos().getSelectedIndex();
 		if (opcionGrafico == 0)
-			pintarPiramide(graphics);
+			pintarEscalera(graphics);
 		else if (opcionGrafico == 1)
 			pintarPiramideHorizontal(graphics);
 		else if (opcionGrafico == 2)
-			pintarCuadrados(graphics);
+			pintarCuadrado(graphics);
+		else if (opcionGrafico == 3)
+			pintarPunto(graphics);
 	}
 
-	private void pintarPiramide(Graphics2D graphics) {
+	private void pintarEscalera(Graphics2D graphics) {
 		for (int i = 0; i < getNUM_BARS(); i++) {
 			int height = (Sorts.n[i] * getBAR_HEIGHT()) + getBAR_HEIGHT();
 			int xBegin = i + (getBAR_WIDTH() - 1) * i;
 			int yBegin = getWinHeight() - height;
-			graphics.fillRect(xBegin, yBegin, getBAR_WIDTH(), height);
+			graphics.fill3DRect(xBegin, yBegin, getBAR_WIDTH(), height, true);
 		}
 	}
 
@@ -87,16 +89,25 @@ public class Barras extends JPanel {
 			int height = (Sorts.n[i] * getBAR_HEIGHT()) + getBAR_HEIGHT();
 			int xBegin = i + (getBAR_WIDTH() - 1) * i;
 			int yBegin = ((getWinHeight() - height) / 2);
-			graphics.fillRect(xBegin, yBegin, getBAR_WIDTH(), height);
+			graphics.fill3DRect(xBegin, yBegin, getBAR_WIDTH(), height, true);
 		}
 	}
 
-	private void pintarCuadrados(Graphics2D graphics) {
+	private void pintarCuadrado(Graphics2D graphics) {
 		for (int i = 0; i < getNUM_BARS(); i++) {
 			int xBegin = i + (getBAR_WIDTH() - 1) * i;
 			int auxDistancia = (Sorts.n[i] * getBAR_HEIGHT()) + getBAR_HEIGHT();
 			int yBegin = getWinHeight() - auxDistancia;
 			graphics.fillRect(xBegin, yBegin, getBAR_HEIGHT(), getBAR_HEIGHT());
+		}
+	}
+
+	private void pintarPunto(Graphics2D graphics) {
+		for (int i = 0; i < getNUM_BARS(); i++) {
+			int xBegin = i + (getBAR_WIDTH() - 1) * i;
+			int auxDistancia = (Sorts.n[i] * getBAR_HEIGHT()) + getBAR_HEIGHT();
+			int yBegin = getWinHeight() - auxDistancia;
+			graphics.fillOval(xBegin, yBegin, getBAR_HEIGHT(), getBAR_HEIGHT());
 		}
 	}
 

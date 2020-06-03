@@ -34,7 +34,7 @@ public class Main extends Sorts {
 	private final String[] nombreAlgoritmos = { "Bubble", "Cocktail", "Cycle", "Gnome", "Heap", "Insertion", "Merge",
 			"Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix", "Selection" };
 	// DISEÑO GRAFICO DE LA ANIMACION
-	private final static String[] nombreGrafico = { "Escalera", "Piramide horizontal", "Cuadrados" };
+	private final static String[] nombreGrafico = { "Escalera", "Piramide horizontal", "Cuadrado", "Punto" };
 	// JFRAME PRINCIPAL
 	private final JFrame frame = new JFrame();
 	// JPANEL
