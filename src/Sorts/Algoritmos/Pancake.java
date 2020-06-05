@@ -1,6 +1,7 @@
 package Sorts.Algoritmos;
 
 import Interfaz.Sort;
+import Principal.Barras;
 import Principal.Main;
 import Sorts.Sorts;
 
@@ -22,6 +23,7 @@ public class Pancake extends Sorts implements Sort {
 			}
 			m.updateAnimaciones();
 		}
+		Barras.finSort = true;
 	}
 
 	static void flip(int arr[], int i) {

@@ -3,6 +3,7 @@ package Sorts.Algoritmos;
 import java.util.Arrays;
 
 import Interfaz.Sort;
+import Principal.Barras;
 import Principal.Main;
 import Sorts.Sorts;
 
@@ -21,6 +22,7 @@ public class Radix extends Sorts implements Sort {
 			countSort(n.length, exp);
 			m.updateAnimaciones();
 		}
+		Barras.finSort = true;
 	}
 
 	public void countSort(int len, int exp) {

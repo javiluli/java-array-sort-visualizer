@@ -1,6 +1,7 @@
 package Sorts.Algoritmos;
 
 import Interfaz.Sort;
+import Principal.Barras;
 import Principal.Main;
 import Sorts.Sorts;
 
@@ -15,6 +16,7 @@ public class Merge extends Sorts implements Sort {
 	public void sort() {
 		setInicio(System.currentTimeMillis());
 		sortingMerge(0, n.length - 1);
+		Barras.finSort = true;
 	}
 
 	public void sortingMerge(int left, int right) {

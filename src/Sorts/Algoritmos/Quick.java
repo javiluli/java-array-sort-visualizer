@@ -1,6 +1,7 @@
 package Sorts.Algoritmos;
 
 import Interfaz.Sort;
+import Principal.Barras;
 import Principal.Main;
 import Sorts.Sorts;
 
@@ -15,6 +16,7 @@ public class Quick extends Sorts implements Sort {
 	@Override
 	public void sort() {
 		quickSort(n, 0, n.length - 1);
+		Barras.finSort = true;
 	}
 
 	public void quickSort(int array[], int izq, int der) {
@@ -43,8 +45,7 @@ public class Quick extends Sorts implements Sort {
 			quickSort(array, izq, j - 1);
 		if (j + 1 < der)
 			quickSort(array, j + 1, der);
-		m.textos();
-		Main.getPanelBarras().repaint();
+		m.updateAnimaciones();
 	}
 
 	// @Override

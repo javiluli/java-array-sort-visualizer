@@ -1,6 +1,7 @@
 package Sorts.Algoritmos;
 
 import Interfaz.Sort;
+import Principal.Barras;
 import Principal.Main;
 import Sorts.Sorts;
 
@@ -29,6 +30,7 @@ public class Heap extends Sorts implements Sort {
 			m.updateAnimaciones();
 			heapify(n, i, 0);
 		}
+		Barras.finSort = true;
 	}
 
 	void heapify(int arr[], int n, int i) {

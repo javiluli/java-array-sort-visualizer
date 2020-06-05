@@ -1,7 +1,7 @@
 package Sorts.Algoritmos;
 
-import Adicionales.Delay;
 import Interfaz.Sort;
+import Principal.Barras;
 import Principal.Main;
 import Sorts.Sorts;
 
@@ -58,6 +58,7 @@ public class Cycle extends Sorts implements Sort {
 				m.updateAnimaciones();
 			}
 		}
+		Barras.finSort = true;
 	}
 
 	// @Override

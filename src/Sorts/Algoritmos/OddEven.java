@@ -1,6 +1,7 @@
 package Sorts.Algoritmos;
 
 import Interfaz.Sort;
+import Principal.Barras;
 import Principal.Main;
 import Sorts.Sorts;
 
@@ -41,7 +42,7 @@ public class OddEven extends Sorts implements Sort {
 			}
 			m.textos();
 		}
-
+		Barras.finSort = true;
 	}
 
 	@Override

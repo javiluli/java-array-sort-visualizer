@@ -2,6 +2,7 @@ package Principal;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Random;
@@ -19,6 +20,7 @@ public class Barras extends JPanel {
 	static int BAR_WIDTH = WIN_WIDTH / NUM_BARS;
 	static int BAR_HEIGHT = WIN_HEIGHT / NUM_BARS;
 	private boolean marcarSepacaion = false;
+	boolean activarMulticolor = false;
 
 	/**
 	 * Constructor de iniciar el array con numeros ordenados.
@@ -43,7 +45,7 @@ public class Barras extends JPanel {
 	 *
 	 * @param p el JFrame principal
 	 */
-	public void shuffleArray() {
+	public void desordenarArray() {
 		Random rng = new Random();
 		for (int i = 0; i < NUM_BARS; i++) {
 			int swapWidthIndex = rng.nextInt(NUM_BARS - 1);
@@ -56,6 +58,8 @@ public class Barras extends JPanel {
 	}
 
 	public static int mismo;
+	public static int anterioresMismo;
+	public static boolean finSort = false;
 
 	/**
 	 * Pinta los componentes.
@@ -71,9 +75,16 @@ public class Barras extends JPanel {
 
 		for (int i = 0; i < NUM_BARS; i++) {
 			graphics.setColor(Color.WHITE);
-//			if (i == mismo) {
-//				graphics.setColor(Color.RED);
-//			}
+
+			if (activarMulticolor)
+				graphics.setPaint(getGradientPaint(i, Sorts.n[i], BAR_WIDTH));
+
+			if (finSort) { // Animacion de final del Sort.
+				if (mismo == i)
+					graphics.setColor(Color.red);
+				else if (anterioresMismo >= i)
+					graphics.setColor(Color.green);
+			}
 			comunes(i, graphics, opcionGrafico);
 		}
 	}
@@ -106,6 +117,17 @@ public class Barras extends JPanel {
 		} else if (opcionGrafico == 3) { // GRAFICOS "Punto"
 			graphics.fillOval(xBegin, yBegin, BAR_HEIGHT, BAR_HEIGHT);
 		}
+	}
+
+	protected GradientPaint getGradientPaint(int position, int value, int columnWidth) {
+		float startH = value / (NUM_BARS * 1f);
+		float finishH = (value + 1) / (NUM_BARS * 1f);
+		float S = 1; // Saturacion
+		float B = 1; // Brillo
+		Color startColor = Color.getHSBColor(startH, S, B);
+		Color finishColor = Color.getHSBColor(finishH, S, B);
+		int x = 2 * BAR_WIDTH + columnWidth * position;
+		return new GradientPaint(x, 0, startColor, x + columnWidth, 0, finishColor);
 	}
 
 	/**

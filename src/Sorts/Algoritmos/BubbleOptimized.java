@@ -5,9 +5,9 @@ import Principal.Barras;
 import Principal.Main;
 import Sorts.Sorts;
 
-public class Bubble extends Sorts implements Sort {
+public class BubbleOptimized extends Sorts implements Sort {
 
-	public Bubble(Main m) {
+	public BubbleOptimized(Main m) {
 		this.m = m;
 		sort();
 	}
@@ -15,15 +15,17 @@ public class Bubble extends Sorts implements Sort {
 	// @Override
 	public void sort() {
 		setInicio(System.currentTimeMillis());
-		for (int i = 0; i < n.length; i++) {
-			for (int j = 0; j < n.length - 1; j++) {
+		boolean needNextPass = true;
+		for (int i = 1; i < n.length && needNextPass; i++) {
+			needNextPass = false;
+			for (int j = 0; j < n.length - i; j++) {
 				if (n[j] > n[j + 1]) {
 					int temp = n[j];
 					n[j] = n[j + 1];
 					n[j + 1] = temp;
 					cambiosArray++;
+					needNextPass = true;
 				}
-//				Barras.mismo = j + 1;
 				accesoArray += 2;
 				m.updateAnimaciones();
 			}
