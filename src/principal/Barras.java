@@ -16,8 +16,8 @@ public class Barras extends JPanel {
 	private final static int WIN_WIDTH = 1024;
 	private final static int WIN_HEIGHT = 1024;
 	private static int NUM_BARS = 32;
-	private static int BAR_WIDTH = getWinWidth() / getNUM_BARS();
-	private static int BAR_HEIGHT = getWinHeight() / getNUM_BARS();
+	static int BAR_WIDTH = WIN_WIDTH / NUM_BARS;
+	static int BAR_HEIGHT = WIN_HEIGHT / NUM_BARS;
 	private boolean marcarSepacaion = false;
 
 	/**
@@ -32,8 +32,8 @@ public class Barras extends JPanel {
 	 * Constructor de iniciar el array con numeros ordenados.
 	 */
 	public void barras() {
-		Sorts.n = new int[getNUM_BARS()];
-		for (int i = 0; i < getNUM_BARS(); i++) {
+		Sorts.n = new int[NUM_BARS];
+		for (int i = 0; i < NUM_BARS; i++) {
 			Sorts.n[i] = i;
 		}
 	}
@@ -45,8 +45,8 @@ public class Barras extends JPanel {
 	 */
 	public void shuffleArray() {
 		Random rng = new Random();
-		for (int i = 0; i < getNUM_BARS(); i++) {
-			int swapWidthIndex = rng.nextInt(getNUM_BARS() - 1);
+		for (int i = 0; i < NUM_BARS; i++) {
+			int swapWidthIndex = rng.nextInt(NUM_BARS - 1);
 			int temp = Sorts.n[i];
 			Sorts.n[i] = Sorts.n[swapWidthIndex];
 			Sorts.n[swapWidthIndex] = temp;
@@ -54,6 +54,8 @@ public class Barras extends JPanel {
 			Main.getPanelBarras().repaint();
 		}
 	}
+
+	public static int mismo;
 
 	/**
 	 * Pinta los componentes.
@@ -64,41 +66,45 @@ public class Barras extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D graphics = (Graphics2D) g;
 		super.paintComponent(graphics);
-		graphics.setColor(Color.WHITE);
+
 		int opcionGrafico = Main.getComboboxtiposgraficos().getSelectedIndex();
 
-		for (int i = 0; i < getNUM_BARS(); i++) {
+		for (int i = 0; i < NUM_BARS; i++) {
+			graphics.setColor(Color.WHITE);
+//			if (i == mismo) {
+//				graphics.setColor(Color.RED);
+//			}
 			comunes(i, graphics, opcionGrafico);
 		}
 	}
 
 	private void comunes(int i, Graphics2D graphics, int opcionGrafico) {
 		int height = 0, xBegin = 0, yBegin = 0;
-		height = (Sorts.n[i] * getBAR_HEIGHT()) + getBAR_HEIGHT();
-		xBegin = i + (getBAR_WIDTH() - 1) * i;
+		height = (Sorts.n[i] * BAR_HEIGHT) + BAR_HEIGHT;
+		xBegin = i + (BAR_WIDTH - 1) * i;
 		// --------------------------------------------------------------------------------------------
 
 		// SELECCION ENTRE EL ESTILO GRAFICO DE "ESCALERAS" Y "PIRAMIDE HORIZONTAL"
 		if (opcionGrafico == 1) { // GRAFICOS "Piramide horizontal"
 			// Al dividir entre 2 de divide el espacio entre las barras y los lados de la
 			// ventana.
-			yBegin = ((getWinHeight() - height) / 2);
+			yBegin = (WIN_HEIGHT - height) / 2;
 		} else if (opcionGrafico != 1) { // GRAFICOS "Escalera"
-			yBegin = ((getWinHeight() - height));
+			yBegin = WIN_HEIGHT - height;
 		}
 		// --------------------------------------------------------------------------------------------
 
 		// SELECCION ENTRE LOS DISTINTOS TIPOS DE ESTILOS GRAFICOS
 		if (opcionGrafico == 0 || opcionGrafico == 1) { // GRAFICOS "Escalera" Y "Piramide horizontal"
 			if (marcarSepacaion) { // EFECTO GRAFICO CON EL CONTORNO BARRAS
-				graphics.fill3DRect(xBegin, yBegin, getBAR_WIDTH(), height, true);
+				graphics.fill3DRect(xBegin, yBegin, BAR_WIDTH, height, true);
 			} else if (!marcarSepacaion) { // EFECTO GRAFICO SIN EL CONTORNO BARRAS
-				graphics.fillRect(xBegin, yBegin, getBAR_HEIGHT(), height);
+				graphics.fillRect(xBegin, yBegin, BAR_HEIGHT, height);
 			}
 		} else if (opcionGrafico == 2) { // GRAFICOS "Cuadrado"
-			graphics.fillRect(xBegin, yBegin, getBAR_HEIGHT(), getBAR_HEIGHT());
+			graphics.fillRect(xBegin, yBegin, BAR_HEIGHT, BAR_HEIGHT);
 		} else if (opcionGrafico == 3) { // GRAFICOS "Punto"
-			graphics.fillOval(xBegin, yBegin, getBAR_HEIGHT(), getBAR_HEIGHT());
+			graphics.fillOval(xBegin, yBegin, BAR_HEIGHT, BAR_HEIGHT);
 		}
 	}
 
@@ -109,7 +115,7 @@ public class Barras extends JPanel {
 	 */
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(getWinWidth(), getWinHeight());
+		return new Dimension(WIN_WIDTH, WIN_HEIGHT);
 	}
 
 	public static int getWinWidth() {
@@ -128,25 +134,25 @@ public class Barras extends JPanel {
 		NUM_BARS = nUM_BARS;
 	}
 
-	public static int getBAR_WIDTH() {
-		return BAR_WIDTH;
-	}
+//	public static int getBAR_WIDTH() {
+//		return BAR_WIDTH;
+//	}
 
 	public static void setBAR_WIDTH(int bAR_WIDTH) {
 		BAR_WIDTH = bAR_WIDTH;
 	}
 
-	public static int getBAR_HEIGHT() {
-		return BAR_HEIGHT;
-	}
+//	public static int getBAR_HEIGHT() {
+//		return BAR_HEIGHT;
+//	}
 
 	public static void setBAR_HEIGHT(int bAR_HEIGHT) {
 		BAR_HEIGHT = bAR_HEIGHT;
 	}
 
-	public boolean isMarcarSepacaion() {
-		return marcarSepacaion;
-	}
+//	public boolean isMarcarSepacaion() {
+//		return marcarSepacaion;
+//	}
 
 	public void setMarcarSepacaion(boolean marcarSepacaion) {
 		this.marcarSepacaion = marcarSepacaion;

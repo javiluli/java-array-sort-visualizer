@@ -221,7 +221,7 @@ public class Main extends Sorts {
 		panelOpcionesMenu.add(lblNumeroBarras);
 
 		// Slider para seleccionar el tamaño de las barras pintadas en pantalla.
-		final int maxNumBars = 9;
+		final int maxNumBars = 10;
 		sliderTamBarras.setOrientation(SwingConstants.VERTICAL);
 		sliderTamBarras.setMajorTickSpacing(1);
 		sliderTamBarras.setForeground(Color.WHITE);
