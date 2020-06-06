@@ -23,7 +23,6 @@ public class Bubble extends Sorts implements Sort {
 					n[j + 1] = temp;
 					cambiosArray++;
 				}
-//				Barras.mismo = j + 1;
 				accesoArray += 2;
 				m.updateAnimaciones();
 			}

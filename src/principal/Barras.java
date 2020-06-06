@@ -6,21 +6,15 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Random;
-
-import javax.swing.JPanel;
+import java.util.Vector;
 
 import Adicionales.Delay;
+import EstilosGraficos.*;
 import Sorts.Sorts;
 
-public class Barras extends JPanel {
+public class Barras extends Transfomaciones {
 	private static final long serialVersionUID = 1L;
-	private final static int WIN_WIDTH = 1024;
-	private final static int WIN_HEIGHT = 1024;
-	private static int NUM_BARS = 32;
-	static int BAR_WIDTH = WIN_WIDTH / NUM_BARS;
-	static int BAR_HEIGHT = WIN_HEIGHT / NUM_BARS;
-	private boolean marcarSepacaion = false;
-	boolean activarMulticolor = false;
+	EstiloGrafico estiloGrafico;
 
 	/**
 	 * Constructor de iniciar el array con numeros ordenados.
@@ -57,10 +51,6 @@ public class Barras extends JPanel {
 		}
 	}
 
-	public static int mismo;
-	public static int anterioresMismo;
-	public static boolean finSort = false;
-
 	/**
 	 * Pinta los componentes.
 	 *
@@ -70,52 +60,94 @@ public class Barras extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D graphics = (Graphics2D) g;
 		super.paintComponent(graphics);
-
 		int opcionGrafico = Main.getComboboxtiposgraficos().getSelectedIndex();
+		configEstilo(opcionGrafico, graphics);
 
 		for (int i = 0; i < NUM_BARS; i++) {
-			graphics.setColor(Color.WHITE);
-
+			// Activar el modo multiculor.
 			if (activarMulticolor)
 				graphics.setPaint(getGradientPaint(i, Sorts.n[i], BAR_WIDTH));
+			// Color por defecto de todos los graficos.
+			else
+				graphics.setColor(Color.WHITE);
 
-			if (finSort) { // Animacion de final del Sort.
+			// Animacion de final del Sort.
+			if (finSort) {
 				if (mismo == i)
 					graphics.setColor(Color.red);
 				else if (anterioresMismo >= i)
 					graphics.setColor(Color.green);
 			}
-			comunes(i, graphics, opcionGrafico);
+
+			// Selecciona el tipo de grafico.
+			menuSeleccionGraficos(opcionGrafico, i, graphics);
 		}
 	}
 
-	private void comunes(int i, Graphics2D graphics, int opcionGrafico) {
-		int height = 0, xBegin = 0, yBegin = 0;
-		height = (Sorts.n[i] * BAR_HEIGHT) + BAR_HEIGHT;
-		xBegin = i + (BAR_WIDTH - 1) * i;
-		// --------------------------------------------------------------------------------------------
+	/**
+	 * Almacenar estilos.
+	 *
+	 * @return the vector
+	 */
+	public Vector<EstiloGrafico> almacenarEstilos() {
+		Vector<EstiloGrafico> estilos = new Vector<EstiloGrafico>();
+		estilos.add(estiloGrafico = new Columnas());
+		estilos.add(estiloGrafico = new Piramide());
+		estilos.add(estiloGrafico = new Pixel());
+		estilos.add(estiloGrafico = new Circulo());
+		estilos.add(estiloGrafico = new Circunferencia());
+		estilos.add(estiloGrafico = new Espital());
+		return estilos;
+	}
 
-		// SELECCION ENTRE EL ESTILO GRAFICO DE "ESCALERAS" Y "PIRAMIDE HORIZONTAL"
-		if (opcionGrafico == 1) { // GRAFICOS "Piramide horizontal"
-			// Al dividir entre 2 de divide el espacio entre las barras y los lados de la
-			// ventana.
-			yBegin = (WIN_HEIGHT - height) / 2;
-		} else if (opcionGrafico != 1) { // GRAFICOS "Escalera"
-			yBegin = WIN_HEIGHT - height;
+	/**
+	 * Configuraciones.
+	 *
+	 * @param opcionGrafico the opcion grafico
+	 * @param graphics      the graphics
+	 */
+	private void configEstilo(int opcionGrafico, Graphics2D graphics) {
+		Vector<EstiloGrafico> estilos = almacenarEstilos();
+		// Cambio la cantidad de elementos que se pintan en pantalla.
+		// Simepre que sean Objetos Transfomaciones tendran multicolor.
+		if (estilos.get(opcionGrafico) instanceof Transfomaciones) {
+			graphics.translate(translateX, translateY);
+			Main.getSliderTamBarras().setMinimum(6);
+			activarMulticolor = true;
+			Main.tglbtnMulticolor.setSelected(activarMulticolor);
+		} else {
+			Main.getSliderTamBarras().setMinimum(1);
+
 		}
-		// --------------------------------------------------------------------------------------------
+	}
 
-		// SELECCION ENTRE LOS DISTINTOS TIPOS DE ESTILOS GRAFICOS
-		if (opcionGrafico == 0 || opcionGrafico == 1) { // GRAFICOS "Escalera" Y "Piramide horizontal"
-			if (marcarSepacaion) { // EFECTO GRAFICO CON EL CONTORNO BARRAS
-				graphics.fill3DRect(xBegin, yBegin, BAR_WIDTH, height, true);
-			} else if (!marcarSepacaion) { // EFECTO GRAFICO SIN EL CONTORNO BARRAS
-				graphics.fillRect(xBegin, yBegin, BAR_HEIGHT, height);
-			}
-		} else if (opcionGrafico == 2) { // GRAFICOS "Cuadrado"
-			graphics.fillRect(xBegin, yBegin, BAR_HEIGHT, BAR_HEIGHT);
-		} else if (opcionGrafico == 3) { // GRAFICOS "Punto"
-			graphics.fillOval(xBegin, yBegin, BAR_HEIGHT, BAR_HEIGHT);
+	/**
+	 * Selecciona y crea un Objeto del estilo seleccionado.
+	 *
+	 * @param opcionGrafico the opcion grafico
+	 * @param i             the i
+	 * @param graphics      the graphics
+	 */
+	private void menuSeleccionGraficos(int opcionGrafico, int i, Graphics2D graphics) {
+		switch (opcionGrafico) {
+		case 0:
+			estiloGrafico = new Columnas(i, graphics);
+			break;
+		case 1:
+			estiloGrafico = new Piramide(i, graphics);
+			break;
+		case 2:
+			estiloGrafico = new Pixel(i, graphics);
+			break;
+		case 3:
+			estiloGrafico = new Circulo(graphics);
+			break;
+		case 4:
+			estiloGrafico = new Circunferencia(i, graphics);
+			break;
+		case 5:
+			estiloGrafico = new Espital(i, graphics);
+			break;
 		}
 	}
 
@@ -156,27 +188,11 @@ public class Barras extends JPanel {
 		NUM_BARS = nUM_BARS;
 	}
 
-//	public static int getBAR_WIDTH() {
-//		return BAR_WIDTH;
-//	}
-
 	public static void setBAR_WIDTH(int bAR_WIDTH) {
 		BAR_WIDTH = bAR_WIDTH;
 	}
 
-//	public static int getBAR_HEIGHT() {
-//		return BAR_HEIGHT;
-//	}
-
 	public static void setBAR_HEIGHT(int bAR_HEIGHT) {
 		BAR_HEIGHT = bAR_HEIGHT;
-	}
-
-//	public boolean isMarcarSepacaion() {
-//		return marcarSepacaion;
-//	}
-
-	public void setMarcarSepacaion(boolean marcarSepacaion) {
-		this.marcarSepacaion = marcarSepacaion;
 	}
 }

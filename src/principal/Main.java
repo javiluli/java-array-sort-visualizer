@@ -10,7 +10,6 @@ import java.util.Hashtable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,16 +22,33 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import Adicionales.*;
-import Sorts.*;
-import Sorts.Algoritmos.*;
+import Adicionales.Delay;
+import Adicionales.Memoria;
+import Adicionales.Social;
+import Sorts.FinSort;
+import Sorts.Sorts;
+import Sorts.Algoritmos.Bubble;
+import Sorts.Algoritmos.BubbleOptimized;
+import Sorts.Algoritmos.Cocktail;
+import Sorts.Algoritmos.Cycle;
+import Sorts.Algoritmos.Gnome;
+import Sorts.Algoritmos.Heap;
+import Sorts.Algoritmos.Inserccion;
+import Sorts.Algoritmos.Merge;
+import Sorts.Algoritmos.OddEven;
+import Sorts.Algoritmos.Pancake;
+import Sorts.Algoritmos.Pigeonhole;
+import Sorts.Algoritmos.Quick;
+import Sorts.Algoritmos.Radix;
+import Sorts.Algoritmos.Selection;
 
 public class Main extends Sorts {
-	// Nombre de cada algoritmo Sort
+	// NOMBRES DE LOS ALGORITMOS
 	private final String[] nombreAlgoritmos = { "Bubble", "Bubble Optimized", "Cocktail", "Cycle", "Gnome", "Heap",
 			"Insertion", "Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix", "Selection" };
-	// DISEÑO GRAFICO DE LA ANIMACION
-	private final static String[] nombreGrafico = { "Escalera", "Piramide horizontal", "Cuadrado", "Punto" };
+	// DISEÑO GRAFICO DE LAS ANIMACIONES
+	private final static String[] nombreGrafico = { "Escalera", "Piramide horizontal", "Pixel", "Circulo",
+			"Circunferencia", "Espiral" };
 	// JFRAME PRINCIPAL
 	private final JFrame frame = new JFrame();
 	// JPANEL
@@ -48,7 +64,7 @@ public class Main extends Sorts {
 	// JLABEL
 	private final JLabel lblTitleAlgoritmo = new JLabel("Seleccionar algoritmo de ordenacion");
 	private final JLabel lblTitle = new JLabel("Panel de control");
-	private JLabel lblNumeroBarras = new JLabel("Numero de barras");
+	private JLabel lblNumeroBarras = new JLabel("Numero de elementos");
 	private JLabel lblRetardo = new JLabel("Retardo: 1 ms");
 	private static JLabel lblTiempo = new JLabel("Tiempo: 0 m 0 s 0 ms");
 	private static JLabel lblMemoriaUsada = new JLabel("Memoria usada: 0 MB");
@@ -65,12 +81,10 @@ public class Main extends Sorts {
 	private final JButton btnInformacion = new JButton("Informacion");
 	private final JButton btnGithub = new JButton();
 	private final JButton btnCodepen = new JButton();
-	// JCHECKBOX
-	private final JCheckBox chckbxContornoBarras = new JCheckBox("Marcar el contorno de las barras");
-	// TOGGLE BUTON
-	private final JToggleButton tglbtnActivarMulticolor = new JToggleButton("Modo Multicolor");
+	// JTOGGLE BUTTON
+	static JToggleButton tglbtnMulticolor = new JToggleButton("Ver multicolor");
 	// JSLIDER
-	private final JSlider sliderTamBarras = new JSlider();
+	private final static JSlider sliderTamBarras = new JSlider();
 	private final JSlider sliderRetardo = new JSlider();
 	// Tamaño de la ventana.
 	public final static int WIN_WIDTH = 1330;
@@ -209,38 +223,38 @@ public class Main extends Sorts {
 		// Label para el recuento de cambios realizados en el array.
 		lblCambios.setForeground(Color.WHITE);
 		lblCambios.setFont(new Font("Arial", Font.BOLD, 13));
-		lblCambios.setBounds(10, 260, 250, 30);
+		lblCambios.setBounds(10, 211, 250, 30);
 		panelOpcionesMenu.add(lblCambios);
 
 		// Label para el recuento de accesos realizados en el array.
 		lblAccesos.setFont(new Font("Arial", Font.BOLD, 13));
 		lblAccesos.setForeground(Color.WHITE);
-		lblAccesos.setBounds(10, 301, 237, 30);
+		lblAccesos.setBounds(10, 252, 237, 30);
 		panelOpcionesMenu.add(lblAccesos);
 		lblNumeroBarras.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNumeroBarras.setForeground(Color.WHITE);
 
 		// Label para el tamaño de las barras pintadas en pantalla.
 		lblNumeroBarras.setFont(new Font("Arial", Font.BOLD, 13));
-		lblNumeroBarras.setBounds(139, 383, 131, 30);
+		lblNumeroBarras.setBounds(123, 334, 147, 30);
 		panelOpcionesMenu.add(lblNumeroBarras);
 
 		// Slider para seleccionar el tamaño de las barras pintadas en pantalla.
-		final int maxNumBars = 10;
+		int NUM_MAX_ELEMENTOS = 10, NUM_MIN_ELEMENTOS = 1;
 		sliderTamBarras.setOrientation(SwingConstants.VERTICAL);
 		sliderTamBarras.setMajorTickSpacing(1);
 		sliderTamBarras.setForeground(Color.WHITE);
 		sliderTamBarras.setBackground(BLACK_SECUNDARIO);
-		sliderTamBarras.setLabelTable(snbp.establecerValoresSlider(maxNumBars));
-		sliderTamBarras.setMinimum(1);
-		sliderTamBarras.setMaximum(maxNumBars);
+		sliderTamBarras.setMinimum(NUM_MIN_ELEMENTOS);
+		sliderTamBarras.setMaximum(NUM_MAX_ELEMENTOS);
+		sliderTamBarras.setLabelTable(snbp.establecerValoresSlider(NUM_MAX_ELEMENTOS));
 		sliderTamBarras.setFont(new Font("Arial", Font.BOLD, 13));
 		sliderTamBarras.setMinorTickSpacing(1);
 		sliderTamBarras.setSnapToTicks(true);
 		sliderTamBarras.setPaintLabels(true);
 		sliderTamBarras.setValue(5);
 		sliderTamBarras.setPaintTicks(true);
-		sliderTamBarras.setBounds(173, 424, 90, 360);
+		sliderTamBarras.setBounds(173, 375, 90, 360);
 		sliderTamBarras.addChangeListener(new ChangeListener() {
 			/*
 			 * Este realizara el cambio de tamaño siempre que no se este ejecutando la
@@ -251,12 +265,12 @@ public class Main extends Sorts {
 					cambioNumBarras();
 			}
 		});
-		panelOpcionesMenu.add(sliderTamBarras);
+		panelOpcionesMenu.add(getSliderTamBarras());
 
 		// Label para el retardo en la que se ordena.
 		lblRetardo.setForeground(Color.WHITE);
 		lblRetardo.setFont(new Font("Arial", Font.BOLD, 13));
-		lblRetardo.setBounds(10, 383, 120, 30);
+		lblRetardo.setBounds(10, 334, 120, 30);
 		panelOpcionesMenu.add(lblRetardo);
 
 		// Slider para la seleccion del retardo.
@@ -269,7 +283,7 @@ public class Main extends Sorts {
 		sliderRetardo.setFont(new Font("Arial", Font.BOLD, 13));
 		sliderRetardo.setValue(1);
 		sliderRetardo.setPaintTicks(true);
-		sliderRetardo.setBounds(10, 424, 90, 360);
+		sliderRetardo.setBounds(10, 375, 90, 360);
 		sliderRetardo.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				if (sliderRetardo.getValue() == 0)
@@ -282,7 +296,7 @@ public class Main extends Sorts {
 		// Tiempo de ejecucion de un Sort/
 		lblTiempo.setForeground(Color.WHITE);
 		lblTiempo.setFont(new Font("Arial", Font.BOLD, 13));
-		lblTiempo.setBounds(10, 342, 253, 30);
+		lblTiempo.setBounds(10, 293, 253, 30);
 		panelOpcionesMenu.add(lblTiempo);
 
 		// Panel para visualizar la memoria.
@@ -376,42 +390,22 @@ public class Main extends Sorts {
 		lblTituloGraficos.setForeground(Color.WHITE);
 		lblTituloGraficos.setBounds(10, 88, 120, 30);
 		panelOpcionesMenu.add(lblTituloGraficos);
+		tglbtnMulticolor.setBackground(Color.BLACK);
+		tglbtnMulticolor.setForeground(Color.WHITE);
 
-		// Radio button para poner o quitar separacion entre barras.
-		chckbxContornoBarras.setForeground(Color.WHITE);
-		chckbxContornoBarras.setBackground(Color.BLACK);
-		chckbxContornoBarras.setFont(new Font("Arial", Font.BOLD, 13));
-		chckbxContornoBarras.setBounds(10, 181, 260, 23);
-		chckbxContornoBarras.addActionListener(new ActionListener() {
+		tglbtnMulticolor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (chckbxContornoBarras.isSelected()) {
-					barras.setMarcarSepacaion(true);
-					tglbtnActivarMulticolor.setEnabled(false);
-				} else if (!chckbxContornoBarras.isSelected()) {
-					barras.setMarcarSepacaion(false);
-					tglbtnActivarMulticolor.setEnabled(true);
-				}
-				panelBarras.repaint();
-			}
-		});
-		panelOpcionesMenu.add(chckbxContornoBarras);
-		tglbtnActivarMulticolor.setForeground(Color.WHITE);
-		tglbtnActivarMulticolor.setBackground(Color.BLACK);
-
-		// Toggle button para activar el efecto Multicolor
-		tglbtnActivarMulticolor.setBounds(9, 219, 140, 30);
-		tglbtnActivarMulticolor.setFont(new Font("Arial", Font.BOLD, 13));
-		tglbtnActivarMulticolor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (tglbtnActivarMulticolor.isSelected()) {
+				if (tglbtnMulticolor.isSelected()) {
 					barras.activarMulticolor = true;
-				} else if (!tglbtnActivarMulticolor.isSelected()) {
+				} else if (!tglbtnMulticolor.isSelected()) {
 					barras.activarMulticolor = false;
 				}
 				panelBarras.repaint();
 			}
 		});
-		panelOpcionesMenu.add(tglbtnActivarMulticolor);
+		tglbtnMulticolor.setFont(new Font("Arial", Font.BOLD, 13));
+		tglbtnMulticolor.setBounds(10, 170, 140, 30);
+		panelOpcionesMenu.add(tglbtnMulticolor);
 
 		// Label para el titulo de los controles.
 		lblTitle.setBounds(10, 11, 280, 24);
@@ -589,7 +583,7 @@ public class Main extends Sorts {
 	 * pintandolas en patanlla.
 	 */
 	public void cambioNumBarras() {
-		Barras.setNUM_BARS((int) Math.pow(2, sliderTamBarras.getValue()));
+		Barras.setNUM_BARS((int) Math.pow(2, getSliderTamBarras().getValue()));
 		Barras.setBAR_WIDTH(Barras.getWinWidth() / Barras.getNUM_BARS());
 		Barras.setBAR_HEIGHT(Barras.getWinHeight() / Barras.getNUM_BARS());
 		barras.barras();
@@ -703,5 +697,13 @@ public class Main extends Sorts {
 
 	public static JComboBox<Object> getComboboxtiposgraficos() {
 		return comboBoxTiposGraficos;
+	}
+
+	public static JSlider getSliderTamBarras() {
+		return getSlidertambarras();
+	}
+
+	public static JSlider getSlidertambarras() {
+		return sliderTamBarras;
 	}
 }
