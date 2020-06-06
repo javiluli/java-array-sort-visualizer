@@ -14,7 +14,7 @@ public class Cycle extends Sorts implements Sort {
 	// @Override
 	public void sort() {
 		setInicio(System.currentTimeMillis());
-		int writes = 0;
+
 		for (int cycle_start = 0; cycle_start <= n.length - 2; cycle_start++) {
 			accesoArray++;
 			int item = n[cycle_start];
@@ -34,7 +34,7 @@ public class Cycle extends Sorts implements Sort {
 				int temp = item;
 				item = n[pos];
 				n[pos] = temp;
-				writes++;
+				cambiosArray++;
 			}
 
 			while (pos != cycle_start) {
@@ -52,7 +52,6 @@ public class Cycle extends Sorts implements Sort {
 					int temp = item;
 					item = n[pos];
 					n[pos] = temp;
-					writes++;
 					cambiosArray++;
 				}
 				m.updateAnimaciones();

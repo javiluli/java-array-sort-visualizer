@@ -27,25 +27,12 @@ import Adicionales.Memoria;
 import Adicionales.Social;
 import Sorts.FinSort;
 import Sorts.Sorts;
-import Sorts.Algoritmos.Bubble;
-import Sorts.Algoritmos.BubbleOptimized;
-import Sorts.Algoritmos.Cocktail;
-import Sorts.Algoritmos.Cycle;
-import Sorts.Algoritmos.Gnome;
-import Sorts.Algoritmos.Heap;
-import Sorts.Algoritmos.Inserccion;
-import Sorts.Algoritmos.Merge;
-import Sorts.Algoritmos.OddEven;
-import Sorts.Algoritmos.Pancake;
-import Sorts.Algoritmos.Pigeonhole;
-import Sorts.Algoritmos.Quick;
-import Sorts.Algoritmos.Radix;
-import Sorts.Algoritmos.Selection;
+import Sorts.Algoritmos.*;
 
 public class Main extends Sorts {
 	// NOMBRES DE LOS ALGORITMOS
 	private final String[] nombreAlgoritmos = { "Bubble", "Bubble Optimized", "Cocktail", "Cycle", "Gnome", "Heap",
-			"Insertion", "Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix", "Selection" };
+			"Insertion", "Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix LSD", "Selection" };
 	// DISEÑO GRAFICO DE LAS ANIMACIONES
 	private final static String[] nombreGrafico = { "Escalera", "Piramide horizontal", "Pixel", "Circulo",
 			"Circunferencia", "Espiral" };
@@ -460,7 +447,7 @@ public class Main extends Sorts {
 				sorts = new Quick(main);
 				break;
 			case 12:
-				sorts = new Radix(main);
+				sorts = new RadixLSD(main);
 				break;
 			case 13:
 				sorts = new Selection(main);

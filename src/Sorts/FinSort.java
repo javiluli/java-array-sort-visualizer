@@ -16,10 +16,10 @@ public class FinSort extends Sorts implements Sort {
 		for (int i = 0; i < n.length; i++) {
 			Barras.mismo = i + 1;
 			Barras.anterioresMismo = i;
-			m.updateAnimaciones();
+			m.updateAnimacionesSinTiempo();
 		}
 		Barras.finSort = false;
-		m.updateAnimaciones();
+		m.updateAnimacionesSinTiempo();
 	}
 
 	@Override
