@@ -22,11 +22,27 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import Adicionales.*;
-import Sorts.*;
-import Sorts.Algoritmos.*;
+import Adicionales.Delay;
+import Adicionales.Memoria;
+import Adicionales.Social;
+import Sorts.AdicionalesSorts;
+import Sorts.FinSort;
+import Sorts.Algoritmos.Bubble;
+import Sorts.Algoritmos.BubbleOptimized;
+import Sorts.Algoritmos.Cocktail;
+import Sorts.Algoritmos.Cycle;
+import Sorts.Algoritmos.Gnome;
+import Sorts.Algoritmos.Heap;
+import Sorts.Algoritmos.Inserccion;
+import Sorts.Algoritmos.Merge;
+import Sorts.Algoritmos.OddEven;
+import Sorts.Algoritmos.Pancake;
+import Sorts.Algoritmos.Pigeonhole;
+import Sorts.Algoritmos.Quick;
+import Sorts.Algoritmos.RadixLSD;
+import Sorts.Algoritmos.Selection;
 
-public class Main extends Sorts {
+public class Main extends AdicionalesSorts {
 	// NOMBRES DE LOS ALGORITMOS
 	final String[] nombreAlgoritmos = { "Bubble", "Bubble Optimized", "Cocktail", "Cycle", "Gnome", "Heap", "Insertion",
 			"Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix LSD", "Selection" };
@@ -99,9 +115,9 @@ public class Main extends Sorts {
 		this.memoria = memoria;
 	}
 
-	Sorts sorts = new Sorts();
+	AdicionalesSorts sorts = new AdicionalesSorts();
 
-	Main(Sorts sorts) {
+	Main(AdicionalesSorts sorts) {
 		this.sorts = sorts;
 	}
 	// ---------------------------------------------------------------------------------------------
@@ -407,46 +423,46 @@ public class Main extends Sorts {
 			textos();
 			switch (seleccionAlgoritmo) {
 			case 0:
-				sorts = new Bubble(main);
+				sorts = new Bubble(main, barras.arrayPrincipal);
 				break;
 			case 1:
-				sorts = new BubbleOptimized(main);
+				sorts = new BubbleOptimized(main, barras.arrayPrincipal);
 				break;
 			case 2:
-				sorts = new Cocktail(main);
+				sorts = new Cocktail(main, barras.arrayPrincipal);
 				break;
 			case 3:
-				sorts = new Cycle(main);
+				sorts = new Cycle(main, barras.arrayPrincipal);
 				break;
 			case 4:
-				sorts = new Gnome(main);
+				sorts = new Gnome(main, barras.arrayPrincipal);
 				break;
 			case 5:
-				sorts = new Heap(main);
+				sorts = new Heap(main, barras.arrayPrincipal);
 				break;
 			case 6:
-				sorts = new Inserccion(main);
+				sorts = new Inserccion(main, barras.arrayPrincipal);
 				break;
 			case 7:
-				sorts = new Merge(main);
+				sorts = new Merge(main, barras.arrayPrincipal);
 				break;
 			case 8:
-				sorts = new OddEven(main);
+				sorts = new OddEven(main, barras.arrayPrincipal);
 				break;
 			case 9:
-				sorts = new Pancake(main);
+				sorts = new Pancake(main, barras.arrayPrincipal);
 				break;
 			case 10:
-				sorts = new Pigeonhole(main);
+				sorts = new Pigeonhole(main, barras.arrayPrincipal);
 				break;
 			case 11:
-				sorts = new Quick(main);
+				sorts = new Quick(main, barras.arrayPrincipal);
 				break;
 			case 12:
-				sorts = new RadixLSD(main);
+				sorts = new RadixLSD(main, barras.arrayPrincipal);
 				break;
 			case 13:
-				sorts = new Selection(main);
+				sorts = new Selection(main, barras.arrayPrincipal);
 				break;
 			default:
 				barras.desordenarArray();
@@ -454,7 +470,7 @@ public class Main extends Sorts {
 			}
 
 			if (seleccionAlgoritmo < comboBoxTipoSort.getWidth())
-				sorts = new FinSort(main);
+				sorts = new FinSort(main, barras.arrayPrincipal);
 		}
 		reinicio();
 		pausa();
@@ -539,7 +555,7 @@ public class Main extends Sorts {
 	 */
 	public void reinicio() {
 		accederOrdenacion = true;
-		sorts = new Sorts(0);
+		sorts = new AdicionalesSorts(0);
 		memoria = new Memoria(0);
 		Delay.n = sliderRetardo.getValue();
 	}

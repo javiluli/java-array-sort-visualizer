@@ -3,16 +3,16 @@ package Sorts.Algoritmos;
 import Interfaz.Sort;
 import Principal.Barras;
 import Principal.Main;
-import Sorts.Sorts;
+import Sorts.AdicionalesSorts;
 
-public class Gnome extends Sorts implements Sort {
-	public Gnome(Main m) {
+public class Gnome extends AdicionalesSorts implements Sort {
+	public Gnome(Main m, int[] n) {
 		this.m = m;
-		sort();
+		sort(n);
 	}
 
 	@Override
-	public void sort() {
+	public void sort(int[] n) {
 		setInicio(System.currentTimeMillis());
 		int index = 0;
 		while (index < n.length) {

@@ -9,12 +9,19 @@ import java.util.Random;
 import java.util.Vector;
 
 import Adicionales.Delay;
-import EstilosGraficos.*;
-import Sorts.Sorts;
+import EstilosGraficos.Circulo;
+import EstilosGraficos.Circunferencia;
+import EstilosGraficos.Columnas;
+import EstilosGraficos.Espital;
+import EstilosGraficos.EstiloGrafico;
+import EstilosGraficos.Piramide;
+import EstilosGraficos.Pixel;
+import EstilosGraficos.Transfomaciones;
 
 public class Barras extends Transfomaciones {
 	private static final long serialVersionUID = 1L;
 	EstiloGrafico estiloGrafico;
+	public int[] arrayPrincipal;
 
 	/**
 	 * Constructor de iniciar el array con numeros ordenados.
@@ -28,9 +35,9 @@ public class Barras extends Transfomaciones {
 	 * Constructor de iniciar el array con numeros ordenados.
 	 */
 	public void barras() {
-		Sorts.n = new int[NUM_BARS];
+		arrayPrincipal = new int[NUM_BARS];
 		for (int i = 0; i < NUM_BARS; i++) {
-			Sorts.n[i] = i;
+			arrayPrincipal[i] = i;
 		}
 	}
 
@@ -43,9 +50,9 @@ public class Barras extends Transfomaciones {
 		Random rng = new Random();
 		for (int i = 0; i < NUM_BARS; i++) {
 			int swapWidthIndex = rng.nextInt(NUM_BARS - 1);
-			int temp = Sorts.n[i];
-			Sorts.n[i] = Sorts.n[swapWidthIndex];
-			Sorts.n[swapWidthIndex] = temp;
+			int temp = arrayPrincipal[i];
+			arrayPrincipal[i] = arrayPrincipal[swapWidthIndex];
+			arrayPrincipal[swapWidthIndex] = temp;
 			Delay.delay(1);
 			Main.panelBarras.repaint();
 		}
@@ -66,7 +73,7 @@ public class Barras extends Transfomaciones {
 		for (int i = 0; i < NUM_BARS; i++) {
 			// Activar el modo multiculor.
 			if (activarMulticolor)
-				graphics.setPaint(getGradientPaint(i, Sorts.n[i], BAR_WIDTH));
+				graphics.setPaint(getGradientPaint(i, arrayPrincipal[i], BAR_WIDTH));
 			// Color por defecto de todos los graficos.
 			else
 				graphics.setColor(Color.WHITE);
@@ -129,13 +136,13 @@ public class Barras extends Transfomaciones {
 	private void menuSeleccionGraficos(int opcionGrafico, int i, Graphics2D graphics) {
 		switch (opcionGrafico) {
 		case 0:
-			estiloGrafico = new Columnas(i, graphics);
+			estiloGrafico = new Columnas(i, arrayPrincipal, graphics);
 			break;
 		case 1:
-			estiloGrafico = new Piramide(i, graphics);
+			estiloGrafico = new Piramide(i, arrayPrincipal, graphics);
 			break;
 		case 2:
-			estiloGrafico = new Pixel(i, graphics);
+			estiloGrafico = new Pixel(i, arrayPrincipal, graphics);
 			break;
 		case 3:
 			estiloGrafico = new Circulo(graphics);
@@ -144,7 +151,7 @@ public class Barras extends Transfomaciones {
 			estiloGrafico = new Circunferencia(i, graphics);
 			break;
 		case 5:
-			estiloGrafico = new Espital(i, graphics);
+			estiloGrafico = new Espital(i, arrayPrincipal, graphics);
 			break;
 		}
 	}

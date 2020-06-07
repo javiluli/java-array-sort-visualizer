@@ -3,17 +3,17 @@ package Sorts.Algoritmos;
 import Interfaz.Sort;
 import Principal.Barras;
 import Principal.Main;
-import Sorts.Sorts;
+import Sorts.AdicionalesSorts;
 
-public class Selection extends Sorts implements Sort {
+public class Selection extends AdicionalesSorts implements Sort {
 
-	public Selection(Main m) {
+	public Selection(Main m, int[] n) {
 		this.m = m;
-		sort();
+		sort(n);
 	}
 
 	@Override
-	public void sort() {
+	public void sort( int[] n) {
 		m = new Main();
 		setInicio(System.currentTimeMillis());
 		for (int i = 0; i < n.length; i++) {

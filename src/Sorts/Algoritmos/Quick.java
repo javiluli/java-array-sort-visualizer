@@ -3,18 +3,18 @@ package Sorts.Algoritmos;
 import Interfaz.Sort;
 import Principal.Barras;
 import Principal.Main;
-import Sorts.Sorts;
+import Sorts.AdicionalesSorts;
 
-public class Quick extends Sorts implements Sort {
+public class Quick extends AdicionalesSorts implements Sort {
 
-	public Quick(Main m) {
+	public Quick(Main m, int[] n) {
 		this.m = m;
 		setInicio(System.currentTimeMillis());
-		sort();
+		sort(n);
 	}
 
 	@Override
-	public void sort() {
+	public void sort(int[] n) {
 		quickSort(n, 0, n.length - 1);
 		Barras.finSort = true;
 	}

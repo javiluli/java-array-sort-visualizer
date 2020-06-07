@@ -3,16 +3,16 @@ package Sorts.Algoritmos;
 import Interfaz.Sort;
 import Principal.Barras;
 import Principal.Main;
-import Sorts.Sorts;
+import Sorts.AdicionalesSorts;
 
-public class Pigeonhole extends Sorts implements Sort {
-	public Pigeonhole(Main m) {
+public class Pigeonhole extends AdicionalesSorts implements Sort {
+	public Pigeonhole(Main m, int[] n) {
 		this.m = m;
-		sort();
+		sort(n);
 	}
 
 	@Override
-	public void sort() {
+	public void sort(int[] n) {
 		setInicio(System.currentTimeMillis());
 		int min = n[0], max = n[0];
 		for (int i : n) {

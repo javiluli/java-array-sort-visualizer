@@ -3,16 +3,16 @@ package Sorts.Algoritmos;
 import Interfaz.Sort;
 import Principal.Barras;
 import Principal.Main;
-import Sorts.Sorts;
+import Sorts.AdicionalesSorts;
 
-public class Pancake extends Sorts implements Sort {
-	public Pancake(Main m) {
+public class Pancake extends AdicionalesSorts implements Sort {
+	public Pancake(Main m, int[] n) {
 		this.m = m;
-		sort();
+		sort(n);
 	}
 
 	@Override
-	public void sort() {
+	public void sort(int[] n) {
 		setInicio(System.currentTimeMillis());
 
 		for (int curr_size = n.length; curr_size > 1; --curr_size) {

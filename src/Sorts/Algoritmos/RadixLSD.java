@@ -3,16 +3,16 @@ package Sorts.Algoritmos;
 import Interfaz.Sort;
 import Principal.Barras;
 import Principal.Main;
-import Sorts.Sorts;
+import Sorts.AdicionalesSorts;
 
-public class RadixLSD extends Sorts implements Sort {
-	public RadixLSD(Main m) {
+public class RadixLSD extends AdicionalesSorts implements Sort {
+	public RadixLSD(Main m, int[] n) {
 		this.m = m;
-		sort();
+		sort(n);
 	}
 
 	@Override
-	public void sort() {
+	public void sort(int[] n) {
 		setInicio(System.currentTimeMillis());
 		ordenar(n, 4);
 		Barras.finSort = true;

@@ -3,17 +3,17 @@ package Sorts.Algoritmos;
 import Interfaz.Sort;
 import Principal.Barras;
 import Principal.Main;
-import Sorts.Sorts;
+import Sorts.AdicionalesSorts;
 
-public class Bubble extends Sorts implements Sort {
+public class Bubble extends AdicionalesSorts implements Sort {
 
-	public Bubble(Main m) {
+	public Bubble(Main m, int[] n) {
 		this.m = m;
-		sort();
+		sort(n);
 	}
 
 	// @Override
-	public void sort() {
+	public void sort(int[] n) {
 		setInicio(System.currentTimeMillis());
 		for (int i = 0; i < n.length; i++) {
 			for (int j = 0; j < n.length - 1; j++) {

@@ -4,15 +4,15 @@ import Interfaz.Sort;
 import Principal.Barras;
 import Principal.Main;
 
-public class FinSort extends Sorts implements Sort {
+public class FinSort extends AdicionalesSorts implements Sort {
 
-	public FinSort(Main m) {
+	public FinSort(Main m, int [] n) {
 		this.m = m;
-		sort();
+		sort(n);
 	}
 
 	@Override
-	public void sort() {
+	public void sort(int [] n) {
 		for (int i = 0; i < n.length; i++) {
 			Barras.mismo = i + 1;
 			Barras.anterioresMismo = i;

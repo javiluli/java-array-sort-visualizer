@@ -3,16 +3,16 @@ package Sorts.Algoritmos;
 import Interfaz.Sort;
 import Principal.Barras;
 import Principal.Main;
-import Sorts.Sorts;
+import Sorts.AdicionalesSorts;
 
-public class Cycle extends Sorts implements Sort {
-	public Cycle(Main m) {
+public class Cycle extends AdicionalesSorts implements Sort {
+	public Cycle(Main m,int[] n) {
 		this.m = m;
-		sort();
+		sort(n);
 	}
 
 	// @Override
-	public void sort() {
+	public void sort(int[] n) {
 		setInicio(System.currentTimeMillis());
 
 		for (int cycle_start = 0; cycle_start <= n.length - 2; cycle_start++) {

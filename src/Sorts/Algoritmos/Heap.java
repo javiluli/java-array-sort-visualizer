@@ -3,16 +3,16 @@ package Sorts.Algoritmos;
 import Interfaz.Sort;
 import Principal.Barras;
 import Principal.Main;
-import Sorts.Sorts;
+import Sorts.AdicionalesSorts;
 
-public class Heap extends Sorts implements Sort {
-	public Heap(Main m) {
+public class Heap extends AdicionalesSorts implements Sort {
+	public Heap(Main m,int[] n) {
 		this.m = m;
-		sort();
+		sort(n);
 	}
 
 	@Override
-	public void sort() {
+	public void sort(int[] n) {
 		int len = n.length;
 		setInicio(System.currentTimeMillis());
 

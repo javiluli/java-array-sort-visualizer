@@ -3,33 +3,33 @@ package Sorts.Algoritmos;
 import Interfaz.Sort;
 import Principal.Barras;
 import Principal.Main;
-import Sorts.Sorts;
+import Sorts.AdicionalesSorts;
 
-public class Merge extends Sorts implements Sort {
+public class Merge extends AdicionalesSorts implements Sort {
 
-	public Merge(Main m) {
+	public Merge(Main m, int[] n) {
 		this.m = m;
-		sort();
+		sort(n);
 	}
 
 	@Override
-	public void sort() {
+	public void sort(int[] n) {
 		setInicio(System.currentTimeMillis());
-		sortingMerge(0, n.length - 1);
+		sortingMerge(0, n.length - 1, n);
 		Barras.finSort = true;
 	}
 
-	public void sortingMerge(int left, int right) {
+	public void sortingMerge(int left, int right, int[] n) {
 		if (left < right) {
 			cambiosArray++;
 			int mitad = (left + right) / 2;
-			sortingMerge(left, mitad);
-			sortingMerge(mitad + 1, right);
-			merge(left, mitad, right);
+			sortingMerge(left, mitad, n);
+			sortingMerge(mitad + 1, right, n);
+			merge(left, mitad, right, n);
 		}
 	}
 
-	void merge(int left, int mitad, int right) {
+	void merge(int left, int mitad, int right, int[] arr) {
 		int len_left = mitad - left + 1;
 		int len_right = right - mitad;
 
@@ -37,22 +37,22 @@ public class Merge extends Sorts implements Sort {
 		int arr_right[] = new int[len_right];
 
 		for (int i = 0; i < len_left; i++) {
-			arr_left[i] = n[left + i];
+			arr_left[i] = arr[left + i];
 			accesoArray++;
 		}
 		for (int j = 0; j < len_right; j++) {
-			arr_right[j] = n[mitad + 1 + j];
+			arr_right[j] = arr[mitad + 1 + j];
 			accesoArray++;
 		}
 		int i = 0, j = 0;
 		int k = left;
 		while (i < len_left && j < len_right) {
 			if (arr_left[i] <= arr_right[j]) {
-				n[k] = arr_left[i];
+				arr[k] = arr_left[i];
 				i++;
 				accesoArray++;
 			} else {
-				n[k] = arr_right[j];
+				arr[k] = arr_right[j];
 				j++;
 				accesoArray++;
 			}
@@ -62,7 +62,7 @@ public class Merge extends Sorts implements Sort {
 		}
 
 		while (i < len_left) {
-			n[k] = arr_left[i];
+			arr[k] = arr_left[i];
 			i++;
 			k++;
 			accesoArray++;
@@ -70,7 +70,7 @@ public class Merge extends Sorts implements Sort {
 		}
 
 		while (j < len_right) {
-			n[k] = arr_right[j];
+			arr[k] = arr_right[j];
 			j++;
 			k++;
 			accesoArray++;

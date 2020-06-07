@@ -3,16 +3,16 @@ package Sorts.Algoritmos;
 import Interfaz.Sort;
 import Principal.Barras;
 import Principal.Main;
-import Sorts.Sorts;
+import Sorts.AdicionalesSorts;
 
-public class OddEven extends Sorts implements Sort {
-	public OddEven(Main m) {
+public class OddEven extends AdicionalesSorts implements Sort {
+	public OddEven(Main m, int[] n) {
 		this.m = m;
-		sort();
+		sort(n);
 	}
 
 	@Override
-	public void sort() {
+	public void sort( int[] n) {
 		boolean isSorted = false;
 		setInicio(System.currentTimeMillis());
 		while (!isSorted) {
