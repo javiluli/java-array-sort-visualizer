@@ -1,11 +1,11 @@
-package Sorts.Algoritmos;
+package Ordenar.Algoritmos;
 
-import Interfaz.Sort;
-import Principal.Barras;
+import Ordenar.AdicionalesSorts;
+import Ordenar.ISort;
+import Principal.DibujarGraficos;
 import Principal.Main;
-import Sorts.AdicionalesSorts;
 
-public class Heap extends AdicionalesSorts implements Sort {
+public class Heap extends AdicionalesSorts implements ISort {
 	public Heap(Main m,int[] n) {
 		this.m = m;
 		sort(n);
@@ -30,7 +30,7 @@ public class Heap extends AdicionalesSorts implements Sort {
 			m.updateAnimaciones();
 			heapify(n, i, 0);
 		}
-		Barras.finSort = true;
+		DibujarGraficos.finSort = true;
 	}
 
 	void heapify(int arr[], int n, int i) {
@@ -56,10 +56,4 @@ public class Heap extends AdicionalesSorts implements Sort {
 		accesoArray += 4;
 		cambiosArray += 3;
 	}
-
-	@Override
-	public String getNombre() {
-		return "Heap Sort";
-	}
-
 }

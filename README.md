@@ -4,39 +4,48 @@ Aplicacion a nivel basico para visualizar de forma grafica la ordenacion de un A
 
 La carpeta _data/_ almacena archivos como videos e imagenes que afectan visualmente, no son imprescindibles para el funcionamiento del programa. Para su uso correcto se debe dejar de la misma forma en la que se decarga el repositorio, en una misma carpeta o directorio:
 
-- ordenaciones.jar
+- ordenacionVisual.jar
 - data/
+
+## Descargar e iniciar aplicacion.
+
+```
+git clone https://github.com/javiluli/Ordenacion-visual-Java.git
+cd Ordenacion-visual-Java/
+java -jar ordenacionVisual.jar
+```
 
 ## Algoritmos utilizados.
 
-- Burbuja
+- Bubble
+- Bubble Optimized
 - Cocktail
 - Cycle
 - Gnome
 - Heap
-- Insercion
+- Insertion
 - Merge
 - Odd Even
 - Pancake
 - Pigeonhole
-- Quicksort
-- Radix
-- Seleccion
+- Quick
+- Radix LSD (base 4)
+- Selection
 
-### Cocktail Sort
+### Bubble optimized Sort
 
-![cocktailSort.gif](data/media/video/cocktailSort.gif)
-
----
-
-### Cycle Sort
-
-![cycleSort.gif](data/media/video/cycleSort.gif)
+![bubble_optimized.gif](data/media/video/bubble_optimized.gif)
 
 ---
 
-### Ratrix Sort
+### Merge Sort
 
-![ratrixSort.gif](data/media/video/ratrixSort.gif)
+![merge.gif](data/media/video/merge.gif)
+
+---
+
+### Radix LSD Sort
+
+![radix_lsd.gif](data/media/video/radix_lsd.gif)
 
 ---

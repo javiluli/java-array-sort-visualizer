@@ -1,8 +1,10 @@
-package Sorts;
+package Ordenar;
 
 import Principal.Main;
 
-public class AdicionalesSorts {
+public class Sorts {
+//	protected static JPanel panel;
+	public static int[] n;
 	protected static long accesoArray;
 	protected static long cambiosArray;
 	protected static long inicio;
@@ -10,10 +12,10 @@ public class AdicionalesSorts {
 	protected long tiempo;
 	public Main m;
 
-	public AdicionalesSorts() {
+	public Sorts() {
 	}
 
-	public AdicionalesSorts(int n) {
+	public Sorts(int n) {
 		cambiosArray = n;
 		accesoArray = n;
 		inicio = 0;
@@ -26,7 +28,7 @@ public class AdicionalesSorts {
 	}
 
 	public void setInicio(long inicio) {
-		AdicionalesSorts.inicio = inicio;
+		Sorts.inicio = inicio;
 	}
 
 	public long getTiempo() {

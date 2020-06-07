@@ -1,11 +1,11 @@
-package Sorts.Algoritmos;
+package Ordenar.Algoritmos;
 
-import Interfaz.Sort;
-import Principal.Barras;
+import Ordenar.AdicionalesSorts;
+import Ordenar.ISort;
+import Principal.DibujarGraficos;
 import Principal.Main;
-import Sorts.AdicionalesSorts;
 
-public class Pigeonhole extends AdicionalesSorts implements Sort {
+public class Pigeonhole extends AdicionalesSorts implements ISort {
 	public Pigeonhole(Main m, int[] n) {
 		this.m = m;
 		sort(n);
@@ -34,12 +34,6 @@ public class Pigeonhole extends AdicionalesSorts implements Sort {
 				m.updateAnimaciones();
 			}
 		}
-		Barras.finSort = true;
+		DibujarGraficos.finSort = true;
 	}
-
-	@Override
-	public String getNombre() {
-		return "Pigeonhole Sort";
-	}
-
 }

@@ -1,11 +1,11 @@
-package Sorts.Algoritmos;
+package Ordenar.Algoritmos;
 
-import Interfaz.Sort;
-import Principal.Barras;
+import Ordenar.AdicionalesSorts;
+import Ordenar.ISort;
+import Principal.DibujarGraficos;
 import Principal.Main;
-import Sorts.AdicionalesSorts;
 
-public class Gnome extends AdicionalesSorts implements Sort {
+public class Gnome extends AdicionalesSorts implements ISort {
 	public Gnome(Main m, int[] n) {
 		this.m = m;
 		sort(n);
@@ -31,12 +31,6 @@ public class Gnome extends AdicionalesSorts implements Sort {
 			}
 			m.updateAnimaciones();
 		}
-		Barras.finSort = true;
+		DibujarGraficos.finSort = true;
 	}
-
-	@Override
-	public String getNombre() {
-		return "Gnome Sort";
-	}
-
 }

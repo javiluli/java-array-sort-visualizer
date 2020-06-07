@@ -2,7 +2,7 @@ package EstilosGraficos;
 
 import java.awt.Graphics2D;
 
-public class Circulo extends Transfomaciones {
+public class Circulo extends TransformCentrarGraficos {
 	private static final long serialVersionUID = 1L;
 
 	public Circulo() {

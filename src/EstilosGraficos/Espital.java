@@ -2,7 +2,7 @@ package EstilosGraficos;
 
 import java.awt.Graphics2D;
 
-public class Espital extends Transfomaciones {
+public class Espital extends TransformCentrarGraficos {
 	private static final long serialVersionUID = 1L;
 
 	public Espital() {

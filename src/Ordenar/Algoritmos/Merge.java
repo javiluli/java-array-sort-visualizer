@@ -1,11 +1,11 @@
-package Sorts.Algoritmos;
+package Ordenar.Algoritmos;
 
-import Interfaz.Sort;
-import Principal.Barras;
+import Ordenar.AdicionalesSorts;
+import Ordenar.ISort;
+import Principal.DibujarGraficos;
 import Principal.Main;
-import Sorts.AdicionalesSorts;
 
-public class Merge extends AdicionalesSorts implements Sort {
+public class Merge extends AdicionalesSorts implements ISort {
 
 	public Merge(Main m, int[] n) {
 		this.m = m;
@@ -16,7 +16,7 @@ public class Merge extends AdicionalesSorts implements Sort {
 	public void sort(int[] n) {
 		setInicio(System.currentTimeMillis());
 		sortingMerge(0, n.length - 1, n);
-		Barras.finSort = true;
+		DibujarGraficos.finSort = true;
 	}
 
 	public void sortingMerge(int left, int right, int[] n) {
@@ -79,10 +79,4 @@ public class Merge extends AdicionalesSorts implements Sort {
 		m.textos();
 		setFin(System.currentTimeMillis());
 	}
-
-	@Override
-	public String getNombre() {
-		return "Merge Sort";
-	}
-
 }

@@ -25,22 +25,22 @@ import javax.swing.event.ChangeListener;
 import Adicionales.Delay;
 import Adicionales.Memoria;
 import Adicionales.Social;
-import Sorts.AdicionalesSorts;
-import Sorts.FinSort;
-import Sorts.Algoritmos.Bubble;
-import Sorts.Algoritmos.BubbleOptimized;
-import Sorts.Algoritmos.Cocktail;
-import Sorts.Algoritmos.Cycle;
-import Sorts.Algoritmos.Gnome;
-import Sorts.Algoritmos.Heap;
-import Sorts.Algoritmos.Inserccion;
-import Sorts.Algoritmos.Merge;
-import Sorts.Algoritmos.OddEven;
-import Sorts.Algoritmos.Pancake;
-import Sorts.Algoritmos.Pigeonhole;
-import Sorts.Algoritmos.Quick;
-import Sorts.Algoritmos.RadixLSD;
-import Sorts.Algoritmos.Selection;
+import Ordenar.AdicionalesSorts;
+import Ordenar.FinSort;
+import Ordenar.Algoritmos.Bubble;
+import Ordenar.Algoritmos.BubbleOptimized;
+import Ordenar.Algoritmos.Cocktail;
+import Ordenar.Algoritmos.Cycle;
+import Ordenar.Algoritmos.Gnome;
+import Ordenar.Algoritmos.Heap;
+import Ordenar.Algoritmos.Inserccion;
+import Ordenar.Algoritmos.Merge;
+import Ordenar.Algoritmos.OddEven;
+import Ordenar.Algoritmos.Pancake;
+import Ordenar.Algoritmos.Pigeonhole;
+import Ordenar.Algoritmos.Quick;
+import Ordenar.Algoritmos.RadixLSD;
+import Ordenar.Algoritmos.Selection;
 
 public class Main extends AdicionalesSorts {
 	// NOMBRES DE LOS ALGORITMOS
@@ -103,7 +103,7 @@ public class Main extends AdicionalesSorts {
 
 	// ---------------------------------------------------------------------------------------------
 	// Objetos de mis Clases
-	Barras barras;
+	DibujarGraficos barras;
 	SliderPersonalizado sliderPersonal = new SliderPersonalizado();
 
 	public Main() {
@@ -125,8 +125,8 @@ public class Main extends AdicionalesSorts {
 	public void main() {
 		initialize();
 		panelBarras.setLayout(null);
-		barras = new Barras();
-		barras.setBounds(0, 0, Barras.WIN_WIDTH, Barras.WIN_HEIGHT);
+		barras = new DibujarGraficos();
+		barras.setBounds(0, 0, DibujarGraficos.WIN_WIDTH, DibujarGraficos.WIN_HEIGHT);
 		panelBarras.add(barras);
 		barras.setLayout(null);
 		panelBarras.setVisible(true);
@@ -147,7 +147,7 @@ public class Main extends AdicionalesSorts {
 
 		// Panel donde se dibujan las barras.
 		panelBarras.setBackground(SystemColor.desktop);
-		panelBarras.setBounds(300, 0, Barras.WIN_WIDTH, Barras.WIN_HEIGHT);
+		panelBarras.setBounds(300, 0, DibujarGraficos.WIN_WIDTH, DibujarGraficos.WIN_HEIGHT);
 		frame.add(panelBarras);
 
 		// Panel para el menu de occiones.
@@ -418,51 +418,51 @@ public class Main extends AdicionalesSorts {
 	 * Seleccion se cada uno de los metodos de ordenacion.
 	 */
 	public void menuSorting() {
-		Main main = new Main();
+		Main mainApp = new Main();
 		if (!accederOrdenacion) {
 			textos();
 			switch (seleccionAlgoritmo) {
 			case 0:
-				sorts = new Bubble(main, barras.arrayPrincipal);
+				sorts = new Bubble(mainApp, barras.arrayPrincipal);
 				break;
 			case 1:
-				sorts = new BubbleOptimized(main, barras.arrayPrincipal);
+				sorts = new BubbleOptimized(mainApp, barras.arrayPrincipal);
 				break;
 			case 2:
-				sorts = new Cocktail(main, barras.arrayPrincipal);
+				sorts = new Cocktail(mainApp, barras.arrayPrincipal);
 				break;
 			case 3:
-				sorts = new Cycle(main, barras.arrayPrincipal);
+				sorts = new Cycle(mainApp, barras.arrayPrincipal);
 				break;
 			case 4:
-				sorts = new Gnome(main, barras.arrayPrincipal);
+				sorts = new Gnome(mainApp, barras.arrayPrincipal);
 				break;
 			case 5:
-				sorts = new Heap(main, barras.arrayPrincipal);
+				sorts = new Heap(mainApp, barras.arrayPrincipal);
 				break;
 			case 6:
-				sorts = new Inserccion(main, barras.arrayPrincipal);
+				sorts = new Inserccion(mainApp, barras.arrayPrincipal);
 				break;
 			case 7:
-				sorts = new Merge(main, barras.arrayPrincipal);
+				sorts = new Merge(mainApp, barras.arrayPrincipal);
 				break;
 			case 8:
-				sorts = new OddEven(main, barras.arrayPrincipal);
+				sorts = new OddEven(mainApp, barras.arrayPrincipal);
 				break;
 			case 9:
-				sorts = new Pancake(main, barras.arrayPrincipal);
+				sorts = new Pancake(mainApp, barras.arrayPrincipal);
 				break;
 			case 10:
-				sorts = new Pigeonhole(main, barras.arrayPrincipal);
+				sorts = new Pigeonhole(mainApp, barras.arrayPrincipal);
 				break;
 			case 11:
-				sorts = new Quick(main, barras.arrayPrincipal);
+				sorts = new Quick(mainApp, barras.arrayPrincipal);
 				break;
 			case 12:
-				sorts = new RadixLSD(main, barras.arrayPrincipal);
+				sorts = new RadixLSD(mainApp, barras.arrayPrincipal);
 				break;
 			case 13:
-				sorts = new Selection(main, barras.arrayPrincipal);
+				sorts = new Selection(mainApp, barras.arrayPrincipal);
 				break;
 			default:
 				barras.desordenarArray();
@@ -470,7 +470,7 @@ public class Main extends AdicionalesSorts {
 			}
 
 			if (seleccionAlgoritmo < comboBoxTipoSort.getWidth())
-				sorts = new FinSort(main, barras.arrayPrincipal);
+				sorts = new FinSort(mainApp, barras.arrayPrincipal);
 		}
 		reinicio();
 		pausa();
@@ -581,9 +581,9 @@ public class Main extends AdicionalesSorts {
 	 * pintandolas en patanlla.
 	 */
 	public void cambioNumBarras() {
-		Barras.NUM_BARS = (int) Math.pow(2, sliderTamBarras.getValue());
-		Barras.BAR_WIDTH = Barras.WIN_WIDTH / Barras.NUM_BARS;
-		Barras.BAR_HEIGHT = Barras.WIN_HEIGHT / Barras.NUM_BARS;
+		DibujarGraficos.NUM_BARS = (int) Math.pow(2, sliderTamBarras.getValue());
+		DibujarGraficos.BAR_WIDTH = DibujarGraficos.WIN_WIDTH / DibujarGraficos.NUM_BARS;
+		DibujarGraficos.BAR_HEIGHT = DibujarGraficos.WIN_HEIGHT / DibujarGraficos.NUM_BARS;
 
 		barras.barras();
 		barras.repaint();

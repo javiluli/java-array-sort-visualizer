@@ -1,11 +1,11 @@
-package Sorts.Algoritmos;
+package Ordenar.Algoritmos;
 
-import Interfaz.Sort;
-import Principal.Barras;
+import Ordenar.AdicionalesSorts;
+import Ordenar.ISort;
+import Principal.DibujarGraficos;
 import Principal.Main;
-import Sorts.AdicionalesSorts;
 
-public class RadixLSD extends AdicionalesSorts implements Sort {
+public class RadixLSD extends AdicionalesSorts implements ISort {
 	public RadixLSD(Main m, int[] n) {
 		this.m = m;
 		sort(n);
@@ -15,7 +15,7 @@ public class RadixLSD extends AdicionalesSorts implements Sort {
 	public void sort(int[] n) {
 		setInicio(System.currentTimeMillis());
 		ordenar(n, 4);
-		Barras.finSort = true;
+		DibujarGraficos.finSort = true;
 	}
 
 	public void ordenar(int[] array, int len) {
@@ -71,10 +71,4 @@ public class RadixLSD extends AdicionalesSorts implements Sort {
 		}
 
 	}
-
-	@Override
-	public String getNombre() {
-		return "Radix LSD Sort";
-	}
-
 }

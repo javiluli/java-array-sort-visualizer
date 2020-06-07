@@ -16,9 +16,9 @@ import EstilosGraficos.Espital;
 import EstilosGraficos.EstiloGrafico;
 import EstilosGraficos.Piramide;
 import EstilosGraficos.Pixel;
-import EstilosGraficos.Transfomaciones;
+import EstilosGraficos.TransformCentrarGraficos;
 
-public class Barras extends Transfomaciones {
+public class DibujarGraficos extends TransformCentrarGraficos {
 	private static final long serialVersionUID = 1L;
 	EstiloGrafico estiloGrafico;
 	public int[] arrayPrincipal;
@@ -26,7 +26,7 @@ public class Barras extends Transfomaciones {
 	/**
 	 * Constructor de iniciar el array con numeros ordenados.
 	 */
-	public Barras() {
+	public DibujarGraficos() {
 		barras();
 		setBackground(Color.BLACK);
 	}
@@ -116,7 +116,7 @@ public class Barras extends Transfomaciones {
 	private void configEstilo(int opcionGrafico, Graphics2D graphics) {
 		// Cambio la cantidad de elementos que se pintan en pantalla.
 		// Simepre que sean Objetos Transfomaciones tendran multicolor.
-		if (almacenarEstilos().get(opcionGrafico) instanceof Transfomaciones) {
+		if (almacenarEstilos().get(opcionGrafico) instanceof TransformCentrarGraficos) {
 			graphics.translate(translateX, translateY);
 			Main.sliderTamBarras.setMinimum(6);
 			activarMulticolor = true;

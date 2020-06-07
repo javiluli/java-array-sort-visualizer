@@ -1,11 +1,11 @@
-package Sorts.Algoritmos;
+package Ordenar.Algoritmos;
 
-import Interfaz.Sort;
-import Principal.Barras;
+import Ordenar.AdicionalesSorts;
+import Ordenar.ISort;
+import Principal.DibujarGraficos;
 import Principal.Main;
-import Sorts.AdicionalesSorts;
 
-public class Cocktail extends AdicionalesSorts implements Sort {
+public class Cocktail extends AdicionalesSorts implements ISort {
 
 	public Cocktail(Main m, int[] n) {
 		this.m = m;
@@ -52,11 +52,6 @@ public class Cocktail extends AdicionalesSorts implements Sort {
 			}
 			inicio = inicio + 1;
 		}
-		Barras.finSort = true;
-	}
-
-	@Override
-	public String getNombre() {
-		return "Cocktail Sort";
+		DibujarGraficos.finSort = true;
 	}
 }

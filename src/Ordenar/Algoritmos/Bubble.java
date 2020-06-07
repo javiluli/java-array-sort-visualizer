@@ -1,11 +1,11 @@
-package Sorts.Algoritmos;
+package Ordenar.Algoritmos;
 
-import Interfaz.Sort;
-import Principal.Barras;
+import Ordenar.AdicionalesSorts;
+import Ordenar.ISort;
+import Principal.DibujarGraficos;
 import Principal.Main;
-import Sorts.AdicionalesSorts;
 
-public class Bubble extends AdicionalesSorts implements Sort {
+public class Bubble extends AdicionalesSorts implements ISort {
 
 	public Bubble(Main m, int[] n) {
 		this.m = m;
@@ -28,11 +28,6 @@ public class Bubble extends AdicionalesSorts implements Sort {
 			}
 			m.textos();
 		}
-		Barras.finSort = true;
-	}
-
-	@Override
-	public String getNombre() {
-		return "Bubble Sort";
+		DibujarGraficos.finSort = true;
 	}
 }

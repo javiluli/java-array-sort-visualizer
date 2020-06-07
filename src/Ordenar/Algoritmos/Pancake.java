@@ -1,11 +1,11 @@
-package Sorts.Algoritmos;
+package Ordenar.Algoritmos;
 
-import Interfaz.Sort;
-import Principal.Barras;
+import Ordenar.AdicionalesSorts;
+import Ordenar.ISort;
+import Principal.DibujarGraficos;
 import Principal.Main;
-import Sorts.AdicionalesSorts;
 
-public class Pancake extends AdicionalesSorts implements Sort {
+public class Pancake extends AdicionalesSorts implements ISort {
 	public Pancake(Main m, int[] n) {
 		this.m = m;
 		sort(n);
@@ -23,7 +23,7 @@ public class Pancake extends AdicionalesSorts implements Sort {
 			}
 			m.updateAnimaciones();
 		}
-		Barras.finSort = true;
+		DibujarGraficos.finSort = true;
 	}
 
 	static void flip(int arr[], int i) {
@@ -44,10 +44,4 @@ public class Pancake extends AdicionalesSorts implements Sort {
 				mi = i;
 		return mi;
 	}
-
-	@Override
-	public String getNombre() {
-		return "Pancake Sort";
-	}
-
 }

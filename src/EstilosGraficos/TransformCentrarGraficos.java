@@ -1,6 +1,6 @@
 package EstilosGraficos;
 
-public abstract class Transfomaciones extends EstiloGrafico {
+public abstract class TransformCentrarGraficos extends EstiloGrafico {
 	private static final long serialVersionUID = 1L;
 	
 	// Traslada todos los graficos al centro.

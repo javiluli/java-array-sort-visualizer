@@ -1,12 +1,12 @@
-package Sorts.Algoritmos;
+package Ordenar.Algoritmos;
 
-import Interfaz.Sort;
-import Principal.Barras;
+import Ordenar.AdicionalesSorts;
+import Ordenar.ISort;
+import Principal.DibujarGraficos;
 import Principal.Main;
-import Sorts.AdicionalesSorts;
 
-public class Cycle extends AdicionalesSorts implements Sort {
-	public Cycle(Main m,int[] n) {
+public class Cycle extends AdicionalesSorts implements ISort {
+	public Cycle(Main m, int[] n) {
 		this.m = m;
 		sort(n);
 	}
@@ -57,12 +57,6 @@ public class Cycle extends AdicionalesSorts implements Sort {
 				m.updateAnimaciones();
 			}
 		}
-		Barras.finSort = true;
+		DibujarGraficos.finSort = true;
 	}
-
-	// @Override
-	public String getNombre() {
-		return "Cycle Sort";
-	}
-
 }

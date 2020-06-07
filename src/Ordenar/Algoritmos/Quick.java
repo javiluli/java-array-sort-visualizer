@@ -1,11 +1,11 @@
-package Sorts.Algoritmos;
+package Ordenar.Algoritmos;
 
-import Interfaz.Sort;
-import Principal.Barras;
+import Ordenar.AdicionalesSorts;
+import Ordenar.ISort;
+import Principal.DibujarGraficos;
 import Principal.Main;
-import Sorts.AdicionalesSorts;
 
-public class Quick extends AdicionalesSorts implements Sort {
+public class Quick extends AdicionalesSorts implements ISort {
 
 	public Quick(Main m, int[] n) {
 		this.m = m;
@@ -16,7 +16,7 @@ public class Quick extends AdicionalesSorts implements Sort {
 	@Override
 	public void sort(int[] n) {
 		quickSort(n, 0, n.length - 1);
-		Barras.finSort = true;
+		DibujarGraficos.finSort = true;
 	}
 
 	public void quickSort(int array[], int izq, int der) {
@@ -47,10 +47,4 @@ public class Quick extends AdicionalesSorts implements Sort {
 			quickSort(array, j + 1, der);
 		m.updateAnimaciones();
 	}
-
-	// @Override
-	public String getNombre() {
-		return "Quick Sort";
-	}
-
 }

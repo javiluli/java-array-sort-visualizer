@@ -2,7 +2,7 @@ package EstilosGraficos;
 
 import java.awt.Graphics2D;
 
-public class Circunferencia extends Transfomaciones {
+public class Circunferencia extends TransformCentrarGraficos {
 	private static final long serialVersionUID = 1L;
 
 	public Circunferencia() {
