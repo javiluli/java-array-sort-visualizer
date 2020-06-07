@@ -47,7 +47,7 @@ public class Barras extends Transfomaciones {
 			Sorts.n[i] = Sorts.n[swapWidthIndex];
 			Sorts.n[swapWidthIndex] = temp;
 			Delay.delay(1);
-			Main.getPanelBarras().repaint();
+			Main.panelBarras.repaint();
 		}
 	}
 
@@ -60,7 +60,7 @@ public class Barras extends Transfomaciones {
 	public void paintComponent(Graphics g) {
 		Graphics2D graphics = (Graphics2D) g;
 		super.paintComponent(graphics);
-		int opcionGrafico = Main.getComboboxtiposgraficos().getSelectedIndex();
+		int opcionGrafico = Main.comboBoxTiposGraficos.getSelectedIndex();
 		configEstilo(opcionGrafico, graphics);
 
 		for (int i = 0; i < NUM_BARS; i++) {
@@ -91,12 +91,12 @@ public class Barras extends Transfomaciones {
 	 */
 	public Vector<EstiloGrafico> almacenarEstilos() {
 		Vector<EstiloGrafico> estilos = new Vector<EstiloGrafico>();
-		estilos.add(estiloGrafico = new Columnas());
-		estilos.add(estiloGrafico = new Piramide());
-		estilos.add(estiloGrafico = new Pixel());
-		estilos.add(estiloGrafico = new Circulo());
-		estilos.add(estiloGrafico = new Circunferencia());
-		estilos.add(estiloGrafico = new Espital());
+		estilos.add(new Columnas());
+		estilos.add(new Piramide());
+		estilos.add(new Pixel());
+		estilos.add(new Circulo());
+		estilos.add(new Circunferencia());
+		estilos.add(new Espital());
 		return estilos;
 	}
 
@@ -107,17 +107,15 @@ public class Barras extends Transfomaciones {
 	 * @param graphics      the graphics
 	 */
 	private void configEstilo(int opcionGrafico, Graphics2D graphics) {
-		Vector<EstiloGrafico> estilos = almacenarEstilos();
 		// Cambio la cantidad de elementos que se pintan en pantalla.
 		// Simepre que sean Objetos Transfomaciones tendran multicolor.
-		if (estilos.get(opcionGrafico) instanceof Transfomaciones) {
+		if (almacenarEstilos().get(opcionGrafico) instanceof Transfomaciones) {
 			graphics.translate(translateX, translateY);
-			Main.getSliderTamBarras().setMinimum(6);
+			Main.sliderTamBarras.setMinimum(6);
 			activarMulticolor = true;
 			Main.tglbtnMulticolor.setSelected(activarMulticolor);
 		} else {
-			Main.getSliderTamBarras().setMinimum(1);
-
+			Main.sliderTamBarras.setMinimum(1);
 		}
 	}
 
@@ -170,29 +168,5 @@ public class Barras extends Transfomaciones {
 	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(WIN_WIDTH, WIN_HEIGHT);
-	}
-
-	public static int getWinWidth() {
-		return WIN_WIDTH;
-	}
-
-	public static int getWinHeight() {
-		return WIN_HEIGHT;
-	}
-
-	public static int getNUM_BARS() {
-		return NUM_BARS;
-	}
-
-	public static void setNUM_BARS(int nUM_BARS) {
-		NUM_BARS = nUM_BARS;
-	}
-
-	public static void setBAR_WIDTH(int bAR_WIDTH) {
-		BAR_WIDTH = bAR_WIDTH;
-	}
-
-	public static void setBAR_HEIGHT(int bAR_HEIGHT) {
-		BAR_HEIGHT = bAR_HEIGHT;
 	}
 }

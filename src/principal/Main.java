@@ -22,67 +22,60 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import Adicionales.Delay;
-import Adicionales.Memoria;
-import Adicionales.Social;
-import Sorts.FinSort;
-import Sorts.Sorts;
+import Adicionales.*;
+import Sorts.*;
 import Sorts.Algoritmos.*;
 
 public class Main extends Sorts {
 	// NOMBRES DE LOS ALGORITMOS
-	private final String[] nombreAlgoritmos = { "Bubble", "Bubble Optimized", "Cocktail", "Cycle", "Gnome", "Heap",
-			"Insertion", "Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix LSD", "Selection" };
+	final String[] nombreAlgoritmos = { "Bubble", "Bubble Optimized", "Cocktail", "Cycle", "Gnome", "Heap", "Insertion",
+			"Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix LSD", "Selection" };
 	// DISEÑO GRAFICO DE LAS ANIMACIONES
-	private final static String[] nombreGrafico = { "Escalera", "Piramide horizontal", "Pixel", "Circulo",
-			"Circunferencia", "Espiral" };
+	final static String[] nombreGrafico = { "Escalera", "Piramide horizontal", "Pixel", "Circulo", "Circunferencia",
+			"Espiral" };
 	// JFRAME PRINCIPAL
-	private final JFrame frame = new JFrame();
+	private JFrame frame = new JFrame();
 	// JPANEL
-	private final JPanel panelMenu = new JPanel();
-	private JPanel panelOpcionesMenu = new JPanel();
-	public static JPanel panelBarras = new JPanel();
-	private final Panel panelVisorMemoria = new Panel();
+	JPanel panelMenu = new JPanel();
+	JPanel panelOpcionesMenu = new JPanel();
+	Panel panelVisorMemoria = new Panel();
+	static JPanel panelBarras = new JPanel();
 	// COMBOBOX
-	private final JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
-	private static final JComboBox<Object> comboBoxTiposGraficos = new JComboBox<Object>(nombreGrafico);
+	JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
+	static JComboBox<Object> comboBoxTiposGraficos = new JComboBox<Object>(nombreGrafico);
 //	private final JComboBox<String> comboBoxTipoSort = new JComboBox<String>();
 //	private static final JComboBox<Object> comboBoxTiposGraficos = new JComboBox<Object>();
 	// JLABEL
-	private final JLabel lblTitleAlgoritmo = new JLabel("Seleccionar algoritmo de ordenacion");
-	private final JLabel lblTitle = new JLabel("Panel de control");
-	private JLabel lblNumeroBarras = new JLabel("Numero de elementos");
-	private JLabel lblRetardo = new JLabel("Retardo: 1 ms");
-	private static JLabel lblTiempo = new JLabel("Tiempo: 0 m 0 s 0 ms");
-	private static JLabel lblMemoriaUsada = new JLabel("Memoria usada: 0 MB");
-	private static JLabel lblMemoriaMax = new JLabel("Memoria maxima: 0 MB");
-	private static JLabel lblMemoriaLibre = new JLabel("Memoria libre: 0 MB");
-	private static JLabel lblMemoriaTotal = new JLabel("Memoria total: 0 MB");
-	private static JLabel lblCambios = new JLabel("Cambios en el Array: 0");
-	private static JLabel lblAccesos = new JLabel("Accesos al Array: 0");
-	private final JLabel lblTituloGraficos = new JLabel("Dise\u00F1o grafico");
+	JLabel lblTitleAlgoritmo = new JLabel("Seleccionar algoritmo de ordenacion");
+	JLabel lblTitle = new JLabel("Panel de control");
+	JLabel lblNumeroBarras = new JLabel("Numero de elementos");
+	JLabel lblRetardo = new JLabel("Retardo: 1 ms");
+	JLabel lblTituloGraficos = new JLabel("Dise\u00F1o grafico");
+	static JLabel lblTiempo = new JLabel("Tiempo: 0 m 0 s 0 ms");
+	static JLabel lblMemoriaUsada = new JLabel("Memoria usada: 0 MB");
+	static JLabel lblMemoriaMax = new JLabel("Memoria maxima: 0 MB");
+	static JLabel lblMemoriaLibre = new JLabel("Memoria libre: 0 MB");
+	static JLabel lblMemoriaTotal = new JLabel("Memoria total: 0 MB");
+	static JLabel lblCambios = new JLabel("Cambios en el Array: 0");
+	static JLabel lblAccesos = new JLabel("Accesos al Array: 0");
 	// JBUTTON
-	private final JButton btnOrdenar = new JButton("Ordenar");
-	private final JButton btnDesordenar = new JButton("Desordenar");
-	private final JButton btnSaltarSort = new JButton("Saltar Sort");
-	private final JButton btnInformacion = new JButton("Informacion");
-	private final JButton btnGithub = new JButton();
-	private final JButton btnCodepen = new JButton();
+	JButton btnOrdenar = new JButton("Ordenar");
+	JButton btnDesordenar = new JButton("Desordenar");
+	JButton btnSaltarSort = new JButton("Saltar Sort");
+	JButton btnInformacion = new JButton("Informacion");
+	JButton btnGithub = new JButton();
+	JButton btnCodepen = new JButton();
 	// JTOGGLE BUTTON
 	static JToggleButton tglbtnMulticolor = new JToggleButton("Ver multicolor");
 	// JSLIDER
-	private final static JSlider sliderTamBarras = new JSlider();
-	private final JSlider sliderRetardo = new JSlider();
+	JSlider sliderRetardo = new JSlider();
+	static JSlider sliderTamBarras = new JSlider();
 	// Tamaño de la ventana.
-	public final static int WIN_WIDTH = 1330;
-	public final static int WIN_HEIGHT = 1053;
+	static final int WIN_WIDTH = 1330;
+	static final int WIN_HEIGHT = 1053;
 	// Variables antes y despues de la ejecucion de una ordenacion.
 	private int seleccionAlgoritmo = -1;
-	private boolean puedeOrdenar = false;
-	private boolean puedeDesordenar = true;
-	// Objetos de mis Clases
-	Barras barras;
-	SliderNumBarasPersonalizado snbp = new SliderNumBarasPersonalizado();
+	private boolean accederOrdenacion = true;
 
 	public static void main(String[] args) {
 		try {
@@ -91,7 +84,11 @@ public class Main extends Sorts {
 		} catch (Exception e) {
 		}
 	}
+
 	// ---------------------------------------------------------------------------------------------
+	// Objetos de mis Clases
+	Barras barras;
+	SliderPersonalizado sliderPersonal = new SliderPersonalizado();
 
 	public Main() {
 	}
@@ -111,16 +108,16 @@ public class Main extends Sorts {
 
 	public void main() {
 		initialize();
-		getPanelBarras().setLayout(null);
+		panelBarras.setLayout(null);
 		barras = new Barras();
-		barras.setBounds(0, 0, Barras.getWinWidth(), Barras.getWinHeight());
-		getPanelBarras().add(barras);
+		barras.setBounds(0, 0, Barras.WIN_WIDTH, Barras.WIN_HEIGHT);
+		panelBarras.add(barras);
 		barras.setLayout(null);
-		getPanelBarras().setVisible(true);
+		panelBarras.setVisible(true);
 		frame.setResizable(false);
 		frame.setTitle("Visualizador de ordenacion de matrices");
 		frame.setVisible(true);
-		sorting();
+		menuSorting();
 	}
 	// ---------------------------------------------------------------------------------------------
 
@@ -130,18 +127,18 @@ public class Main extends Sorts {
 		frame.setBounds(100, 100, WIN_WIDTH, WIN_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
-		frame.getContentPane().setLayout(null);
+		frame.setLayout(null);
 
 		// Panel donde se dibujan las barras.
 		panelBarras.setBackground(SystemColor.desktop);
-		panelBarras.setBounds(300, 0, Barras.getWinWidth(), Barras.getWinHeight());
-		frame.getContentPane().add(panelBarras);
+		panelBarras.setBounds(300, 0, Barras.WIN_WIDTH, Barras.WIN_HEIGHT);
+		frame.add(panelBarras);
 
 		// Panel para el menu de occiones.
 		panelMenu.setBackground(SystemColor.activeCaptionText);
 		panelMenu.setBounds(0, 0, 300, 1024);
 		panelMenu.setLayout(null);
-		frame.getContentPane().add(panelMenu);
+		frame.add(panelMenu);
 
 		// Panel hijo para las ocopnes.
 		panelOpcionesMenu.setBackground(BLACK_SECUNDARIO);
@@ -175,18 +172,17 @@ public class Main extends Sorts {
 			 * ordenacion.
 			 */
 			public void actionPerformed(ActionEvent e) {
-				if (!puedeOrdenar) {
-					puedeOrdenar = true;
-					puedeDesordenar = false;
+				if (accederOrdenacion) {
+					accederOrdenacion = false;
 					seleccionAlgoritmo = comboBoxTipoSort.getSelectedIndex();
 				}
 			}
 		});
 		panelOpcionesMenu.add(btnOrdenar);
-		btnDesordenar.setBackground(Color.BLACK);
-		btnDesordenar.setForeground(Color.WHITE);
 
 		// Boton para desordenar el array.
+		btnDesordenar.setBackground(Color.BLACK);
+		btnDesordenar.setForeground(Color.WHITE);
 		btnDesordenar.setFont(new Font("Arial", Font.BOLD, 13));
 		btnDesordenar.setBounds(160, 88, 110, 30);
 		btnDesordenar.addActionListener(new ActionListener() {
@@ -198,9 +194,8 @@ public class Main extends Sorts {
 			 * del array.
 			 */
 			public void actionPerformed(ActionEvent e) {
-				if (puedeDesordenar) {
-					puedeOrdenar = true;
-					puedeDesordenar = false;
+				if (accederOrdenacion) {
+					accederOrdenacion = false;
 					seleccionAlgoritmo = comboBoxTipoSort.getWidth();
 				}
 			}
@@ -218,10 +213,10 @@ public class Main extends Sorts {
 		lblAccesos.setForeground(Color.WHITE);
 		lblAccesos.setBounds(10, 252, 237, 30);
 		panelOpcionesMenu.add(lblAccesos);
-		lblNumeroBarras.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNumeroBarras.setForeground(Color.WHITE);
 
 		// Label para el tamaño de las barras pintadas en pantalla.
+		lblNumeroBarras.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNumeroBarras.setForeground(Color.WHITE);
 		lblNumeroBarras.setFont(new Font("Arial", Font.BOLD, 13));
 		lblNumeroBarras.setBounds(123, 334, 147, 30);
 		panelOpcionesMenu.add(lblNumeroBarras);
@@ -234,7 +229,7 @@ public class Main extends Sorts {
 		sliderTamBarras.setBackground(BLACK_SECUNDARIO);
 		sliderTamBarras.setMinimum(NUM_MIN_ELEMENTOS);
 		sliderTamBarras.setMaximum(NUM_MAX_ELEMENTOS);
-		sliderTamBarras.setLabelTable(snbp.establecerValoresSlider(NUM_MAX_ELEMENTOS));
+		sliderTamBarras.setLabelTable(sliderPersonal.establecerValoresSlider(NUM_MAX_ELEMENTOS));
 		sliderTamBarras.setFont(new Font("Arial", Font.BOLD, 13));
 		sliderTamBarras.setMinorTickSpacing(1);
 		sliderTamBarras.setSnapToTicks(true);
@@ -248,11 +243,11 @@ public class Main extends Sorts {
 			 * ordenacion o desordenacion de un array.
 			 */
 			public void stateChanged(ChangeEvent e) {
-				if (puedeDesordenar)
+				if (accederOrdenacion)
 					cambioNumBarras();
 			}
 		});
-		panelOpcionesMenu.add(getSliderTamBarras());
+		panelOpcionesMenu.add(sliderTamBarras);
 
 		// Label para el retardo en la que se ordena.
 		lblRetardo.setForeground(Color.WHITE);
@@ -330,6 +325,10 @@ public class Main extends Sorts {
 		panelOpcionesMenu.add(btnSaltarSort);
 
 		// Boton para ver informacion sobre la aplicacion
+		btnInformacion.setForeground(Color.WHITE);
+		btnInformacion.setBackground(Color.BLACK);
+		btnInformacion.setFont(new Font("Arial", Font.BOLD, 13));
+		btnInformacion.setBounds(10, 926, 110, 30);
 		btnInformacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(frame,
@@ -337,10 +336,6 @@ public class Main extends Sorts {
 								+ "                            Javiluli\n" + "       Fecha de creacion: Julio 1, 2020");
 			}
 		});
-		btnInformacion.setForeground(Color.WHITE);
-		btnInformacion.setBackground(Color.BLACK);
-		btnInformacion.setFont(new Font("Arial", Font.BOLD, 13));
-		btnInformacion.setBounds(10, 926, 110, 30);
 		panelOpcionesMenu.add(btnInformacion);
 
 		// Boton de red social para GitHub
@@ -377,9 +372,12 @@ public class Main extends Sorts {
 		lblTituloGraficos.setForeground(Color.WHITE);
 		lblTituloGraficos.setBounds(10, 88, 120, 30);
 		panelOpcionesMenu.add(lblTituloGraficos);
+
+		// Boton de activacion para el modo multicolor.
 		tglbtnMulticolor.setBackground(Color.BLACK);
 		tglbtnMulticolor.setForeground(Color.WHITE);
-
+		tglbtnMulticolor.setFont(new Font("Arial", Font.BOLD, 13));
+		tglbtnMulticolor.setBounds(10, 170, 140, 30);
 		tglbtnMulticolor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tglbtnMulticolor.isSelected()) {
@@ -390,8 +388,6 @@ public class Main extends Sorts {
 				panelBarras.repaint();
 			}
 		});
-		tglbtnMulticolor.setFont(new Font("Arial", Font.BOLD, 13));
-		tglbtnMulticolor.setBounds(10, 170, 140, 30);
 		panelOpcionesMenu.add(tglbtnMulticolor);
 
 		// Label para el titulo de los controles.
@@ -405,9 +401,9 @@ public class Main extends Sorts {
 	/**
 	 * Seleccion se cada uno de los metodos de ordenacion.
 	 */
-	public void sorting() {
+	public void menuSorting() {
 		Main main = new Main();
-		if (puedeOrdenar) {
+		if (!accederOrdenacion) {
 			textos();
 			switch (seleccionAlgoritmo) {
 			case 0:
@@ -542,8 +538,7 @@ public class Main extends Sorts {
 	 * Reinicia algunas variables y textos despues de terminar un sort.
 	 */
 	public void reinicio() {
-		puedeOrdenar = false;
-		puedeDesordenar = true;
+		accederOrdenacion = true;
 		sorts = new Sorts(0);
 		memoria = new Memoria(0);
 		Delay.n = sliderRetardo.getValue();
@@ -555,13 +550,13 @@ public class Main extends Sorts {
 	 * programa termine despues de una ejecicion.
 	 */
 	public void pausa() {
-		for (; !puedeOrdenar;) {
+		for (; accederOrdenacion;) {
 			try {
 				Thread.sleep(1);
 			} catch (Exception e) {
 			}
 		}
-		sorting();
+		menuSorting();
 	}
 	// ---------------------------------------------------------------------------------------------
 
@@ -570,9 +565,10 @@ public class Main extends Sorts {
 	 * pintandolas en patanlla.
 	 */
 	public void cambioNumBarras() {
-		Barras.setNUM_BARS((int) Math.pow(2, getSliderTamBarras().getValue()));
-		Barras.setBAR_WIDTH(Barras.getWinWidth() / Barras.getNUM_BARS());
-		Barras.setBAR_HEIGHT(Barras.getWinHeight() / Barras.getNUM_BARS());
+		Barras.NUM_BARS = (int) Math.pow(2, sliderTamBarras.getValue());
+		Barras.BAR_WIDTH = Barras.WIN_WIDTH / Barras.NUM_BARS;
+		Barras.BAR_HEIGHT = Barras.WIN_HEIGHT / Barras.NUM_BARS;
+
 		barras.barras();
 		barras.repaint();
 	}
@@ -594,7 +590,7 @@ public class Main extends Sorts {
 	 * personalizar la forma de mostrar los distintos valores. En concreto agrega
 	 * valores en base 2 del binario.
 	 */
-	class SliderNumBarasPersonalizado {
+	class SliderPersonalizado {
 
 		/**
 		 * Convierte un numero entero en un String.
@@ -623,74 +619,5 @@ public class Main extends Sorts {
 			}
 			return posiciones;
 		}
-	}
-	// ---------------------------------------------------------------------------------------------
-
-	public static JLabel getLblAccesos() {
-		return lblAccesos;
-	}
-
-	public static void setLblAccesos(JLabel lblAccesos) {
-		Main.lblAccesos = lblAccesos;
-	}
-
-	public static JLabel getLblMemoriaMax() {
-		return lblMemoriaMax;
-	}
-
-	public static void setLblMemoriaMax(JLabel lblMemoriaMax) {
-		Main.lblMemoriaMax = lblMemoriaMax;
-	}
-
-	public static JLabel getLblMemoriaTotal() {
-		return lblMemoriaTotal;
-	}
-
-	public static void setLblMemoriaTotal(JLabel lblMemoriaTotal) {
-		Main.lblMemoriaTotal = lblMemoriaTotal;
-	}
-
-	public static JLabel getLblMemoriaLibre() {
-		return lblMemoriaLibre;
-	}
-
-	public static void setLblMemoriaLibre(JLabel lblMemoriaLibre) {
-		Main.lblMemoriaLibre = lblMemoriaLibre;
-	}
-
-	public static JLabel getLblMemoriaUsada() {
-		return lblMemoriaUsada;
-	}
-
-	public static void setLblMemoriaUsada(JLabel lblMemoriaUsada) {
-		Main.lblMemoriaUsada = lblMemoriaUsada;
-	}
-
-	public static JLabel getLblTiempo() {
-		return lblTiempo;
-	}
-
-	public static void setLblTiempo(JLabel lblTiempo) {
-		Main.lblTiempo = lblTiempo;
-	}
-
-	public static JPanel getPanelBarras() {
-		return panelBarras;
-	}
-
-	public void setPanelBarras(JPanel panelBarras) {
-		Main.panelBarras = panelBarras;
-	}
-
-	public static JComboBox<Object> getComboboxtiposgraficos() {
-		return comboBoxTiposGraficos;
-	}
-
-	public static JSlider getSliderTamBarras() {
-		return getSlidertambarras();
-	}
-
-	public static JSlider getSlidertambarras() {
-		return sliderTamBarras;
 	}
 }
