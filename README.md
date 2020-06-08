@@ -1,41 +1,73 @@
-# Ordenacion visual en Java
+# Ordenacion visual de un Array en Java
 
-Aplicacion a nivel basico para visualizar de forma grafica la ordenacion de un Array con diferentes algoritmos.
+Disponibles hasta 20 algoritmos de ordenacion y 6 variantes para el diseño grafico.
 
 La carpeta _data/_ almacena archivos como videos e imagenes que afectan visualmente, no son imprescindibles para el funcionamiento del programa. Para su uso correcto se debe dejar de la misma forma en la que se decarga el repositorio, en una misma carpeta o directorio:
 
 - ordenacionVisual.jar
 - data/
-<!--
 
-## Descargar e iniciar aplicacion.
+## Descarga
 
-````
+```
 git clone https://github.com/javiluli/Ordenacion-visual-Java.git
 cd Ordenacion-visual-Java/
+```
+
+---
+
+## Generar ejecutable
+
+```
 mkdir -p dist target
 javac src/Principal/MainAplicacion.java -sourcepath src -d target/
 jar -cvfm dist/MainAplicacion.jar manifest.mf -C target/ ./
+```
+
+---
+
+## Iniciar aplicacion
+
+```
 java -jar dist//MainAplicacion.jar
-``` -->
+```
 
-## Algoritmos utilizados.
+## Disponibles 20 tipos de algoritmos.
 
-- Bubble
-- Bubble Optimized
-- Cocktail
-- Cycle
-- Gnome
-- Heap
-- Insertion
-- Merge
-- Odd Even
-- Pancake
-- Pigeonhole
-- Quick
-- Radix LSD (base 4)
-- Selection
-- Shell
+- Bitonic sort
+- Bubble sort
+- Bubble Optimized sort
+- Cocktail sort
+- Cycle sort
+- Gnome sort
+- Heap sort
+- Insertion sort
+- Iterative Quick sort
+- Merge sort
+- Odd Even sort
+- Pancake sort
+- Pigeonhole sort
+- Quick sort
+- Radix sort
+- Recursive Bubble sort
+- Selection sort
+- Shell sort
+- Stooge sort
+- Tim sort
+
+## Disponibles 6 diseños graficos distintos.
+
+- Escalera
+- Piramide horizontal
+- Pixel
+- Circulo
+- Circunferencia
+- Espiral
+
+La carpeta _data/_ almacena archivos como videos e imagenes que afectan visualmente, no son necesarios para el funcionamiento del programa. Para su uso correcto se debe dejar de la misma forma en la que se decarga el repositorio, en una misma carpeta o directorio:
+
+- ordenacionVisual.jar
+- data/
 
 ### Bubble optimized Sort
 
@@ -54,4 +86,3 @@ java -jar dist//MainAplicacion.jar
 ![radix_lsd.gif](data/media/video/radix_lsd.gif)
 
 ---
-````
