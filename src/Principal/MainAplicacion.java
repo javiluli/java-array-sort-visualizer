@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Panel;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
@@ -153,6 +154,7 @@ public class MainAplicacion extends AdicionalesSorts {
 		final Color BLACK_SECUNDARIO = new Color(15, 15, 15);
 		// Frame principal.
 		frame.setBounds(100, 100, WIN_WIDTH, WIN_HEIGHT);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("data\\media\\img\\icon.jpg"));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
