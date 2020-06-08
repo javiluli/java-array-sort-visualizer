@@ -34,19 +34,23 @@ import Ordenar.Algoritmos.Cycle;
 import Ordenar.Algoritmos.Gnome;
 import Ordenar.Algoritmos.Heap;
 import Ordenar.Algoritmos.Inserccion;
+import Ordenar.Algoritmos.IterativeQuick;
 import Ordenar.Algoritmos.Merge;
 import Ordenar.Algoritmos.OddEven;
 import Ordenar.Algoritmos.Pancake;
 import Ordenar.Algoritmos.Pigeonhole;
 import Ordenar.Algoritmos.Quick;
 import Ordenar.Algoritmos.RadixLSD;
+import Ordenar.Algoritmos.RecursiveBubble;
 import Ordenar.Algoritmos.Selection;
 import Ordenar.Algoritmos.Shell;
+import Ordenar.Algoritmos.Bitonic;
 
 public class MainAplicacion extends AdicionalesSorts {
 	// NOMBRES DE LOS ALGORITMOS
-	final String[] nombreAlgoritmos = { "Bubble", "Bubble Optimized", "Cocktail", "Cycle", "Gnome", "Heap", "Insertion",
-			"Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix LSD", "Selection", "Shell" };
+	final String[] nombreAlgoritmos = { "Bitonic", "Bubble", "Bubble Optimized", "Cocktail", "Cycle", "Gnome", "Heap",
+			"Insertion", "Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix LSD", "Recursive Bubble",
+			"Selection", "Shell" };
 	// DISEÑO GRAFICO DE LAS ANIMACIONES
 	final static String[] nombreGrafico = { "Escalera", "Piramide horizontal", "Pixel", "Circulo", "Circunferencia",
 			"Espiral" };
@@ -424,48 +428,57 @@ public class MainAplicacion extends AdicionalesSorts {
 			textos();
 			switch (seleccionAlgoritmo) {
 			case 0:
-				sorts = new Bubble(mainApp, barras.arrayPrincipal);
+				sorts = new Bitonic(mainApp, barras.arrayPrincipal);
 				break;
 			case 1:
-				sorts = new BubbleOptimized(mainApp, barras.arrayPrincipal);
+				sorts = new Bubble(mainApp, barras.arrayPrincipal);
 				break;
 			case 2:
-				sorts = new Cocktail(mainApp, barras.arrayPrincipal);
+				sorts = new BubbleOptimized(mainApp, barras.arrayPrincipal);
 				break;
 			case 3:
-				sorts = new Cycle(mainApp, barras.arrayPrincipal);
+				sorts = new Cocktail(mainApp, barras.arrayPrincipal);
 				break;
 			case 4:
-				sorts = new Gnome(mainApp, barras.arrayPrincipal);
+				sorts = new Cycle(mainApp, barras.arrayPrincipal);
 				break;
 			case 5:
-				sorts = new Heap(mainApp, barras.arrayPrincipal);
+				sorts = new Gnome(mainApp, barras.arrayPrincipal);
 				break;
 			case 6:
-				sorts = new Inserccion(mainApp, barras.arrayPrincipal);
+				sorts = new Heap(mainApp, barras.arrayPrincipal);
 				break;
 			case 7:
-				sorts = new Merge(mainApp, barras.arrayPrincipal);
+				sorts = new Inserccion(mainApp, barras.arrayPrincipal);
 				break;
 			case 8:
-				sorts = new OddEven(mainApp, barras.arrayPrincipal);
+				sorts = new IterativeQuick(mainApp, barras.arrayPrincipal);
 				break;
 			case 9:
-				sorts = new Pancake(mainApp, barras.arrayPrincipal);
+				sorts = new Merge(mainApp, barras.arrayPrincipal);
 				break;
 			case 10:
-				sorts = new Pigeonhole(mainApp, barras.arrayPrincipal);
+				sorts = new OddEven(mainApp, barras.arrayPrincipal);
 				break;
 			case 11:
-				sorts = new Quick(mainApp, barras.arrayPrincipal);
+				sorts = new Pancake(mainApp, barras.arrayPrincipal);
 				break;
 			case 12:
-				sorts = new RadixLSD(mainApp, barras.arrayPrincipal);
+				sorts = new Pigeonhole(mainApp, barras.arrayPrincipal);
 				break;
 			case 13:
-				sorts = new Selection(mainApp, barras.arrayPrincipal);
+				sorts = new Quick(mainApp, barras.arrayPrincipal);
 				break;
 			case 14:
+				sorts = new RadixLSD(mainApp, barras.arrayPrincipal);
+				break;
+			case 15:
+				sorts = new RecursiveBubble(mainApp, barras.arrayPrincipal);
+				break;
+			case 16:
+				sorts = new Selection(mainApp, barras.arrayPrincipal);
+				break;
+			case 17:
 				sorts = new Shell(mainApp, barras.arrayPrincipal);
 				break;
 			default:
@@ -473,7 +486,7 @@ public class MainAplicacion extends AdicionalesSorts {
 				break;
 			}
 
-			if (seleccionAlgoritmo < comboBoxTipoSort.getWidth())
+			if (DibujarGraficos.finSort)
 				sorts = new FinSort(mainApp, barras.arrayPrincipal);
 		}
 		reinicio();

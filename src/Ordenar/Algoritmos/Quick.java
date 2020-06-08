@@ -33,9 +33,9 @@ public class Quick extends AdicionalesSorts implements ISort {
 				aux = array[i];
 				array[i] = array[j];
 				array[j] = aux;
+				cambiosArray++;
 			}
 			accesoArray++;
-			cambiosArray++;
 			m.updateAnimaciones();
 		}
 
