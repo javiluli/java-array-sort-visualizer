@@ -6,14 +6,18 @@ La carpeta _data/_ almacena archivos como videos e imagenes que afectan visualme
 
 - ordenacionVisual.jar
 - data/
+<!--
 
 ## Descargar e iniciar aplicacion.
 
-```
+````
 git clone https://github.com/javiluli/Ordenacion-visual-Java.git
 cd Ordenacion-visual-Java/
-java -jar ordenacionVisual.jar
-```
+mkdir -p dist target
+javac src/Principal/MainAplicacion.java -sourcepath src -d target/
+jar -cvfm dist/MainAplicacion.jar manifest.mf -C target/ ./
+java -jar dist//MainAplicacion.jar
+``` -->
 
 ## Algoritmos utilizados.
 
@@ -50,3 +54,4 @@ java -jar ordenacionVisual.jar
 ![radix_lsd.gif](data/media/video/radix_lsd.gif)
 
 ---
+````

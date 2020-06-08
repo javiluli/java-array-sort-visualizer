@@ -6,6 +6,7 @@ import Principal.DibujarGraficos;
 import Principal.MainAplicacion;
 
 public class Bitonic extends AdicionalesSorts implements ISort {
+
 	public Bitonic(MainAplicacion m, int[] n) {
 		this.m = m;
 		sort(n);
@@ -19,11 +20,6 @@ public class Bitonic extends AdicionalesSorts implements ISort {
 		DibujarGraficos.finSort = true;
 	}
 
-	/*
-	 * The parameter dir indicates the sorting direction, ASCENDING or DESCENDING;
-	 * if (a[i] > a[j]) agrees with the direction, then a[i] and a[j] are
-	 * interchanged.
-	 */
 	void compAndSwap(int a[], int i, int j, int dir) {
 		if ((a[i] > a[j] && dir == 1) || (a[i] < a[j] && dir == 0)) {
 			// Swapping elements

@@ -7,7 +7,7 @@ import Principal.MainAplicacion;
 
 public class BubbleOptimized extends AdicionalesSorts implements ISort {
 
-	public BubbleOptimized(MainAplicacion m,int[] n) {
+	public BubbleOptimized(MainAplicacion m, int[] n) {
 		this.m = m;
 		sort(n);
 	}

@@ -27,33 +27,40 @@ import Adicionales.Memoria;
 import Adicionales.Social;
 import Ordenar.AdicionalesSorts;
 import Ordenar.FinSort;
-import Ordenar.Algoritmos.Bubble;
-import Ordenar.Algoritmos.BubbleOptimized;
-import Ordenar.Algoritmos.Cocktail;
-import Ordenar.Algoritmos.Cycle;
-import Ordenar.Algoritmos.Gnome;
-import Ordenar.Algoritmos.Heap;
-import Ordenar.Algoritmos.Inserccion;
-import Ordenar.Algoritmos.IterativeQuick;
-import Ordenar.Algoritmos.Merge;
-import Ordenar.Algoritmos.OddEven;
-import Ordenar.Algoritmos.Pancake;
-import Ordenar.Algoritmos.Pigeonhole;
-import Ordenar.Algoritmos.Quick;
-import Ordenar.Algoritmos.RadixLSD;
-import Ordenar.Algoritmos.RecursiveBubble;
-import Ordenar.Algoritmos.Selection;
-import Ordenar.Algoritmos.Shell;
-import Ordenar.Algoritmos.Bitonic;
+import Ordenar.Algoritmos.*;
 
 public class MainAplicacion extends AdicionalesSorts {
-	// NOMBRES DE LOS ALGORITMOS
-	final String[] nombreAlgoritmos = { "Bitonic", "Bubble", "Bubble Optimized", "Cocktail", "Cycle", "Gnome", "Heap",
-			"Insertion", "Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix LSD", "Recursive Bubble",
-			"Selection", "Shell" };
+	// NOMBRES DE LOS ALGORITMOS DE ORDENACION
+	final String[] nombreAlgoritmos = { 
+			"Bitonic",
+			"Bubble",
+			"Bubble Optimized",
+			"Cocktail",
+			"Cycle",
+			"Gnome",
+			"Heap",
+			"Insertion",
+			"Iterative Quick",
+			"Merge",
+			"Odd Even",
+			"Pancake",
+			"Pigeonhole",
+			"Quick",
+			"Radix",
+			"Recursive Bubble",
+			"Selection",
+			"Shell",
+			"Stooge",
+			"Tim" };
 	// DISEÑO GRAFICO DE LAS ANIMACIONES
-	final static String[] nombreGrafico = { "Escalera", "Piramide horizontal", "Pixel", "Circulo", "Circunferencia",
+	final static String[] nombreGrafico = { 
+			"Escalera",
+			"Piramide horizontal",
+			"Pixel",
+			"Circulo",
+			"Circunferencia",
 			"Espiral" };
+	
 	// JFRAME PRINCIPAL
 	private JFrame frame = new JFrame();
 	// JPANEL
@@ -64,8 +71,6 @@ public class MainAplicacion extends AdicionalesSorts {
 	// COMBOBOX
 	JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
 	static JComboBox<Object> comboBoxTiposGraficos = new JComboBox<Object>(nombreGrafico);
-//	private final JComboBox<String> comboBoxTipoSort = new JComboBox<String>();
-//	private static final JComboBox<Object> comboBoxTiposGraficos = new JComboBox<Object>();
 	// JLABEL
 	JLabel lblTitleAlgoritmo = new JLabel("Seleccionar algoritmo de ordenacion");
 	JLabel lblTitle = new JLabel("Panel de control");
@@ -97,6 +102,8 @@ public class MainAplicacion extends AdicionalesSorts {
 	// Variables antes y despues de la ejecucion de una ordenacion.
 	private int seleccionAlgoritmo = -1;
 	private boolean accederOrdenacion = true;
+
+	String nombreSort;
 
 	public static void main(String[] args) {
 		try {
@@ -417,6 +424,7 @@ public class MainAplicacion extends AdicionalesSorts {
 		lblTitle.setFont(new Font("Arial", Font.BOLD, 18));
 		panelMenu.add(lblTitle);
 	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -470,7 +478,7 @@ public class MainAplicacion extends AdicionalesSorts {
 				sorts = new Quick(mainApp, barras.arrayPrincipal);
 				break;
 			case 14:
-				sorts = new RadixLSD(mainApp, barras.arrayPrincipal);
+				sorts = new Radix(mainApp, barras.arrayPrincipal);
 				break;
 			case 15:
 				sorts = new RecursiveBubble(mainApp, barras.arrayPrincipal);
@@ -480,6 +488,12 @@ public class MainAplicacion extends AdicionalesSorts {
 				break;
 			case 17:
 				sorts = new Shell(mainApp, barras.arrayPrincipal);
+				break;
+			case 18:
+				sorts = new Stooge(mainApp, barras.arrayPrincipal);
+				break;
+			case 19:
+				sorts = new Tim(mainApp, barras.arrayPrincipal);
 				break;
 			default:
 				barras.desordenarArray();
