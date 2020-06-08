@@ -11,7 +11,6 @@ La carpeta _data/_ almacena archivos como videos e imagenes que afectan visualme
 
 ```
 git clone https://github.com/javiluli/Ordenacion-visual-Java.git
-cd Ordenacion-visual-Java/
 ```
 
 ---
