@@ -31,6 +31,7 @@ java -jar ordenacionVisual.jar
 - Quick
 - Radix LSD (base 4)
 - Selection
+- Shell
 
 ### Bubble optimized Sort
 

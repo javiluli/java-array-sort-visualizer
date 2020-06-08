@@ -41,11 +41,12 @@ import Ordenar.Algoritmos.Pigeonhole;
 import Ordenar.Algoritmos.Quick;
 import Ordenar.Algoritmos.RadixLSD;
 import Ordenar.Algoritmos.Selection;
+import Ordenar.Algoritmos.Shell;
 
 public class Main extends AdicionalesSorts {
 	// NOMBRES DE LOS ALGORITMOS
 	final String[] nombreAlgoritmos = { "Bubble", "Bubble Optimized", "Cocktail", "Cycle", "Gnome", "Heap", "Insertion",
-			"Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix LSD", "Selection" };
+			"Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix LSD", "Selection", "Shell" };
 	// DISEÑO GRAFICO DE LAS ANIMACIONES
 	final static String[] nombreGrafico = { "Escalera", "Piramide horizontal", "Pixel", "Circulo", "Circunferencia",
 			"Espiral" };
@@ -464,6 +465,9 @@ public class Main extends AdicionalesSorts {
 			case 13:
 				sorts = new Selection(mainApp, barras.arrayPrincipal);
 				break;
+			case 14:
+				sorts = new Shell(mainApp, barras.arrayPrincipal);
+				break;
 			default:
 				barras.desordenarArray();
 				break;
@@ -506,6 +510,11 @@ public class Main extends AdicionalesSorts {
 		textos();
 		panelBarras.repaint();
 		Delay.delay();
+	}
+
+	public void updateAnimacionesSoloDelaFijo() {
+		panelBarras.repaint();
+		Delay.delay(1);
 	}
 	// ---------------------------------------------------------------------------------------------
 

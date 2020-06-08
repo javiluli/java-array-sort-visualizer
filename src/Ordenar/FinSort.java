@@ -15,9 +15,8 @@ public class FinSort extends AdicionalesSorts implements ISort {
 		for (int i = 0; i < n.length; i++) {
 			DibujarGraficos.mismo = i + 1;
 			DibujarGraficos.anterioresMismo = i;
-			m.updateAnimacionesSinTiempo();
+			m.updateAnimacionesSoloDelaFijo();
 		}
 		DibujarGraficos.finSort = false;
-		m.updateAnimacionesSinTiempo();
 	}
 }
