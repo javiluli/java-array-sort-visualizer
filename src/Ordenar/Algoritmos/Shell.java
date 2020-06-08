@@ -3,11 +3,11 @@ package Ordenar.Algoritmos;
 import Ordenar.AdicionalesSorts;
 import Ordenar.ISort;
 import Principal.DibujarGraficos;
-import Principal.Main;
+import Principal.MainAplicacion;
 
 public class Shell extends AdicionalesSorts implements ISort {
 
-	public Shell(Main m, int[] n) {
+	public Shell(MainAplicacion m, int[] n) {
 		this.m = m;
 		sort(n);
 	}
@@ -23,9 +23,11 @@ public class Shell extends AdicionalesSorts implements ISort {
 				while (j >= increment && n[j - increment] > temp) {
 					n[j] = n[j - increment];
 					j = j - increment;
+					cambiosArray++;
 					m.updateAnimaciones();
 				}
 				n[j] = temp;
+				accesoArray++;
 			}
 			if (increment == 2) {
 				increment = 1;

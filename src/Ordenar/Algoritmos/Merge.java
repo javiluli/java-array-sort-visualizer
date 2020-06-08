@@ -3,11 +3,11 @@ package Ordenar.Algoritmos;
 import Ordenar.AdicionalesSorts;
 import Ordenar.ISort;
 import Principal.DibujarGraficos;
-import Principal.Main;
+import Principal.MainAplicacion;
 
 public class Merge extends AdicionalesSorts implements ISort {
 
-	public Merge(Main m, int[] n) {
+	public Merge(MainAplicacion m, int[] n) {
 		this.m = m;
 		sort(n);
 	}

@@ -3,11 +3,11 @@ package Ordenar.Algoritmos;
 import Ordenar.AdicionalesSorts;
 import Ordenar.ISort;
 import Principal.DibujarGraficos;
-import Principal.Main;
+import Principal.MainAplicacion;
 
 public class Quick extends AdicionalesSorts implements ISort {
 
-	public Quick(Main m, int[] n) {
+	public Quick(MainAplicacion m, int[] n) {
 		this.m = m;
 		setInicio(System.currentTimeMillis());
 		sort(n);

@@ -1,6 +1,6 @@
 package Ordenar;
 
-import Principal.Main;
+import Principal.MainAplicacion;
 
 public class AdicionalesSorts {
 	protected static long accesoArray;
@@ -8,7 +8,7 @@ public class AdicionalesSorts {
 	protected static long inicio;
 	protected long fin;
 	protected long tiempo;
-	public Main m;
+	public MainAplicacion m;
 
 	public AdicionalesSorts() {
 	}

@@ -1,6 +1,6 @@
 package Ordenar;
 
-import Principal.Main;
+import Principal.MainAplicacion;
 
 public class Sorts {
 //	protected static JPanel panel;
@@ -10,7 +10,7 @@ public class Sorts {
 	protected static long inicio;
 	protected long fin;
 	protected long tiempo;
-	public Main m;
+	public MainAplicacion m;
 
 	public Sorts() {
 	}

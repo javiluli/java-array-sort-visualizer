@@ -1,11 +1,11 @@
 package Ordenar;
 
 import Principal.DibujarGraficos;
-import Principal.Main;
+import Principal.MainAplicacion;
 
 public class FinSort extends AdicionalesSorts implements ISort {
 
-	public FinSort(Main m, int[] n) {
+	public FinSort(MainAplicacion m, int[] n) {
 		this.m = m;
 		sort(n);
 	}
@@ -15,7 +15,7 @@ public class FinSort extends AdicionalesSorts implements ISort {
 		for (int i = 0; i < n.length; i++) {
 			DibujarGraficos.mismo = i + 1;
 			DibujarGraficos.anterioresMismo = i;
-			m.updateAnimacionesSoloDelaFijo();
+			m.updateAnimacionesSoloDelayFijo();
 		}
 		DibujarGraficos.finSort = false;
 	}

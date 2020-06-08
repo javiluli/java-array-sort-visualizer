@@ -43,7 +43,7 @@ import Ordenar.Algoritmos.RadixLSD;
 import Ordenar.Algoritmos.Selection;
 import Ordenar.Algoritmos.Shell;
 
-public class Main extends AdicionalesSorts {
+public class MainAplicacion extends AdicionalesSorts {
 	// NOMBRES DE LOS ALGORITMOS
 	final String[] nombreAlgoritmos = { "Bubble", "Bubble Optimized", "Cocktail", "Cycle", "Gnome", "Heap", "Insertion",
 			"Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix LSD", "Selection", "Shell" };
@@ -96,7 +96,7 @@ public class Main extends AdicionalesSorts {
 
 	public static void main(String[] args) {
 		try {
-			Main window = new Main();
+			MainAplicacion window = new MainAplicacion();
 			window.main();
 		} catch (Exception e) {
 		}
@@ -107,18 +107,18 @@ public class Main extends AdicionalesSorts {
 	DibujarGraficos barras;
 	SliderPersonalizado sliderPersonal = new SliderPersonalizado();
 
-	public Main() {
+	public MainAplicacion() {
 	}
 
 	Memoria memoria = new Memoria();
 
-	Main(Memoria memoria) {
+	MainAplicacion(Memoria memoria) {
 		this.memoria = memoria;
 	}
 
 	AdicionalesSorts sorts = new AdicionalesSorts();
 
-	Main(AdicionalesSorts sorts) {
+	MainAplicacion(AdicionalesSorts sorts) {
 		this.sorts = sorts;
 	}
 	// ---------------------------------------------------------------------------------------------
@@ -419,7 +419,7 @@ public class Main extends AdicionalesSorts {
 	 * Seleccion se cada uno de los metodos de ordenacion.
 	 */
 	public void menuSorting() {
-		Main mainApp = new Main();
+		MainAplicacion mainApp = new MainAplicacion();
 		if (!accederOrdenacion) {
 			textos();
 			switch (seleccionAlgoritmo) {
@@ -492,6 +492,10 @@ public class Main extends AdicionalesSorts {
 		calcularMemoria();
 	}
 
+	/**
+	 * Actualiza los textos, el tiempo final, los graficos y pone Delay fijo a 1 ms
+	 * desde su clase.
+	 */
 	public void updateAnimaciones() {
 		textos();
 		fin = System.currentTimeMillis();
@@ -499,6 +503,11 @@ public class Main extends AdicionalesSorts {
 		Delay.delay();
 	}
 
+	/**
+	 * Actualiza los textos, el tiempo final, los graficos y pone Delay editable.
+	 *
+	 * @param delay the delay
+	 */
 	public void updateAnimaciones(int delay) {
 		textos();
 		fin = System.currentTimeMillis();
@@ -506,13 +515,19 @@ public class Main extends AdicionalesSorts {
 		Delay.delay(delay);
 	}
 
+	/**
+	 * Actualiza los textos, los graficos y pone Delay. No cuenta el tiempo final.
+	 */
 	public void updateAnimacionesSinTiempo() {
 		textos();
 		panelBarras.repaint();
 		Delay.delay();
 	}
 
-	public void updateAnimacionesSoloDelaFijo() {
+	/**
+	 * Actualiza los graficos y pone Delay fijo a 1 ms.
+	 */
+	public void updateAnimacionesSoloDelayFijo() {
 		panelBarras.repaint();
 		Delay.delay(1);
 	}

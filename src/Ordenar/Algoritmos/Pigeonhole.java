@@ -3,10 +3,10 @@ package Ordenar.Algoritmos;
 import Ordenar.AdicionalesSorts;
 import Ordenar.ISort;
 import Principal.DibujarGraficos;
-import Principal.Main;
+import Principal.MainAplicacion;
 
 public class Pigeonhole extends AdicionalesSorts implements ISort {
-	public Pigeonhole(Main m, int[] n) {
+	public Pigeonhole(MainAplicacion m, int[] n) {
 		this.m = m;
 		sort(n);
 	}

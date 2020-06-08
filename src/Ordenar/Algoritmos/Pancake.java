@@ -3,10 +3,10 @@ package Ordenar.Algoritmos;
 import Ordenar.AdicionalesSorts;
 import Ordenar.ISort;
 import Principal.DibujarGraficos;
-import Principal.Main;
+import Principal.MainAplicacion;
 
 public class Pancake extends AdicionalesSorts implements ISort {
-	public Pancake(Main m, int[] n) {
+	public Pancake(MainAplicacion m, int[] n) {
 		this.m = m;
 		sort(n);
 	}

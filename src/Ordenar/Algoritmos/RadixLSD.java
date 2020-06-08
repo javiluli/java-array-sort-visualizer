@@ -3,10 +3,10 @@ package Ordenar.Algoritmos;
 import Ordenar.AdicionalesSorts;
 import Ordenar.ISort;
 import Principal.DibujarGraficos;
-import Principal.Main;
+import Principal.MainAplicacion;
 
 public class RadixLSD extends AdicionalesSorts implements ISort {
-	public RadixLSD(Main m, int[] n) {
+	public RadixLSD(MainAplicacion m, int[] n) {
 		this.m = m;
 		sort(n);
 	}
@@ -45,8 +45,10 @@ public class RadixLSD extends AdicionalesSorts implements ISort {
 		int[] buckets = new int[len];
 		int[] output = new int[array.length];
 
-		for (int i = 0; i < len; i++)
+		for (int i = 0; i < len; i++) {
 			buckets[i] = 0;
+			accesoArray++;
+		}
 
 		for (int i = 0; i < array.length; i++) {
 			bucketIndex = (int) (((array[i] - minValue) / exponent) % len);
@@ -54,19 +56,23 @@ public class RadixLSD extends AdicionalesSorts implements ISort {
 			accesoArray++;
 		}
 
-		for (int i = 1; i < len; i++)
+		for (int i = 1; i < len; i++) {
 			buckets[i] += buckets[i - 1];
+			accesoArray++;
+		}
 
 		for (int i = array.length - 1; i >= 0; i--) {
 			bucketIndex = (int) (((array[i] - minValue) / exponent) % len);
-			accesoArray++;
 			output[--buckets[bucketIndex]] = array[i];
 			accesoArray++;
+			cambiosArray++;
+
 		}
 
 		for (int i = 0; i < array.length; i++) {
 			array[i] = output[i];
 			accesoArray++;
+			cambiosArray++;
 			m.updateAnimaciones();
 		}
 

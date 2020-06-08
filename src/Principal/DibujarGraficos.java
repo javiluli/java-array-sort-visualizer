@@ -54,7 +54,7 @@ public class DibujarGraficos extends TransformCentrarGraficos {
 			arrayPrincipal[i] = arrayPrincipal[swapWidthIndex];
 			arrayPrincipal[swapWidthIndex] = temp;
 			Delay.delay(1);
-			Main.panelBarras.repaint();
+			MainAplicacion.panelBarras.repaint();
 		}
 	}
 
@@ -67,7 +67,7 @@ public class DibujarGraficos extends TransformCentrarGraficos {
 	public void paintComponent(Graphics g) {
 		Graphics2D graphics = (Graphics2D) g;
 		super.paintComponent(graphics);
-		int opcionGrafico = Main.comboBoxTiposGraficos.getSelectedIndex();
+		int opcionGrafico = MainAplicacion.comboBoxTiposGraficos.getSelectedIndex();
 		configEstilo(opcionGrafico, graphics);
 
 		for (int i = 0; i < NUM_BARS; i++) {
@@ -118,11 +118,11 @@ public class DibujarGraficos extends TransformCentrarGraficos {
 		// Simepre que sean Objetos Transfomaciones tendran multicolor.
 		if (almacenarEstilos().get(opcionGrafico) instanceof TransformCentrarGraficos) {
 			graphics.translate(translateX, translateY);
-			Main.sliderTamBarras.setMinimum(6);
+			MainAplicacion.sliderTamBarras.setMinimum(6);
 			activarMulticolor = true;
-			Main.tglbtnMulticolor.setSelected(activarMulticolor);
+			MainAplicacion.tglbtnMulticolor.setSelected(activarMulticolor);
 		} else {
-			Main.sliderTamBarras.setMinimum(1);
+			MainAplicacion.sliderTamBarras.setMinimum(1);
 		}
 	}
 

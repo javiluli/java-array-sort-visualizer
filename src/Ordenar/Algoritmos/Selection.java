@@ -3,18 +3,18 @@ package Ordenar.Algoritmos;
 import Ordenar.AdicionalesSorts;
 import Ordenar.ISort;
 import Principal.DibujarGraficos;
-import Principal.Main;
+import Principal.MainAplicacion;
 
 public class Selection extends AdicionalesSorts implements ISort {
 
-	public Selection(Main m, int[] n) {
+	public Selection(MainAplicacion m, int[] n) {
 		this.m = m;
 		sort(n);
 	}
 
 	@Override
 	public void sort( int[] n) {
-		m = new Main();
+		m = new MainAplicacion();
 		setInicio(System.currentTimeMillis());
 		for (int i = 0; i < n.length; i++) {
 			int min = i;
