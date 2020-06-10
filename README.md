@@ -34,7 +34,7 @@ java -jar dist//ordenacionVisual.jar
 ## Disponibles 20 tipos de algoritmos.
 
 - Bitonic sort
-- Bubble sort
+- [Bubble sort](https://www.youtube.com/watch?v=XaJzmQhKbsM&feature=youtu.be)
 - Bubble Optimized sort
 - Cocktail sort
 - Cycle sort
