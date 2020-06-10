@@ -20,7 +20,7 @@ git clone https://github.com/javiluli/Ordenacion-visual-Java.git
 ```
 mkdir -p dist target
 javac src/Principal/MainAplicacion.java -sourcepath src -d target/
-jar -cvfm dist/MainAplicacion.jar manifest.mf -C target/ ./
+jar -cvfm dist/ordenacionVisual.jar manifest.mf -C target/ ./
 ```
 
 ---
@@ -28,7 +28,7 @@ jar -cvfm dist/MainAplicacion.jar manifest.mf -C target/ ./
 ## Iniciar aplicacion
 
 ```
-java -jar dist//MainAplicacion.jar
+java -jar dist//ordenacionVisual.jar
 ```
 
 ## Disponibles 20 tipos de algoritmos.

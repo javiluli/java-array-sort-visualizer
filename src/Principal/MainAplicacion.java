@@ -55,12 +55,13 @@ public class MainAplicacion extends AdicionalesSorts {
 			"Tim" };
 	// DISEÑO GRAFICO DE LAS ANIMACIONES
 	final static String[] nombreGrafico = { 
-			"Escalera",
+			"Barras clasicas",
 			"Piramide horizontal",
+			"Piramide vertical",
 			"Pixel",
-			"Circulo",
+			"Circulo con barras",
 			"Circunferencia",
-			"Espiral" };
+			"Espiral con barras" };
 	
 	// JFRAME PRINCIPAL
 	private JFrame frame = new JFrame();

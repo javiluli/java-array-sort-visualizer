@@ -9,12 +9,13 @@ import java.util.Random;
 import java.util.Vector;
 
 import Adicionales.Delay;
-import EstilosGraficos.Circulo;
-import EstilosGraficos.Circunferencia;
-import EstilosGraficos.Columnas;
+import EstilosGraficos.CirculoBarras;
+import EstilosGraficos.CircunferenciaPunteada;
+import EstilosGraficos.Barras;
 import EstilosGraficos.Espital;
 import EstilosGraficos.EstiloGrafico;
-import EstilosGraficos.Piramide;
+import EstilosGraficos.PiramideHorizontal;
+import EstilosGraficos.PiramideVertical;
 import EstilosGraficos.Pixel;
 import EstilosGraficos.TransformCentrarGraficos;
 
@@ -98,11 +99,12 @@ public class DibujarGraficos extends TransformCentrarGraficos {
 	 */
 	public Vector<EstiloGrafico> almacenarEstilos() {
 		Vector<EstiloGrafico> estilos = new Vector<EstiloGrafico>();
-		estilos.add(new Columnas());
-		estilos.add(new Piramide());
+		estilos.add(new Barras());
+		estilos.add(new PiramideHorizontal());
+		estilos.add(new PiramideVertical());
 		estilos.add(new Pixel());
-		estilos.add(new Circulo());
-		estilos.add(new Circunferencia());
+		estilos.add(new CirculoBarras());
+		estilos.add(new CircunferenciaPunteada());
 		estilos.add(new Espital());
 		return estilos;
 	}
@@ -136,21 +138,24 @@ public class DibujarGraficos extends TransformCentrarGraficos {
 	private void menuSeleccionGraficos(int opcionGrafico, int i, Graphics2D graphics) {
 		switch (opcionGrafico) {
 		case 0:
-			estiloGrafico = new Columnas(i, arrayPrincipal, graphics);
+			estiloGrafico = new Barras(i, arrayPrincipal, graphics);
 			break;
 		case 1:
-			estiloGrafico = new Piramide(i, arrayPrincipal, graphics);
+			estiloGrafico = new PiramideHorizontal(i, arrayPrincipal, graphics);
 			break;
 		case 2:
-			estiloGrafico = new Pixel(i, arrayPrincipal, graphics);
+			estiloGrafico = new PiramideVertical(i, arrayPrincipal, graphics);
 			break;
 		case 3:
-			estiloGrafico = new Circulo(graphics);
+			estiloGrafico = new Pixel(i, arrayPrincipal, graphics);
 			break;
 		case 4:
-			estiloGrafico = new Circunferencia(i, graphics);
+			estiloGrafico = new CirculoBarras(graphics);
 			break;
 		case 5:
+			estiloGrafico = new CircunferenciaPunteada(i, graphics);
+			break;
+		case 6:
 			estiloGrafico = new Espital(i, arrayPrincipal, graphics);
 			break;
 		}
