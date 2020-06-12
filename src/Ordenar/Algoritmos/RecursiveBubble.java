@@ -6,6 +6,7 @@ import Principal.DibujarGraficos;
 import Principal.MainAplicacion;
 
 public class RecursiveBubble extends AdicionalesSorts implements ISort {
+
 	public RecursiveBubble(MainAplicacion m, int[] n) {
 		this.m = m;
 		sort(n);
@@ -14,11 +15,11 @@ public class RecursiveBubble extends AdicionalesSorts implements ISort {
 	// @Override
 	public void sort(int[] arr) {
 		setInicio(System.currentTimeMillis());
-		bubbleSort(arr, arr.length);
+		recursiveBubbleSort(arr, arr.length);
 		DibujarGraficos.finSort = true;
 	}
 
-	public void bubbleSort(int arr[], int n) {
+	public void recursiveBubbleSort(int arr[], int n) {
 		if (n == 1)
 			return;
 
@@ -31,7 +32,7 @@ public class RecursiveBubble extends AdicionalesSorts implements ISort {
 			}
 		accesoArray++;
 		m.updateAnimaciones();
-		bubbleSort(arr, n - 1);
+		recursiveBubbleSort(arr, n - 1);
 		m.textos();
 	}
 }

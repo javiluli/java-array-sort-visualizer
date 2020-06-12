@@ -32,37 +32,13 @@ import Ordenar.Algoritmos.*;
 
 public class MainAplicacion extends AdicionalesSorts {
 	// NOMBRES DE LOS ALGORITMOS DE ORDENACION
-	final String[] nombreAlgoritmos = { 
-			"Bitonic",
-			"Bubble",
-			"Bubble Optimized",
-			"Cocktail",
-			"Cycle",
-			"Gnome",
-			"Heap",
-			"Insertion",
-			"Iterative Quick",
-			"Merge",
-			"Odd Even",
-			"Pancake",
-			"Pigeonhole",
-			"Quick",
-			"Radix",
-			"Recursive Bubble",
-			"Selection",
-			"Shell",
-			"Stooge",
-			"Tim" };
+	final String[] nombreAlgoritmos = { "Bitonic", "Bubble", "Bubble Optimized", "Cocktail", "Cycle", "Gnome", "Heap",
+			"Insertion", "Iterative Quick", "Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix",
+			"Recursive Bubble", "Recursive Insertion", "Recursive Selection", "Selection", "Shell", "Stooge", "Tim" };
 	// DISEÑO GRAFICO DE LAS ANIMACIONES
-	final static String[] nombreGrafico = { 
-			"Barras clasicas",
-			"Piramide horizontal",
-			"Piramide vertical",
-			"Pixel",
-			"Circulo con barras",
-			"Circunferencia",
-			"Espiral con barras" };
-	
+	final static String[] nombreGrafico = { "Barras clasicas", "Piramide horizontal", "Piramide vertical", "Pixel",
+			"Circulo con barras", "Circunferencia", "Espiral con barras" };
+
 	// JFRAME PRINCIPAL
 	private JFrame frame = new JFrame();
 	// JPANEL
@@ -142,7 +118,7 @@ public class MainAplicacion extends AdicionalesSorts {
 		barras = new DibujarGraficos();
 		barras.setBounds(0, 0, DibujarGraficos.WIN_WIDTH, DibujarGraficos.WIN_HEIGHT);
 		panelBarras.add(barras);
-		barras.setLayout(null);
+
 		panelBarras.setVisible(true);
 		frame.setResizable(false);
 		frame.setTitle("Visualizador de ordenacion de matrices");
@@ -487,15 +463,21 @@ public class MainAplicacion extends AdicionalesSorts {
 				sorts = new RecursiveBubble(mainApp, barras.arrayPrincipal);
 				break;
 			case 16:
-				sorts = new Selection(mainApp, barras.arrayPrincipal);
+				sorts = new RecursiveInsertion(mainApp, barras.arrayPrincipal);
 				break;
 			case 17:
-				sorts = new Shell(mainApp, barras.arrayPrincipal);
+				sorts = new RecursiveSelection(mainApp, barras.arrayPrincipal);
 				break;
 			case 18:
-				sorts = new Stooge(mainApp, barras.arrayPrincipal);
+				sorts = new Selection(mainApp, barras.arrayPrincipal);
 				break;
 			case 19:
+				sorts = new Shell(mainApp, barras.arrayPrincipal);
+				break;
+			case 20:
+				sorts = new Stooge(mainApp, barras.arrayPrincipal);
+				break;
+			case 21:
 				sorts = new Tim(mainApp, barras.arrayPrincipal);
 				break;
 			default:
