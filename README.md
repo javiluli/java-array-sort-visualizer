@@ -40,7 +40,7 @@ java -jar dist//ordenacionVisual.jar
 - [Cycle sort](https://youtu.be/v_hKwLFV5Ck)
 - [Gnome sort](https://youtu.be/JnEOrhdxe1w)
 - [Heap sort](https://youtu.be/IYgJceePT5w)
-- Insertion sort
+- [Insertion sort](https://youtu.be/Hfh56tGWVV4)
 - Iterative Quick sort
 - Merge sort
 - Odd Even sort
