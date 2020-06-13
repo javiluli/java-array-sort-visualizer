@@ -7,15 +7,15 @@ import Principal.MainAplicacion;
 
 public class Quick extends AdicionalesSorts implements ISort {
 
-	public Quick(MainAplicacion m, int[] n) {
-		this.m = m;
+	public Quick(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
 		setInicio(System.currentTimeMillis());
-		sort(n);
+		sort(array);
 	}
 
 	@Override
-	public void sort(int[] n) {
-		quickSort(n, 0, n.length - 1);
+	public void sort(int[] array) {
+		quickSort(array, 0, array.length - 1);
 		DibujarGraficos.finSort = true;
 	}
 
@@ -36,7 +36,7 @@ public class Quick extends AdicionalesSorts implements ISort {
 				cambiosArray++;
 			}
 			accesoArray++;
-			m.updateAnimaciones();
+			mainApp.updateAnimaciones();
 		}
 
 		array[izq] = array[j];
@@ -45,6 +45,6 @@ public class Quick extends AdicionalesSorts implements ISort {
 			quickSort(array, izq, j - 1);
 		if (j + 1 < der)
 			quickSort(array, j + 1, der);
-		m.updateAnimaciones();
+		mainApp.updateAnimaciones();
 	}
 }

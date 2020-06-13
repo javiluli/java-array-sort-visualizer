@@ -6,41 +6,43 @@ import Principal.DibujarGraficos;
 import Principal.MainAplicacion;
 
 public class Pancake extends AdicionalesSorts implements ISort {
-	public Pancake(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+
+	public Pancake(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	@Override
-	public void sort(int[] n) {
+	public void sort(int[] array) {
 		setInicio(System.currentTimeMillis());
 
-		for (int curr_size = n.length; curr_size > 1; --curr_size) {
-			int mi = findMax(n, curr_size);
+		for (int curr_size = array.length; curr_size > 1; --curr_size) {
+			int mi = findMax(array, curr_size);
 			if (mi != curr_size - 1) {
-				flip(n, mi);
-				flip(n, curr_size - 1);
+				flip(array, mi);
+				flip(array, curr_size - 1);
 			}
-			m.updateAnimaciones();
+			mainApp.updateAnimaciones();
 		}
 		DibujarGraficos.finSort = true;
 	}
 
-	static void flip(int arr[], int i) {
+	static void flip(int array[], int i) {
 		int temp, start = 0;
 		while (start < i) {
-			temp = arr[start];
-			arr[start] = arr[i];
-			arr[i] = temp;
+			temp = array[start];
+			array[start] = array[i];
+			array[i] = temp;
 			start++;
 			i--;
+			cambiosArray++;
 		}
 	}
 
-	static int findMax(int arr[], int n) {
+	static int findMax(int array[], int n) {
 		int mi, i;
 		for (mi = 0, i = 0; i < n; ++i)
-			if (arr[i] > arr[mi])
+			if (array[i] > array[mi])
 				mi = i;
 		return mi;
 	}

@@ -7,33 +7,37 @@ import Principal.MainAplicacion;
 
 public class Shell extends AdicionalesSorts implements ISort {
 
-	public Shell(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+	public Shell(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	@Override
-	public void sort(int[] n) {
+	public void sort(int[] array) {
 		setInicio(System.currentTimeMillis());
-		int increment = n.length / 2;
+		int increment = array.length / 2;
+
 		while (increment > 0) {
-			for (int i = increment; i < n.length; i++) {
+
+			for (int i = increment; i < array.length; i++) {
 				int j = i;
-				int temp = n[i];
-				while (j >= increment && n[j - increment] > temp) {
-					n[j] = n[j - increment];
+				int temp = array[i];
+
+				while (j >= increment && array[j - increment] > temp) {
+					array[j] = array[j - increment];
 					j = j - increment;
 					cambiosArray++;
-					m.updateAnimaciones();
+					mainApp.updateAnimaciones();
 				}
-				n[j] = temp;
+				array[j] = temp;
 				accesoArray++;
 			}
-			if (increment == 2) {
+
+			if (increment == 2)
 				increment = 1;
-			} else {
+			else
 				increment *= (5.0 / 11);
-			}
+
 		}
 		DibujarGraficos.finSort = true;
 	}

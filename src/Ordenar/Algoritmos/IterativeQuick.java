@@ -6,42 +6,44 @@ import Principal.DibujarGraficos;
 import Principal.MainAplicacion;
 
 public class IterativeQuick extends AdicionalesSorts implements ISort {
-	public IterativeQuick(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+	public IterativeQuick(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	// @Override
-	public void sort(int[] arr) {
+	public void sort(int[] array) {
 		setInicio(System.currentTimeMillis());
-		qSort(arr, 0, arr.length - 1);
+		qSort(array, 0, array.length - 1);
 		DibujarGraficos.finSort = true;
 	}
 
-	private int partition(int arr[], int low, int high) {
-		int pivot = arr[high];
+	private int partition(int array[], int low, int high) {
+		int pivot = array[high];
 		int i = (low - 1);
 		for (int j = low; j <= high - 1; j++) {
-			if (arr[j] <= pivot) {
+			if (array[j] <= pivot) {
 				i++;
-				int temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
+				int temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+				cambiosArray++;
 			}
-			m.updateAnimaciones();
+			mainApp.updateAnimaciones();
 		}
 
-		int temp = arr[i + 1];
-		arr[i + 1] = arr[high];
-		arr[high] = temp;
+		int temp = array[i + 1];
+		array[i + 1] = array[high];
+		array[high] = temp;
+		cambiosArray++;
 		return i + 1;
 	}
 
-	private void qSort(int arr[], int low, int high) {
+	private void qSort(int array[], int low, int high) {
 		if (low < high) {
-			int pi = partition(arr, low, high);
-			qSort(arr, low, pi - 1);
-			qSort(arr, pi + 1, high);
+			int pi = partition(array, low, high);
+			qSort(array, low, pi - 1);
+			qSort(array, pi + 1, high);
 		}
 	}
 }

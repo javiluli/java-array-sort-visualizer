@@ -6,41 +6,41 @@ import Principal.DibujarGraficos;
 import Principal.MainAplicacion;
 
 public class OddEven extends AdicionalesSorts implements ISort {
-	public OddEven(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+	public OddEven(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	@Override
-	public void sort( int[] n) {
+	public void sort( int[] array) {
 		boolean isSorted = false;
 		setInicio(System.currentTimeMillis());
 		while (!isSorted) {
 			isSorted = true;
 			int temp = 0;
-			for (int i = 1; i <= n.length - 2; i = i + 2) {
+			for (int i = 1; i <= array.length - 2; i = i + 2) {
 				accesoArray++;
-				if (n[i] > n[i + 1]) {
-					temp = n[i];
-					n[i] = n[i + 1];
-					n[i + 1] = temp;
+				if (array[i] > array[i + 1]) {
+					temp = array[i];
+					array[i] = array[i + 1];
+					array[i + 1] = temp;
 					isSorted = false;
 					cambiosArray++;
 				}
-				m.updateAnimaciones();
+				mainApp.updateAnimaciones();
 			}
-			for (int i = 0; i <= n.length - 2; i = i + 2) {
+			for (int i = 0; i <= array.length - 2; i = i + 2) {
 				accesoArray++;
-				if (n[i] > n[i + 1]) {
-					temp = n[i];
-					n[i] = n[i + 1];
-					n[i + 1] = temp;
+				if (array[i] > array[i + 1]) {
+					temp = array[i];
+					array[i] = array[i + 1];
+					array[i + 1] = temp;
 					isSorted = false;
 					cambiosArray++;
 				}
-				m.updateAnimaciones();
+				mainApp.updateAnimaciones();
 			}
-			m.textos();
+			mainApp.textos();
 		}
 		DibujarGraficos.finSort = true;
 	}

@@ -7,30 +7,30 @@ import Principal.MainAplicacion;
 
 public class Selection extends AdicionalesSorts implements ISort {
 
-	public Selection(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+	public Selection(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	@Override
-	public void sort( int[] n) {
-		m = new MainAplicacion();
+	public void sort( int[] array) {
+		mainApp = new MainAplicacion();
 		setInicio(System.currentTimeMillis());
-		for (int i = 0; i < n.length; i++) {
+		for (int i = 0; i < array.length; i++) {
 			int min = i;
 
-			for (int j = i + 1; j < n.length; j++) {
-				if (n[j] < n[min]) {
+			for (int j = i + 1; j < array.length; j++) {
+				if (array[j] < array[min]) {
 					min = j;
 					cambiosArray++;
 				}
 				accesoArray += 2;
 			}
-			int aux = n[i];
-			n[i] = n[min];
-			n[min] = aux;
+			int aux = array[i];
+			array[i] = array[min];
+			array[min] = aux;
 
-			m.updateAnimaciones();
+			mainApp.updateAnimaciones();
 		}
 		DibujarGraficos.finSort = true;
 	}

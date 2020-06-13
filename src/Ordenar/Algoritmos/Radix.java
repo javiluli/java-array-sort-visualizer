@@ -6,22 +6,21 @@ import Principal.DibujarGraficos;
 import Principal.MainAplicacion;
 
 public class Radix extends AdicionalesSorts implements ISort {
-	public Radix(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+	public Radix(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	@Override
-	public void sort(int[] n) {
+	public void sort(int[] array) {
 		setInicio(System.currentTimeMillis());
-		ordenar(n, 4);
+		ordenar(array, 4);
 		DibujarGraficos.finSort = true;
 	}
 
 	public void ordenar(int[] array, int len) {
-		if (array.length == 0) {
+		if (array.length == 0)
 			return;
-		}
 
 		int minValue = array[0];
 		int maxValue = array[0];
@@ -72,7 +71,7 @@ public class Radix extends AdicionalesSorts implements ISort {
 			array[i] = output[i];
 			accesoArray++;
 			cambiosArray++;
-			m.updateAnimaciones();
+			mainApp.updateAnimaciones();
 		}
 
 	}

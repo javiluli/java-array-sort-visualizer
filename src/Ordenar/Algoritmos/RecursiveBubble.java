@@ -8,31 +8,32 @@ import Principal.MainAplicacion;
 public class RecursiveBubble extends AdicionalesSorts implements ISort {
 
 	public RecursiveBubble(MainAplicacion m, int[] n) {
-		this.m = m;
+		this.mainApp = m;
 		sort(n);
 	}
 
 	// @Override
-	public void sort(int[] arr) {
+	public void sort(int[] array) {
 		setInicio(System.currentTimeMillis());
-		recursiveBubbleSort(arr, arr.length);
+		recursiveBubbleSort(array, array.length);
 		DibujarGraficos.finSort = true;
 	}
 
-	public void recursiveBubbleSort(int arr[], int n) {
-		if (n == 1)
+	public void recursiveBubbleSort(int array[], int len) {
+		if (len == 1)
 			return;
 
-		for (int i = 0; i < n - 1; i++)
-			if (arr[i] > arr[i + 1]) {
-				int temp = arr[i];
-				arr[i] = arr[i + 1];
-				arr[i + 1] = temp;
+		for (int i = 0; i < len - 1; i++) {
+			if (array[i] > array[i + 1]) {
+				int temp = array[i];
+				array[i] = array[i + 1];
+				array[i + 1] = temp;
 				cambiosArray++;
 			}
-		accesoArray++;
-		m.updateAnimaciones();
-		recursiveBubbleSort(arr, n - 1);
-		m.textos();
+			accesoArray++;
+		}
+		mainApp.updateAnimaciones();
+		recursiveBubbleSort(array, len - 1);
+		mainApp.textos();
 	}
 }

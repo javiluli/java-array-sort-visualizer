@@ -7,25 +7,25 @@ import Principal.MainAplicacion;
 
 public class Inserccion extends AdicionalesSorts implements ISort {
 
-	public Inserccion(MainAplicacion m,int[] n) {
-		this.m = m;
-		sort(n);
+	public Inserccion(MainAplicacion mainApp,int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	@Override
-	public void sort(int[] n) {
+	public void sort(int[] array) {
 		setInicio(System.currentTimeMillis());
-		for (int i = 0; i < n.length; i++) {
+		for (int i = 0; i < array.length; i++) {
 			int pos = i;
-			int aux = n[i];
+			int aux = array[i];
 
-			while ((pos > 0) && (n[pos - 1] > aux)) {
-				n[pos] = n[pos - 1];
+			while ((pos > 0) && (array[pos - 1] > aux)) {
+				array[pos] = array[pos - 1];
 				pos--;
 				cambiosArray++;
 				accesoArray += 2;
-				n[pos] = aux;
-				m.updateAnimaciones();
+				array[pos] = aux;
+				mainApp.updateAnimaciones();
 			}
 		}
 		DibujarGraficos.finSort = true;

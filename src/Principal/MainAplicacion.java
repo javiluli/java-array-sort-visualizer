@@ -30,25 +30,59 @@ import Ordenar.AdicionalesSorts;
 import Ordenar.FinSort;
 import Ordenar.Algoritmos.*;
 
+/**
+ * @author Javier Delgado Rodriguez
+ */
 public class MainAplicacion extends AdicionalesSorts {
 	// NOMBRES DE LOS ALGORITMOS DE ORDENACION
-	final String[] nombreAlgoritmos = { "Bitonic", "Bubble", "Bubble Optimized", "Cocktail", "Cycle", "Gnome", "Heap",
-			"Insertion", "Iterative Quick", "Merge", "Odd Even", "Pancake", "Pigeonhole", "Quick", "Radix",
-			"Recursive Bubble", "Recursive Insertion", "Recursive Selection", "Selection", "Shell", "Stooge", "Tim" };
+	final String[] nombreAlgoritmos = { 
+			"Bitonic", 
+			"Bubble", 
+			"Bubble Optimized", 
+			"Cocktail", 
+			"Cycle", 
+			"Gnome", 
+			"Heap",
+			"Insertion", 
+			"Iterative Quick", 
+			"Merge", 
+			"Odd Even", 
+			"Pancake", 
+			"Pigeonhole", 
+			"Quick", 
+			"Radix",
+			"Recursive Bubble", 
+			"Recursive Insertion", 
+			"Recursive Selection", 
+			"Selection", 
+			"Shell", 
+			"Stooge", 
+			"Tim" };
 	// DISEÑO GRAFICO DE LAS ANIMACIONES
-	final static String[] nombreGrafico = { "Barras clasicas", "Piramide horizontal", "Piramide vertical", "Pixel",
-			"Circulo con barras", "Circunferencia", "Espiral con barras" };
+	final static String[] nombreEstilosGraficos = { 
+			"Barras clasicas", 
+			"Piramide horizontal", 
+			"Piramide vertical",
+			"Pixel", 
+			"Circulo con barras", 
+			"Circunferencia", 
+			"Espiral con barras" };
 
 	// JFRAME PRINCIPAL
 	private JFrame frame = new JFrame();
+	
 	// JPANEL
 	JPanel panelMenu = new JPanel();
 	JPanel panelOpcionesMenu = new JPanel();
-	Panel panelVisorMemoria = new Panel();
 	static JPanel panelBarras = new JPanel();
+	
+	// PANEL
+	Panel panelVisorMemoria = new Panel();
+	
 	// COMBOBOX
 	JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
-	static JComboBox<Object> comboBoxTiposGraficos = new JComboBox<Object>(nombreGrafico);
+	static JComboBox<Object> comboBoxTiposGraficos = new JComboBox<Object>(nombreEstilosGraficos);
+	
 	// JLABEL
 	JLabel lblTitleAlgoritmo = new JLabel("Seleccionar algoritmo de ordenacion");
 	JLabel lblTitle = new JLabel("Panel de control");
@@ -62,6 +96,7 @@ public class MainAplicacion extends AdicionalesSorts {
 	static JLabel lblMemoriaTotal = new JLabel("Memoria total: 0 MB");
 	static JLabel lblCambios = new JLabel("Cambios en el Array: 0");
 	static JLabel lblAccesos = new JLabel("Accesos al Array: 0");
+	
 	// JBUTTON
 	JButton btnOrdenar = new JButton("Ordenar");
 	JButton btnDesordenar = new JButton("Desordenar");
@@ -69,20 +104,25 @@ public class MainAplicacion extends AdicionalesSorts {
 	JButton btnInformacion = new JButton("Informacion");
 	JButton btnGithub = new JButton();
 	JButton btnCodepen = new JButton();
+	
 	// JTOGGLE BUTTON
 	static JToggleButton tglbtnMulticolor = new JToggleButton("Ver multicolor");
+	
 	// JSLIDER
 	JSlider sliderRetardo = new JSlider();
 	static JSlider sliderTamBarras = new JSlider();
+	
 	// Tamaño de la ventana.
 	static final int WIN_WIDTH = 1330;
 	static final int WIN_HEIGHT = 1053;
+	
 	// Variables antes y despues de la ejecucion de una ordenacion.
 	private int seleccionAlgoritmo = -1;
 	private boolean accederOrdenacion = true;
 
-	String nombreSort;
-
+	/**
+	 * Main para el inicio de la aplicacion.
+	 */
 	public static void main(String[] args) {
 		try {
 			MainAplicacion window = new MainAplicacion();
@@ -161,17 +201,17 @@ public class MainAplicacion extends AdicionalesSorts {
 		panelOpcionesMenu.add(lblTitleAlgoritmo);
 
 		// Menu desplegable para la seleccion de algoritmo.
-		comboBoxTipoSort.setFont(new Font("Arial", Font.BOLD, 13));
+		comboBoxTipoSort.setFont(new Font("Arial", Font.BOLD, 20));
 		comboBoxTipoSort.setForeground(Color.WHITE);
 		comboBoxTipoSort.setBackground(Color.DARK_GRAY);
-		comboBoxTipoSort.setBounds(10, 47, 140, 30);
+		comboBoxTipoSort.setBounds(10, 47, 260, 30);
 		panelOpcionesMenu.add(comboBoxTipoSort);
 
 		// Boton para iniciar la ordenacion.
 		btnOrdenar.setFont(new Font("Arial", Font.BOLD, 13));
 		btnOrdenar.setBackground(Color.BLACK);
 		btnOrdenar.setForeground(Color.WHITE);
-		btnOrdenar.setBounds(160, 47, 110, 30);
+		btnOrdenar.setBounds(160, 88, 110, 30);
 		btnOrdenar.addActionListener(new ActionListener() {
 			/*
 			 * Este obtiene la posicion en la lista de algorimos para su seleccion, y una
@@ -191,7 +231,7 @@ public class MainAplicacion extends AdicionalesSorts {
 		btnDesordenar.setBackground(Color.BLACK);
 		btnDesordenar.setForeground(Color.WHITE);
 		btnDesordenar.setFont(new Font("Arial", Font.BOLD, 13));
-		btnDesordenar.setBounds(160, 88, 110, 30);
+		btnDesordenar.setBounds(160, 129, 110, 30);
 		btnDesordenar.addActionListener(new ActionListener() {
 			/*
 			 * Evitar que durante la desordenacion se pueda volver a marcar y se pueda
@@ -322,13 +362,12 @@ public class MainAplicacion extends AdicionalesSorts {
 		btnSaltarSort.setBackground(Color.BLACK);
 		btnSaltarSort.setForeground(Color.WHITE);
 		btnSaltarSort.setFont(new Font("Arial", Font.BOLD, 13));
-		btnSaltarSort.setBounds(160, 129, 110, 30);
+		btnSaltarSort.setBounds(160, 170, 110, 30);
 		btnSaltarSort.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Delay.n = 0;
 			}
 		});
-
 		panelOpcionesMenu.add(btnSaltarSort);
 
 		// Boton para ver informacion sobre la aplicacion

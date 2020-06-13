@@ -8,7 +8,7 @@ public class AdicionalesSorts {
 	protected static long inicio;
 	protected long fin;
 	protected long tiempo;
-	public MainAplicacion m;
+	public MainAplicacion mainApp;
 
 	public AdicionalesSorts() {
 	}

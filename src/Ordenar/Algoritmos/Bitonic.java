@@ -7,50 +7,50 @@ import Principal.MainAplicacion;
 
 public class Bitonic extends AdicionalesSorts implements ISort {
 
-	public Bitonic(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+	public Bitonic(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	// @Override
-	public void sort(int[] arr) {
+	public void sort(int[] array) {
 		setInicio(System.currentTimeMillis());
-		ordenar(arr, arr.length, 1);
-		m.updateAnimaciones();
+		ordenar(array, array.length, 1);
+		mainApp.updateAnimaciones();
 		DibujarGraficos.finSort = true;
 	}
 
-	void compAndSwap(int a[], int i, int j, int dir) {
-		if ((a[i] > a[j] && dir == 1) || (a[i] < a[j] && dir == 0)) {
-			// Swapping elements
-			int temp = a[i];
-			a[i] = a[j];
-			a[j] = temp;
-			m.updateAnimaciones();
+	void compAndSwap(int array[], int i, int j, int dir) {
+		if ((array[i] > array[j] && dir == 1) || (array[i] < array[j] && dir == 0)) {
+			int temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+			cambiosArray++;
+			mainApp.updateAnimaciones();
 		}
 	}
 
-	void bitonicMerge(int a[], int low, int cnt, int dir) {
+	void bitonicMerge(int array[], int low, int cnt, int dir) {
 		if (cnt > 1) {
 			int k = cnt / 2;
 			for (int i = low; i < low + k; i++)
-				compAndSwap(a, i, i + k, dir);
-			bitonicMerge(a, low, k, dir);
-			bitonicMerge(a, low + k, k, dir);
-			m.updateAnimaciones();
+				compAndSwap(array, i, i + k, dir);
+			bitonicMerge(array, low, k, dir);
+			bitonicMerge(array, low + k, k, dir);
+			mainApp.updateAnimaciones();
 		}
 	}
 
-	void bitonicSort(int a[], int low, int cnt, int dir) {
+	void bitonicSort(int array[], int low, int cnt, int dir) {
 		if (cnt > 1) {
 			int k = cnt / 2;
-			bitonicSort(a, low, k, 1);
-			bitonicSort(a, low + k, k, 0);
-			bitonicMerge(a, low, cnt, dir);
+			bitonicSort(array, low, k, 1);
+			bitonicSort(array, low + k, k, 0);
+			bitonicMerge(array, low, cnt, dir);
 		}
 	}
 
-	void ordenar(int a[], int N, int up) {
-		bitonicSort(a, 0, N, up);
+	void ordenar(int array[], int n, int up) {
+		bitonicSort(array, 0, n, up);
 	}
 }

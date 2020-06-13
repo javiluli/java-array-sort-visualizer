@@ -6,30 +6,30 @@ import Principal.DibujarGraficos;
 import Principal.MainAplicacion;
 
 public class Gnome extends AdicionalesSorts implements ISort {
-	public Gnome(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+	public Gnome(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	@Override
-	public void sort(int[] n) {
+	public void sort(int[] array) {
 		setInicio(System.currentTimeMillis());
 		int index = 0;
-		while (index < n.length) {
+		while (index < array.length) {
 			accesoArray++;
 			if (index == 0)
 				index++;
-			if (n[index] >= n[index - 1])
+			if (array[index] >= array[index - 1])
 				index++;
 			else {
 				int temp = 0;
-				temp = n[index];
-				n[index] = n[index - 1];
-				n[index - 1] = temp;
+				temp = array[index];
+				array[index] = array[index - 1];
+				array[index - 1] = temp;
 				index--;
 				cambiosArray++;
 			}
-			m.updateAnimaciones();
+			mainApp.updateAnimaciones();
 		}
 		DibujarGraficos.finSort = true;
 	}

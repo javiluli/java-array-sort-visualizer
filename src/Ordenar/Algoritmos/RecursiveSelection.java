@@ -7,15 +7,15 @@ import Principal.MainAplicacion;
 
 public class RecursiveSelection extends AdicionalesSorts implements ISort {
 
-	public RecursiveSelection(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+	public RecursiveSelection(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	// @Override
-	public void sort(int[] arr) {
+	public void sort(int[] array) {
 		setInicio(System.currentTimeMillis());
-		recursiveSelectionSort(arr, 0, arr.length - 1);
+		recursiveSelectionSort(array, 0, array.length - 1);
 		DibujarGraficos.finSort = true;
 	}
 
@@ -30,13 +30,12 @@ public class RecursiveSelection extends AdicionalesSorts implements ISort {
 				}
 			}
 
-			// Swap the smallest number in list
 			list[indexOfMin] = list[low];
 			list[low] = min;
+			cambiosArray++;
+			mainApp.updateAnimaciones();
+			mainApp.textos();
 
-			m.updateAnimaciones();
-			m.textos();
-			// Sort the remaining list
 			recursiveSelectionSort(list, low + 1, high);
 
 		}

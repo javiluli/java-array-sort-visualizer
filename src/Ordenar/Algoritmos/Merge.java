@@ -7,76 +7,76 @@ import Principal.MainAplicacion;
 
 public class Merge extends AdicionalesSorts implements ISort {
 
-	public Merge(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+	public Merge(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	@Override
-	public void sort(int[] n) {
+	public void sort(int[] array) {
 		setInicio(System.currentTimeMillis());
-		sortingMerge(0, n.length - 1, n);
+		sortingMerge(0, array.length - 1, array);
 		DibujarGraficos.finSort = true;
 	}
 
-	public void sortingMerge(int left, int right, int[] n) {
-		if (left < right) {
+	public void sortingMerge(int izq, int der, int[] array) {
+		if (izq < der) {
 			cambiosArray++;
-			int mitad = (left + right) / 2;
-			sortingMerge(left, mitad, n);
-			sortingMerge(mitad + 1, right, n);
-			merge(left, mitad, right, n);
+			int mitad = (izq + der) / 2;
+			sortingMerge(izq, mitad, array);
+			sortingMerge(mitad + 1, der, array);
+			merge(izq, mitad, der, array);
 		}
 	}
 
-	void merge(int left, int mitad, int right, int[] arr) {
-		int len_left = mitad - left + 1;
-		int len_right = right - mitad;
+	void merge(int izq, int mit, int der, int[] array) {
+		int len_left = mit - izq + 1;
+		int len_right = der - mit;
 
 		int arr_left[] = new int[len_left];
 		int arr_right[] = new int[len_right];
 
 		for (int i = 0; i < len_left; i++) {
-			arr_left[i] = arr[left + i];
+			arr_left[i] = array[izq + i];
 			accesoArray++;
 		}
 		for (int j = 0; j < len_right; j++) {
-			arr_right[j] = arr[mitad + 1 + j];
+			arr_right[j] = array[mit + 1 + j];
 			accesoArray++;
 		}
 		int i = 0, j = 0;
-		int k = left;
+		int k = izq;
 		while (i < len_left && j < len_right) {
 			if (arr_left[i] <= arr_right[j]) {
-				arr[k] = arr_left[i];
+				array[k] = arr_left[i];
 				i++;
 				accesoArray++;
 			} else {
-				arr[k] = arr_right[j];
+				array[k] = arr_right[j];
 				j++;
 				accesoArray++;
 			}
 			k++;
 			cambiosArray++;
-			m.updateAnimacionesSinTiempo();
+			mainApp.updateAnimacionesSinTiempo();
 		}
 
 		while (i < len_left) {
-			arr[k] = arr_left[i];
+			array[k] = arr_left[i];
 			i++;
 			k++;
 			accesoArray++;
-			m.updateAnimacionesSinTiempo();
+			mainApp.updateAnimacionesSinTiempo();
 		}
 
 		while (j < len_right) {
-			arr[k] = arr_right[j];
+			array[k] = arr_right[j];
 			j++;
 			k++;
 			accesoArray++;
-			m.updateAnimacionesSinTiempo();
+			mainApp.updateAnimacionesSinTiempo();
 		}
-		m.textos();
+		mainApp.textos();
 		setFin(System.currentTimeMillis());
 	}
 }

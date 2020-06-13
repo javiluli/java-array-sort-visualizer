@@ -7,30 +7,30 @@ import Principal.MainAplicacion;
 
 public class Cocktail extends AdicionalesSorts implements ISort {
 
-	public Cocktail(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+	public Cocktail(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	@Override
-	public void sort(int[] n) {
+	public void sort(int[] array) {
 		boolean cambiar = true;
 		int inicio = 0;
-		int fin = n.length;
+		int fin = array.length;
 
 		setInicio(System.currentTimeMillis());
 		while (cambiar == true) {
 			cambiar = false;
 			for (int i = inicio; i < fin - 1; ++i) {
 				accesoArray++;
-				if (n[i] > n[i + 1]) {
-					int temp = n[i];
-					n[i] = n[i + 1];
-					n[i + 1] = temp;
+				if (array[i] > array[i + 1]) {
+					int temp = array[i];
+					array[i] = array[i + 1];
+					array[i + 1] = temp;
 					cambiar = true;
 					cambiosArray++;
 				}
-				m.updateAnimaciones();
+				mainApp.updateAnimaciones();
 			}
 
 			if (cambiar == false)
@@ -41,14 +41,14 @@ public class Cocktail extends AdicionalesSorts implements ISort {
 
 			for (int i = fin - 1; i >= inicio; i--) {
 				accesoArray++;
-				if (n[i] > n[i + 1]) {
-					int temp = n[i];
-					n[i] = n[i + 1];
-					n[i + 1] = temp;
+				if (array[i] > array[i + 1]) {
+					int temp = array[i];
+					array[i] = array[i + 1];
+					array[i + 1] = temp;
 					cambiar = true;
 					cambiosArray++;
 				}
-				m.updateAnimaciones();
+				mainApp.updateAnimaciones();
 			}
 			inicio = inicio + 1;
 		}

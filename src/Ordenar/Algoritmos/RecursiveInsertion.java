@@ -7,34 +7,34 @@ import Principal.MainAplicacion;
 
 public class RecursiveInsertion extends AdicionalesSorts implements ISort {
 
-	public RecursiveInsertion(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+	public RecursiveInsertion(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	// @Override
-	public void sort(int[] arr) {
+	public void sort(int[] array) {
 		setInicio(System.currentTimeMillis());
-		recursiveInsertionSort(arr, arr.length);
+		recursiveInsertionSort(array, array.length);
 		DibujarGraficos.finSort = true;
 	}
 
-	public void recursiveInsertionSort(int arr[], int n) {
-		if (n <= 1)
+	public void recursiveInsertionSort(int array[], int len) {
+		if (len <= 1)
 			return;
 
-		recursiveInsertionSort(arr, n - 1);
+		recursiveInsertionSort(array, len - 1);
 
-		int last = arr[n - 1];
-		int j = n - 2;
+		int last = array[len - 1];
+		int j = len - 2;
 
-		while (j >= 0 && arr[j] > last) {
-			arr[j + 1] = arr[j];
+		while (j >= 0 && array[j] > last) {
+			array[j + 1] = array[j];
 			j--;
 		}
-		arr[j + 1] = last;
+		array[j + 1] = last;
 		accesoArray++;
-		m.updateAnimaciones();
-		m.textos();
+		mainApp.updateAnimaciones();
+		mainApp.textos();
 	}
 }

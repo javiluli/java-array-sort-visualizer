@@ -7,29 +7,29 @@ import Principal.MainAplicacion;
 
 public class BubbleOptimized extends AdicionalesSorts implements ISort {
 
-	public BubbleOptimized(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+	public BubbleOptimized(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	// @Override
-	public void sort(int[] n) {
+	public void sort(int[] array) {
 		setInicio(System.currentTimeMillis());
 		boolean needNextPass = true;
-		for (int i = 1; i < n.length && needNextPass; i++) {
+		for (int i = 1; i < array.length && needNextPass; i++) {
 			needNextPass = false;
-			for (int j = 0; j < n.length - i; j++) {
-				if (n[j] > n[j + 1]) {
-					int temp = n[j];
-					n[j] = n[j + 1];
-					n[j + 1] = temp;
+			for (int j = 0; j < array.length - i; j++) {
+				if (array[j] > array[j + 1]) {
+					int temp = array[j];
+					array[j] = array[j + 1];
+					array[j + 1] = temp;
 					cambiosArray++;
 					needNextPass = true;
 				}
 				accesoArray += 2;
-				m.updateAnimaciones();
+				mainApp.updateAnimaciones();
 			}
-			m.textos();
+			mainApp.textos();
 		}
 		DibujarGraficos.finSort = true;
 	}

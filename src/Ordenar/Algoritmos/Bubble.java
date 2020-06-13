@@ -7,9 +7,9 @@ import Principal.MainAplicacion;
 
 public class Bubble extends AdicionalesSorts implements ISort {
 
-	public Bubble(MainAplicacion m, int[] n) {
-		this.m = m;
-		sort(n);
+	public Bubble(MainAplicacion mainApp, int[] array) {
+		this.mainApp = mainApp;
+		sort(array);
 	}
 
 	// @Override
@@ -24,9 +24,9 @@ public class Bubble extends AdicionalesSorts implements ISort {
 					cambiosArray++;
 				}
 				accesoArray += 2;
-				m.updateAnimaciones();
+				mainApp.updateAnimaciones();
 			}
-			m.textos();
+			mainApp.textos();
 		}
 		DibujarGraficos.finSort = true;
 	}
