@@ -9,11 +9,12 @@ import java.util.Random;
 import java.util.Vector;
 
 import Adicionales.Delay;
+import EstilosGraficos.Barras;
 import EstilosGraficos.CirculoBarras;
 import EstilosGraficos.CircunferenciaPunteada;
-import EstilosGraficos.Barras;
 import EstilosGraficos.Espital;
 import EstilosGraficos.EstiloGrafico;
+import EstilosGraficos.PantallaCompleta;
 import EstilosGraficos.PiramideHorizontal;
 import EstilosGraficos.PiramideVertical;
 import EstilosGraficos.Pixel;
@@ -102,6 +103,7 @@ public class DibujarGraficos extends TransformCentrarGraficos {
 		estilos.add(new Barras());
 		estilos.add(new PiramideHorizontal());
 		estilos.add(new PiramideVertical());
+		estilos.add(new PantallaCompleta());
 		estilos.add(new Pixel());
 		estilos.add(new CirculoBarras());
 		estilos.add(new CircunferenciaPunteada());
@@ -110,7 +112,7 @@ public class DibujarGraficos extends TransformCentrarGraficos {
 	}
 
 	/**
-	 * Configuraciones.
+	 * Configuraciones sobre el estilo grafico y su sleecion de atributos.
 	 *
 	 * @param opcionGrafico the opcion grafico
 	 * @param graphics      the graphics
@@ -118,9 +120,14 @@ public class DibujarGraficos extends TransformCentrarGraficos {
 	private void configEstilo(int opcionGrafico, Graphics2D graphics) {
 		// Cambio la cantidad de elementos que se pintan en pantalla.
 		// Simepre que sean Objetos Transfomaciones tendran multicolor.
+		// Siendo un Objeto de la Clase PantallaCompleta siempre tendra multicolor, pero
+		// no restriccion en la cantidad de barras.
 		if (almacenarEstilos().get(opcionGrafico) instanceof TransformCentrarGraficos) {
 			graphics.translate(translateX, translateY);
 			MainAplicacion.sliderTamBarras.setMinimum(6);
+			activarMulticolor = true;
+			MainAplicacion.tglbtnMulticolor.setSelected(activarMulticolor);
+		} else if (almacenarEstilos().get(opcionGrafico) instanceof PantallaCompleta) {
 			activarMulticolor = true;
 			MainAplicacion.tglbtnMulticolor.setSelected(activarMulticolor);
 		} else {
@@ -137,27 +144,14 @@ public class DibujarGraficos extends TransformCentrarGraficos {
 	 */
 	private void menuSeleccionGraficos(int opcionGrafico, int i, Graphics2D graphics) {
 		switch (opcionGrafico) {
-		case 0:
-			estiloGrafico = new Barras(i, arrayPrincipal, graphics);
-			break;
-		case 1:
-			estiloGrafico = new PiramideHorizontal(i, arrayPrincipal, graphics);
-			break;
-		case 2:
-			estiloGrafico = new PiramideVertical(i, arrayPrincipal, graphics);
-			break;
-		case 3:
-			estiloGrafico = new Pixel(i, arrayPrincipal, graphics);
-			break;
-		case 4:
-			estiloGrafico = new CirculoBarras(graphics);
-			break;
-		case 5:
-			estiloGrafico = new CircunferenciaPunteada(i, graphics);
-			break;
-		case 6:
-			estiloGrafico = new Espital(i, arrayPrincipal, graphics);
-			break;
+		case 0:estiloGrafico = new Barras					(i, arrayPrincipal, graphics);break;
+		case 1:estiloGrafico = new PiramideHorizontal		(i, arrayPrincipal, graphics);break;
+		case 2:estiloGrafico = new PiramideVertical			(i, arrayPrincipal, graphics);break;
+		case 3:estiloGrafico = new PantallaCompleta			(i, arrayPrincipal, graphics);break;
+		case 4:estiloGrafico = new Pixel					(i, arrayPrincipal, graphics);break;
+		case 5:estiloGrafico = new CirculoBarras			(graphics);					  break;
+		case 6:estiloGrafico = new CircunferenciaPunteada	(i, graphics);				  break;
+		case 7:estiloGrafico = new Espital					(i, arrayPrincipal, graphics);break;
 		}
 	}
 

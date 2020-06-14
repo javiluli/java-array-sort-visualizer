@@ -96,6 +96,7 @@ public class MainAplicacion extends AdicionalesSorts {
 			"Barras clasicas",
 			"Piramide horizontal",
 			"Piramide vertical",
+			"Pantalla completa",
 			"Pixel",
 			"Circulo con barras",
 			"Circunferencia",
@@ -411,8 +412,9 @@ public class MainAplicacion extends AdicionalesSorts {
 		btnInformacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(frame,
-						"Visualizador de ordenacion de matrices\n" + "                      Copyleft 2020\n"
-								+ "                            Javiluli\n" + "       Fecha de creacion: Julio 1, 2020");
+				  "  Visualizador de ordenacion de matrices\n"
+				+ "Programado por Javier Delgado Rodriguez\n" 
+				+ "      Fecha de creacion: Julio 1, 2020");
 			}
 		});
 		panelOpcionesMenu.add(btnInformacion);
@@ -486,93 +488,37 @@ public class MainAplicacion extends AdicionalesSorts {
 		if (!accederOrdenacion) {
 			textos();
 			switch (seleccionAlgoritmo) {
-			case 0:
-				sorts = new BinaryInsertion(mainApp, barras.arrayPrincipal);
-				break;
-			case 1:
-				sorts = new Bitonic(mainApp, barras.arrayPrincipal);
-				break;
-			case 2:
-				sorts = new Bogo(mainApp, barras.arrayPrincipal);
-				break;
-			case 3:
-				sorts = new Bubble(mainApp, barras.arrayPrincipal);
-				break;
-			case 4:
-				sorts = new BubbleOptimized(mainApp, barras.arrayPrincipal);
-				break;
-			case 5:
-				sorts = new BucketSort(mainApp, barras.arrayPrincipal);
-				break;
-			case 6:
-				sorts = new Cocktail(mainApp, barras.arrayPrincipal);
-				break;
-			case 7:
-				sorts = new Cycle(mainApp, barras.arrayPrincipal);
-				break;
-			case 8:
-				sorts = new Gnome(mainApp, barras.arrayPrincipal);
-				break;
-			case 9:
-				sorts = new Gravity(mainApp, barras.arrayPrincipal);
-				break;
-			case 10:
-				sorts = new Heap(mainApp, barras.arrayPrincipal);
-				break;
-			case 11:
-				sorts = new Inserccion(mainApp, barras.arrayPrincipal);
-				break;
-			case 12:
-				sorts = new Introsort(mainApp, barras.arrayPrincipal);
-				break;
-			case 13:
-				sorts = new IterativeMerge(mainApp, barras.arrayPrincipal);
-				break;
-			case 14:
-				sorts = new IterativeQuick(mainApp, barras.arrayPrincipal);
-				break;
-			case 15:
-				sorts = new Merge(mainApp, barras.arrayPrincipal);
-				break;
-			case 16:
-				sorts = new OddEven(mainApp, barras.arrayPrincipal);
-				break;
-			case 17:
-				sorts = new Pancake(mainApp, barras.arrayPrincipal);
-				break;
-			case 18:
-				sorts = new Pigeonhole(mainApp, barras.arrayPrincipal);
-				break;
-			case 19:
-				sorts = new Quick(mainApp, barras.arrayPrincipal);
-				break;
-			case 20:
-				sorts = new Radix(mainApp, barras.arrayPrincipal);
-				break;
-			case 21:
-				sorts = new RecursiveBubble(mainApp, barras.arrayPrincipal);
-				break;
-			case 22:
-				sorts = new RecursiveInsertion(mainApp, barras.arrayPrincipal);
-				break;
-			case 23:
-				sorts = new RecursiveSelection(mainApp, barras.arrayPrincipal);
-				break;
-			case 24:
-				sorts = new Selection(mainApp, barras.arrayPrincipal);
-				break;
-			case 25:
-				sorts = new Shell(mainApp, barras.arrayPrincipal);
-				break;
-			case 26:
-				sorts = new Stooge(mainApp, barras.arrayPrincipal);
-				break;
-			case 27:
-				sorts = new Tim(mainApp, barras.arrayPrincipal);
-				break;
-			default:
-				barras.desordenarArray();
-				break;
+			case  0:sorts = new BinaryInsertion		(mainApp, barras.arrayPrincipal);break;
+			case  1:sorts = new Bitonic				(mainApp, barras.arrayPrincipal);break;
+			case  2:sorts = new Bogo				(mainApp, barras.arrayPrincipal);break;
+			case  3:sorts = new Bubble				(mainApp, barras.arrayPrincipal);break;
+			case  4:sorts = new BubbleOptimized		(mainApp, barras.arrayPrincipal);break;
+			case  5:sorts = new BucketSort			(mainApp, barras.arrayPrincipal);break;
+			case  6:sorts = new Cocktail			(mainApp, barras.arrayPrincipal);break;
+			case  7:sorts = new Cycle				(mainApp, barras.arrayPrincipal);break;
+			case  8:sorts = new Gnome				(mainApp, barras.arrayPrincipal);break;
+			case  9:sorts = new Gravity				(mainApp, barras.arrayPrincipal);break;
+			case 10:sorts = new Heap				(mainApp, barras.arrayPrincipal);break;
+			case 11:sorts = new Inserccion			(mainApp, barras.arrayPrincipal);break;
+			case 12:sorts = new Introsort			(mainApp, barras.arrayPrincipal);break;
+			case 13:sorts = new IterativeMerge		(mainApp, barras.arrayPrincipal);break;
+			case 14:sorts = new IterativeQuick		(mainApp, barras.arrayPrincipal);break;
+			case 15:sorts = new Merge				(mainApp, barras.arrayPrincipal);break;
+			case 16:sorts = new OddEven				(mainApp, barras.arrayPrincipal);break;
+			case 17:sorts = new Pancake				(mainApp, barras.arrayPrincipal);break;
+			case 18:sorts = new Pigeonhole			(mainApp, barras.arrayPrincipal);break;
+			case 19:sorts = new Quick				(mainApp, barras.arrayPrincipal);break;
+			case 20:sorts = new Radix				(mainApp, barras.arrayPrincipal);break;
+			case 21:sorts = new RecursiveBubble		(mainApp, barras.arrayPrincipal);break;
+			case 22:sorts = new RecursiveInsertion	(mainApp, barras.arrayPrincipal);break;
+			case 23:sorts = new RecursiveSelection	(mainApp, barras.arrayPrincipal);break;
+			case 24:sorts = new Selection			(mainApp, barras.arrayPrincipal);break;
+			case 25:sorts = new Shell				(mainApp, barras.arrayPrincipal);break;
+			case 26:sorts = new Stooge				(mainApp, barras.arrayPrincipal);break;
+			case 27:sorts = new Tim					(mainApp, barras.arrayPrincipal);break;
+			
+			// Obtenido mediante el [nombreAlgoritmos.lenght], siendo el valor superior al ultimo CASE.
+			default:barras.desordenarArray();break;
 			}
 
 			if (DibujarGraficos.finSort)
@@ -632,12 +578,6 @@ public class MainAplicacion extends AdicionalesSorts {
 	public void updateAnimacionesSoloDelayFijo() {
 		panelBarras.repaint();
 		Delay.delay(1);
-	}
-	/**
-	 * Actualiza los graficos y pone Delay fijo a 1 ms.
-	 */
-	public void updateSoloAnimaciones() {
-		panelBarras.repaint();
 	}
 	// ---------------------------------------------------------------------------------------------
 

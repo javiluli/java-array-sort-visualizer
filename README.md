@@ -1,46 +1,41 @@
 # Ordenacion visual de un Array en Java
 
-Disponibles hasta 22 algoritmos de ordenacion y 6 variantes para el diseño grafico.
+Disponibles hasta 28 algoritmos de ordenacion y 8 variantes para el diseño grafico.
 
-La carpeta _data/_ almacena archivos como videos e imagenes que afectan visualmente, no son imprescindibles para el funcionamiento del programa. Para su uso correcto se debe dejar de la misma forma en la que se decarga el repositorio, en una misma carpeta o directorio:
+La carpeta _data/_ almacena archivos como videos e imagenes que afectan visualmente, no son necesarios para el funcionamiento del programa. Para su uso correcto se debe dejar de la misma forma en la que se decarga el repositorio, en una misma carpeta o directorio:
 
 - ordenacionVisual.jar
 - data/
 
-## Descarga
+---
+
+## Descargar y generar ejecutable
 
 ```
 git clone https://github.com/javiluli/Ordenacion-visual-Java.git
-```
-
----
-
-## Generar ejecutable
-
-```
-mkdir -p dist target
+cd Ordenacion-visual-Java
 javac src/Principal/MainAplicacion.java -sourcepath src -d target/
-jar -cvfm dist/ordenacionVisual.jar manifest.mf -C target/ ./
+jar -cvfm ordenacionVisual.jar manifest.mf -C target/ ./
 ```
 
 ---
 
-## Iniciar aplicacion
+## Disponibles 28 algoritmos de ordenacion.
 
-```
-java -jar dist//ordenacionVisual.jar
-```
-
-## Disponibles 22 tipos de algoritmos.
-
+- Binary insertion sort
 - Bitonic sort
+- Bogo sort
 - [Bubble sort](https://youtu.be/XaJzmQhKbsM)
 - [Optimized bubble sort](https://youtu.be/M5o90Ca8kqM)
+- Bucket sort
 - [Cocktail sort](https://youtu.be/x_2L2QLYZR4)
 - [Cycle sort](https://youtu.be/v_hKwLFV5Ck)
 - [Gnome sort](https://youtu.be/JnEOrhdxe1w)
+- Gravity sort
 - [Heap sort](https://youtu.be/IYgJceePT5w)
 - [Insertion sort](https://youtu.be/Hfh56tGWVV4)
+- Intro sort
+- Iterative Merge sort
 - Iterative Quick sort
 - Merge sort
 - Odd Even sort
@@ -56,19 +51,20 @@ java -jar dist//ordenacionVisual.jar
 - Stooge sort
 - Tim sort
 
-## Disponibles 6 diseños graficos distintos.
+---
 
-- Escalera
+## Disponibles 8 diseños graficos distintos.
+
+- Barras clasicas
 - Piramide horizontal
+- Piramide vertical
+- Pantalla completa
 - Pixel
-- Circulo
+- Circulo con barras
 - Circunferencia
-- Espiral
+- Espiral con barras
 
-La carpeta _data/_ almacena archivos como videos e imagenes que afectan visualmente, no son necesarios para el funcionamiento del programa. Para su uso correcto se debe dejar de la misma forma en la que se decarga el repositorio, en una misma carpeta o directorio:
-
-- ordenacionVisual.jar
-- data/
+---
 
 ### Bubble optimized Sort
 
