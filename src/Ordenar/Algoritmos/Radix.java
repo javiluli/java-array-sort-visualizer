@@ -31,7 +31,7 @@ public class Radix extends AdicionalesSorts implements ISort {
 				maxValue = array[i];
 			}
 		}
-
+		
 		int exponent = 1;
 		while ((maxValue - minValue) / exponent >= 1) {
 			countingSortByDigit(array, len, exponent, minValue);
@@ -73,6 +73,5 @@ public class Radix extends AdicionalesSorts implements ISort {
 			cambiosArray++;
 			mainApp.updateAnimaciones();
 		}
-
 	}
 }
