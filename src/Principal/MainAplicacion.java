@@ -28,41 +28,13 @@ import Adicionales.Memoria;
 import Adicionales.Social;
 import Ordenar.AdicionalesSorts;
 import Ordenar.FinSort;
-import Ordenar.Algoritmos.BidirectionalBubble;
-import Ordenar.Algoritmos.BinaryInsertion;
-import Ordenar.Algoritmos.Bitonic;
-import Ordenar.Algoritmos.Bogo;
-import Ordenar.Algoritmos.Bubble;
-import Ordenar.Algoritmos.BubbleOptimized;
-import Ordenar.Algoritmos.BucketSort;
-import Ordenar.Algoritmos.Cocktail;
-import Ordenar.Algoritmos.Cycle;
-import Ordenar.Algoritmos.Gnome;
-import Ordenar.Algoritmos.Gravity;
-import Ordenar.Algoritmos.Heap;
-import Ordenar.Algoritmos.Inserccion;
-import Ordenar.Algoritmos.Introsort;
-import Ordenar.Algoritmos.IterativeMerge;
-import Ordenar.Algoritmos.IterativeQuick;
-import Ordenar.Algoritmos.Merge;
-import Ordenar.Algoritmos.OddEven;
-import Ordenar.Algoritmos.Pancake;
-import Ordenar.Algoritmos.Pigeonhole;
-import Ordenar.Algoritmos.Quick;
-import Ordenar.Algoritmos.Radix;
-import Ordenar.Algoritmos.RecursiveBubble;
-import Ordenar.Algoritmos.RecursiveInsertion;
-import Ordenar.Algoritmos.RecursiveSelection;
-import Ordenar.Algoritmos.Selection;
-import Ordenar.Algoritmos.DoubleSelection;
-import Ordenar.Algoritmos.Shell;
-import Ordenar.Algoritmos.Stooge;
-import Ordenar.Algoritmos.Tim;
+import Ordenar.Algoritmos.*;
 
 /**
  * @author Javier Delgado Rodriguez
  */
 public class MainAplicacion extends AdicionalesSorts {
+	
 	// NOMBRES DE LOS ALGORITMOS DE ORDENACION
 	final String[] nombreAlgoritmos = {
 			"Bidirectional Bubble",
@@ -95,6 +67,7 @@ public class MainAplicacion extends AdicionalesSorts {
 			"Shell",
 			"Stooge",
 			"Tim"};
+	
 	// DISEÑO GRAFICO DE LAS ANIMACIONES
 	final static String[] nombreEstilosGraficos = { 
 			"Barras clasicas",
@@ -110,49 +83,49 @@ public class MainAplicacion extends AdicionalesSorts {
 	private JFrame frame = new JFrame();
 	
 	// JPANEL
-	JPanel panelMenu = new JPanel();
-	JPanel panelOpcionesMenu = new JPanel();
-	static JPanel panelBarras = new JPanel();
+		   JPanel panelMenu 		 = new JPanel();
+		   JPanel panelOpcionesMenu  = new JPanel();
+	static JPanel panelBarras 		 = new JPanel();
 	
 	// PANEL
 	Panel panelVisorMemoria = new Panel();
 	
 	// COMBOBOX
-	JComboBox<String> comboBoxTipoSort = new JComboBox<String>(nombreAlgoritmos);
-	static JComboBox<Object> comboBoxTiposGraficos = new JComboBox<Object>(nombreEstilosGraficos);
+		   JComboBox<String> comboBoxTipoSort 		= new JComboBox<String>(nombreAlgoritmos);
+	static JComboBox<String> comboBoxTiposGraficos  = new JComboBox<String>(nombreEstilosGraficos);
 	
 	// JLABEL
-	JLabel lblTitleAlgoritmo = new JLabel("Seleccionar algoritmo de ordenacion");
-	JLabel lblTitle = new JLabel("Panel de control");
-	JLabel lblNumeroBarras = new JLabel("Numero de elementos");
-	JLabel lblRetardo = new JLabel("Retardo: 1 ms");
-	JLabel lblTituloGraficos = new JLabel("Dise\u00F1o grafico");
-	static JLabel lblTiempo = new JLabel("Tiempo: 0 m 0 s 0 ms");
-	static JLabel lblMemoriaUsada = new JLabel("Memoria usada: 0 MB");
-	static JLabel lblMemoriaMax = new JLabel("Memoria maxima: 0 MB");
-	static JLabel lblMemoriaLibre = new JLabel("Memoria libre: 0 MB");
-	static JLabel lblMemoriaTotal = new JLabel("Memoria total: 0 MB");
-	static JLabel lblCambios = new JLabel("Cambios en el Array: 0");
-	static JLabel lblAccesos = new JLabel("Accesos al Array: 0");
+		   JLabel lblTitleAlgoritmo 	= new JLabel("Seleccionar algoritmo de ordenacion");
+		   JLabel lblTitle		 		= new JLabel("Panel de control");
+		   JLabel lblNumeroBarras 		= new JLabel("Numero de elementos");
+		   JLabel lblRetardo 			= new JLabel("Retardo: 1 ms");
+		   JLabel lblTituloGraficos 	= new JLabel("Dise\u00F1o grafico");
+	static JLabel lblTiempo 			= new JLabel("Tiempo: 0 m 0 s 0 ms");
+	static JLabel lblMemoriaUsada 		= new JLabel("Memoria usada: 0 MB");
+	static JLabel lblMemoriaMax 		= new JLabel("Memoria maxima: 0 MB");
+	static JLabel lblMemoriaLibre 		= new JLabel("Memoria libre: 0 MB");
+	static JLabel lblMemoriaTotal 		= new JLabel("Memoria total: 0 MB");
+	static JLabel lblCambios 			= new JLabel("Cambios en el Array: 0");
+	static JLabel lblAccesos 			= new JLabel("Accesos al Array: 0");
 	
 	// JBUTTON
-	JButton btnOrdenar = new JButton("Ordenar");
-	JButton btnDesordenar = new JButton("Desordenar");
-	JButton btnSaltarSort = new JButton("Saltar Sort");
-	JButton btnInformacion = new JButton("Informacion");
-	JButton btnGithub = new JButton();
-	JButton btnCodepen = new JButton();
+	JButton btnOrdenar 		= new JButton("Ordenar");
+	JButton btnDesordenar 	= new JButton("Desordenar");
+	JButton btnSaltarSort 	= new JButton("Saltar Sort");
+	JButton btnInformacion 	= new JButton("Informacion");
+	JButton btnGithub 		= new JButton();
+	JButton btnCodepen 		= new JButton();
 	
 	// JTOGGLE BUTTON
 	static JToggleButton tglbtnMulticolor = new JToggleButton("Ver multicolor");
 	
 	// JSLIDER
-	JSlider sliderRetardo = new JSlider();
-	static JSlider sliderTamBarras = new JSlider();
+		   JSlider sliderRetardo 	= new JSlider();
+	static JSlider sliderTamBarras 	= new JSlider();
 	
 	// Tamaño de la ventana.
-	static final int WIN_WIDTH = 1330;
-	static final int WIN_HEIGHT = 1053;
+	static final int WIN_WIDTH 	= 1330; // pixeles
+	static final int WIN_HEIGHT = 1053; // pixeles
 	
 	// Variables antes y despues de la ejecucion de una ordenacion.
 	private int seleccionAlgoritmo = -1;
@@ -196,7 +169,6 @@ public class MainAplicacion extends AdicionalesSorts {
 		barras = new DibujarGraficos();
 		barras.setBounds(0, 0, DibujarGraficos.WIN_WIDTH, DibujarGraficos.WIN_HEIGHT);
 		panelBarras.add(barras);
-
 		panelBarras.setVisible(true);
 		frame.setResizable(false);
 		frame.setTitle("Visualizador de ordenacion de matrices");
@@ -491,7 +463,7 @@ public class MainAplicacion extends AdicionalesSorts {
 		MainAplicacion mainApp = new MainAplicacion();
 		if (!accederOrdenacion) {
 			textos();
-			switch (seleccionAlgoritmo) { //
+			switch (seleccionAlgoritmo) {
 			case  0:sorts = new BidirectionalBubble	(mainApp, barras.arrayPrincipal);break;
 			case  1:sorts = new BinaryInsertion		(mainApp, barras.arrayPrincipal);break;
 			case  2:sorts = new Bitonic				(mainApp, barras.arrayPrincipal);break;
@@ -606,7 +578,6 @@ public class MainAplicacion extends AdicionalesSorts {
 		int min = tiempo;
 		min = (min / 1000) / 60;
 		return min;
-
 	}
 
 	private int calcSeg(int tiempo) {

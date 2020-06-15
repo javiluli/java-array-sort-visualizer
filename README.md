@@ -1,6 +1,6 @@
 # Ordenacion visual de un Array en Java
 
-Disponibles hasta 28 algoritmos de ordenacion y 8 variantes para el diseño grafico.
+Disponibles hasta 30 algoritmos de ordenacion y 8 variantes para el diseño grafico.
 
 La carpeta _data/_ almacena archivos como videos e imagenes que afectan visualmente, no son necesarios para el funcionamiento del programa. Para su uso correcto se debe dejar de la misma forma en la que se decarga el repositorio, en una misma carpeta o directorio:
 
@@ -20,8 +20,9 @@ jar -cvfm ordenacionVisual.jar manifest.mf -C target/ ./
 
 ---
 
-## Disponibles 28 algoritmos de ordenacion.
+## Disponibles 30 algoritmos de ordenacion
 
+- Bidirectional Bubble
 - Binary insertion sort
 - Bitonic sort
 - Bogo sort
@@ -30,6 +31,7 @@ jar -cvfm ordenacionVisual.jar manifest.mf -C target/ ./
 - Bucket sort
 - [Cocktail sort](https://youtu.be/x_2L2QLYZR4)
 - [Cycle sort](https://youtu.be/v_hKwLFV5Ck)
+- DoubleSelection
 - [Gnome sort](https://youtu.be/JnEOrhdxe1w)
 - Gravity sort
 - [Heap sort](https://youtu.be/IYgJceePT5w)
@@ -53,7 +55,7 @@ jar -cvfm ordenacionVisual.jar manifest.mf -C target/ ./
 
 ---
 
-## Disponibles 8 diseños graficos distintos.
+## Disponibles 8 diseños graficos distintos
 
 - Barras clasicas
 - Piramide horizontal
