@@ -28,6 +28,7 @@ import Adicionales.Memoria;
 import Adicionales.Social;
 import Ordenar.AdicionalesSorts;
 import Ordenar.FinSort;
+import Ordenar.Algoritmos.BidirectionalBubble;
 import Ordenar.Algoritmos.BinaryInsertion;
 import Ordenar.Algoritmos.Bitonic;
 import Ordenar.Algoritmos.Bogo;
@@ -53,6 +54,7 @@ import Ordenar.Algoritmos.RecursiveBubble;
 import Ordenar.Algoritmos.RecursiveInsertion;
 import Ordenar.Algoritmos.RecursiveSelection;
 import Ordenar.Algoritmos.Selection;
+import Ordenar.Algoritmos.DoubleSelection;
 import Ordenar.Algoritmos.Shell;
 import Ordenar.Algoritmos.Stooge;
 import Ordenar.Algoritmos.Tim;
@@ -62,7 +64,8 @@ import Ordenar.Algoritmos.Tim;
  */
 public class MainAplicacion extends AdicionalesSorts {
 	// NOMBRES DE LOS ALGORITMOS DE ORDENACION
-	final String[] nombreAlgoritmos = { 
+	final String[] nombreAlgoritmos = {
+			"Bidirectional Bubble",
 			"Binary Insertion",
 			"Bitonic",
 			"Bogo",
@@ -71,6 +74,7 @@ public class MainAplicacion extends AdicionalesSorts {
 			"Bucket",
 			"Cocktail",
 			"Cycle",
+			"Double Selection",
 			"Gnome",
 			"Gravity",
 			"Heap",
@@ -487,35 +491,37 @@ public class MainAplicacion extends AdicionalesSorts {
 		MainAplicacion mainApp = new MainAplicacion();
 		if (!accederOrdenacion) {
 			textos();
-			switch (seleccionAlgoritmo) {
-			case  0:sorts = new BinaryInsertion		(mainApp, barras.arrayPrincipal);break;
-			case  1:sorts = new Bitonic				(mainApp, barras.arrayPrincipal);break;
-			case  2:sorts = new Bogo				(mainApp, barras.arrayPrincipal);break;
-			case  3:sorts = new Bubble				(mainApp, barras.arrayPrincipal);break;
-			case  4:sorts = new BubbleOptimized		(mainApp, barras.arrayPrincipal);break;
-			case  5:sorts = new BucketSort			(mainApp, barras.arrayPrincipal);break;
-			case  6:sorts = new Cocktail			(mainApp, barras.arrayPrincipal);break;
-			case  7:sorts = new Cycle				(mainApp, barras.arrayPrincipal);break;
-			case  8:sorts = new Gnome				(mainApp, barras.arrayPrincipal);break;
-			case  9:sorts = new Gravity				(mainApp, barras.arrayPrincipal);break;
-			case 10:sorts = new Heap				(mainApp, barras.arrayPrincipal);break;
-			case 11:sorts = new Inserccion			(mainApp, barras.arrayPrincipal);break;
-			case 12:sorts = new Introsort			(mainApp, barras.arrayPrincipal);break;
-			case 13:sorts = new IterativeMerge		(mainApp, barras.arrayPrincipal);break;
-			case 14:sorts = new IterativeQuick		(mainApp, barras.arrayPrincipal);break;
-			case 15:sorts = new Merge				(mainApp, barras.arrayPrincipal);break;
-			case 16:sorts = new OddEven				(mainApp, barras.arrayPrincipal);break;
-			case 17:sorts = new Pancake				(mainApp, barras.arrayPrincipal);break;
-			case 18:sorts = new Pigeonhole			(mainApp, barras.arrayPrincipal);break;
-			case 19:sorts = new Quick				(mainApp, barras.arrayPrincipal);break;
-			case 20:sorts = new Radix				(mainApp, barras.arrayPrincipal);break;
-			case 21:sorts = new RecursiveBubble		(mainApp, barras.arrayPrincipal);break;
-			case 22:sorts = new RecursiveInsertion	(mainApp, barras.arrayPrincipal);break;
-			case 23:sorts = new RecursiveSelection	(mainApp, barras.arrayPrincipal);break;
-			case 24:sorts = new Selection			(mainApp, barras.arrayPrincipal);break;
-			case 25:sorts = new Shell				(mainApp, barras.arrayPrincipal);break;
-			case 26:sorts = new Stooge				(mainApp, barras.arrayPrincipal);break;
-			case 27:sorts = new Tim					(mainApp, barras.arrayPrincipal);break;
+			switch (seleccionAlgoritmo) { //
+			case  0:sorts = new BidirectionalBubble	(mainApp, barras.arrayPrincipal);break;
+			case  1:sorts = new BinaryInsertion		(mainApp, barras.arrayPrincipal);break;
+			case  2:sorts = new Bitonic				(mainApp, barras.arrayPrincipal);break;
+			case  3:sorts = new Bogo				(mainApp, barras.arrayPrincipal);break;
+			case  4:sorts = new Bubble				(mainApp, barras.arrayPrincipal);break;
+			case  5:sorts = new BubbleOptimized		(mainApp, barras.arrayPrincipal);break;
+			case  6:sorts = new BucketSort			(mainApp, barras.arrayPrincipal);break;
+			case  7:sorts = new Cocktail			(mainApp, barras.arrayPrincipal);break;
+			case  8:sorts = new Cycle				(mainApp, barras.arrayPrincipal);break;
+			case  9:sorts = new DoubleSelection		(mainApp, barras.arrayPrincipal);break;
+			case 10:sorts = new Gnome				(mainApp, barras.arrayPrincipal);break;
+			case 11:sorts = new Gravity				(mainApp, barras.arrayPrincipal);break;
+			case 12:sorts = new Heap				(mainApp, barras.arrayPrincipal);break;
+			case 13:sorts = new Inserccion			(mainApp, barras.arrayPrincipal);break;
+			case 14:sorts = new Introsort			(mainApp, barras.arrayPrincipal);break;
+			case 15:sorts = new IterativeMerge		(mainApp, barras.arrayPrincipal);break;
+			case 16:sorts = new IterativeQuick		(mainApp, barras.arrayPrincipal);break;
+			case 17:sorts = new Merge				(mainApp, barras.arrayPrincipal);break;
+			case 18:sorts = new OddEven				(mainApp, barras.arrayPrincipal);break;
+			case 19:sorts = new Pancake				(mainApp, barras.arrayPrincipal);break;
+			case 20:sorts = new Pigeonhole			(mainApp, barras.arrayPrincipal);break;
+			case 21:sorts = new Quick				(mainApp, barras.arrayPrincipal);break;
+			case 22:sorts = new Radix				(mainApp, barras.arrayPrincipal);break;
+			case 23:sorts = new RecursiveBubble		(mainApp, barras.arrayPrincipal);break;
+			case 24:sorts = new RecursiveInsertion	(mainApp, barras.arrayPrincipal);break;
+			case 25:sorts = new RecursiveSelection	(mainApp, barras.arrayPrincipal);break;
+			case 26:sorts = new Selection			(mainApp, barras.arrayPrincipal);break;
+			case 27:sorts = new Shell				(mainApp, barras.arrayPrincipal);break;
+			case 28:sorts = new Stooge				(mainApp, barras.arrayPrincipal);break;
+			case 29:sorts = new Tim					(mainApp, barras.arrayPrincipal);break;
 			
 			// Obtenido mediante el [nombreAlgoritmos.lenght], siendo el valor superior al ultimo CASE.
 			default:barras.desordenarArray();break;

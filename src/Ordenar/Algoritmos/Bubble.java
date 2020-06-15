@@ -13,14 +13,14 @@ public class Bubble extends AdicionalesSorts implements ISort {
 	}
 
 	// @Override
-	public void sort(int[] n) {
+	public void sort(int[] array) {
 		setInicio(System.currentTimeMillis());
-		for (int i = 0; i < n.length; i++) {
-			for (int j = 0; j < n.length - 1; j++) {
-				if (n[j] > n[j + 1]) {
-					int temp = n[j];
-					n[j] = n[j + 1];
-					n[j + 1] = temp;
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array.length - 1; j++) {
+				if (array[j] > array[j + 1]) {
+					int temp = array[j];
+					array[j] = array[j + 1];
+					array[j + 1] = temp;
 					cambiosArray++;
 				}
 				accesoArray += 2;
