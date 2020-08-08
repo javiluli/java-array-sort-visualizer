@@ -78,7 +78,7 @@ public class DibujarGraficos extends TransformCentrarGraficos {
 				graphics.setPaint(getGradientPaint(i, arrayPrincipal[i], BAR_WIDTH));
 			// Color por defecto de todos los graficos.
 			else
-				graphics.setColor(Color.WHITE);
+				graphics.setColor(Color.white);
 
 			// Animacion de final del Sort.
 			if (finSort) {
