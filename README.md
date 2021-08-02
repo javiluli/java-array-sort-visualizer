@@ -1,24 +1,16 @@
-# Ordenacion visual de un Array en Java
+# Ordenación visual de un array en Java
 
-Disponibles hasta 30 algoritmos de ordenacion y 8 variantes para el diseño grafico.
-
-La carpeta _data/_ almacena archivos como videos e imagenes que afectan visualmente, no son necesarios para el funcionamiento del programa. Para su uso correcto se debe dejar de la misma forma en la que se decarga el repositorio, en una misma carpeta o directorio:
-
-- ordenacionVisual.jar
-- data/
-
----
+Disponibles hasta 30 algoritmos de ordenación y 8 variantes para el diseño gráfico.
 
 ## Descargar y generar ejecutable
 
-```
-git clone https://github.com/javiluli/Ordenacion-visual-Java.git
-cd Ordenacion-visual-Java
+```bash
+git clone https://github.com/javiluli/array-sort-visualizer.git
+cd array-sort-visualizer
+mkdir target
 javac src/Principal/MainAplicacion.java -sourcepath src -d target/
-jar -cvfm ordenacionVisual.jar manifest.mf -C target/ ./
+jar -cvfm program.jar manifest.mf -C target/ ./
 ```
-
----
 
 ## Disponibles 30 algoritmos de ordenacion
 
@@ -53,35 +45,25 @@ jar -cvfm ordenacionVisual.jar manifest.mf -C target/ ./
 - Stooge sort
 - Tim sort
 
----
+## Disponibles 8 diseños gráficos distintos
 
-## Disponibles 8 diseños graficos distintos
-
-- Barras clasicas
-- Piramide horizontal
-- Piramide vertical
+- Barras clásicas
+- Pirámide horizontal
+- Pirámide vertical
 - Pantalla completa
 - Pixel
-- Circulo con barras
+- Círculo con barras
 - Circunferencia
 - Espiral con barras
 
----
-
 ### Bubble optimized Sort
 
-![bubble_optimized.gif](data/media/video/bubble_optimized.gif)
-
----
+![bubble_optimized.gif](resources/bubble_optimized.gif)
 
 ### Merge Sort
 
-![merge.gif](data/media/video/merge.gif)
-
----
+![merge.gif](resources/merge.gif)
 
 ### Radix LSD Sort
 
-![radix_lsd.gif](data/media/video/radix_lsd.gif)
-
----
+![radix_lsd.gif](resources/radix_lsd.gif)
